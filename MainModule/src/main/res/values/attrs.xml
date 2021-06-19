@@ -1,0 +1,79 @@
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:attrs.xml
+  ~ @LastModified:2021/06/17 14:56:17
+  -->
+
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="AudioWaveView">
+        <attr name="waveWidth" format="dimension" />
+        <attr name="waveColor" format="color" />
+        <attr name="pointTotal" format="integer" />
+        <attr name="accuracy" format="integer" />
+        <attr name="readCount" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="AudioWaveSurfaceView">
+        <attr name="strokeColor" format="color" />
+        <attr name="audioTotal" format="integer" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="animationFrame" format="integer" />
+        <attr name="sampleRate" format="integer" />
+        <attr name="autoControl" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomCollapsibleActionBar">
+        <attr name="anchor_point" format="dimension" />
+        <attr name="end_animation_point" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="CocoView">
+        <attr name="height" format="dimension" />
+        <attr name="first_width" format="dimension" />
+        <attr name="second_width" format="dimension" />
+        <attr name="offset_width" format="dimension" />
+        <attr name="first_color" format="color" />
+        <attr name="second_color" format="color" />
+        <attr name="canvas_color" format="color" />
+    </declare-styleable>
+    <attr name="bottomToolbarPopupOverlay" format="reference" />
+    <attr name="bottomToolbarTheme" format="reference" />
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="StockManage">
+        <attr name="cwidth" format="dimension" /><!-- 宽度 -->
+        <attr name="cheight" format="dimension" /><!-- 高度 -->
+        <attr name="inColor" format="color" /><!-- 圈内颜色 -->
+        <attr name="outColor" format="color" /><!-- 圈外颜色 -->
+        <attr name="textColor" format="color" /><!-- 颜色-->
+        <attr name="stroke" format="dimension" /><!-- 圆圈的宽度 -->
+        <attr name="textSize" format="dimension" /><!-- 字体大小 -->
+        <attr name="text" format="string" /><!-- 字 -->
+        <attr name="icon" format="reference" /><!-- 图片 -->
+    </declare-styleable>
+    <declare-styleable name="Expandable">
+        <attr name="exp_icon" format="integer" />
+        <attr name="exp_iconStyle" format="enum">
+            <enum name="square" value="0" />
+            <enum name="circle" value="1" />
+            <enum name="roundedSquare" value="2" />
+        </attr>
+        <attr name="exp_animateExpand" format="boolean" />
+        <attr name="exp_backgroundColor" format="color" />
+        <attr name="exp_expandIndicator" format="integer" />
+    </declare-styleable>
+</resources>

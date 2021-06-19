@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:file_paths.xml
+  ~ @LastModified:2021/06/19 21:50:19
+  -->
+
+<paths>
+    <external-path
+        name="external_files"
+        path="." />
+</paths>

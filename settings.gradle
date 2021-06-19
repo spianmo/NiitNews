@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2021
+ * @Project:NiitNews
+ * @Author:Finger
+ * @FileName:settings.gradle
+ * @LastModified:2021/06/17 14:56:17
+ */
+
+rootProject.name = "NiitNews"
+include ':MainModule'
+include ':Framework'
+include 'ThirdParty:core-4.3.1-openDefaultRelease'
+include 'ThirdParty:shareLoginlib'

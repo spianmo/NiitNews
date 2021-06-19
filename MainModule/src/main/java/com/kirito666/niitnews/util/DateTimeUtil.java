@@ -1,0 +1,54 @@
+package com.kirito666.niitnews.util;
+
+import android.text.format.DateUtils;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+/**
+ * Copyright (c) 2021
+ * @Project:NiitNews
+ * @Author:Finger
+ * @FileName:DateTimeUtil.java
+ * @LastModified:2021/06/17 16:57:17
+ */
+
+/**
+ * Created by HP-HP on 19-07-2016.
+ */
+public class DateTimeUtil {
+
+    public static String parseDateTime(String dateString, String originalFormat, String outputFromat) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat(originalFormat, Locale.US);
+        Date date = null;
+        try {
+            date = formatter.parse(dateString);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat(outputFromat, new Locale("US"));
+
+            return dateFormat.format(date);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String getRelativeTimeSpan(String dateString, String originalFormat) {
+
+        SimpleDateFormat formatter = new SimpleDateFormat(originalFormat, Locale.US);
+        Date date = null;
+        try {
+            date = formatter.parse(dateString);
+
+            return DateUtils.getRelativeTimeSpanString(date.getTime()).toString();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+}
