@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:build.gradle
- * @LastModified:2021/06/17 16:43:17
+ * @LastModified:2021/06/21 02:51:21
  */
 
 plugins {
@@ -14,21 +14,36 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.kirito666.niitnews"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.4.210621_alpha"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        Kirito666 {
+            storeFile file('D:\\JetBrainProjects\\Keystore\\Kirito666.jks')
+            storePassword '397773106tqj'
+            keyAlias 'kirito666keystore'
+            keyPassword '397773106tqj'
+        }
+    }
+
     buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.Kirito666
+        }
         release {
-            minifyEnabled false
+            debuggable false
+            //shrinkResources true
+            signingConfig signingConfigs.Kirito666
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -53,6 +68,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
@@ -100,7 +118,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
     implementation  'com.zhy:okhttputils:2.6.2'
 
-    implementation 'org.projectlombok:lombok:1.18.18'
-    annotationProcessor 'org.projectlombok:lombok:1.18.18'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

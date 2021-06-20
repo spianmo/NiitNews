@@ -11,16 +11,21 @@ import com.kirshi.framework.BaseApplication;
 import com.kirshi.framework.hookapp.AppConfig;
 import com.lzf.easyfloat.EasyFloat;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 import jonathanfinerty.once.Once;
 import kale.sharelogin.ShareLoginLib;
 import kale.sharelogin.qq.QQPlatform;
 import kale.sharelogin.utils.MapBuilder;
+import okhttp3.OkHttpClient;
 
 
 /**
@@ -28,7 +33,7 @@ import kale.sharelogin.utils.MapBuilder;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:App.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/20 00:19:20
  */
 
 /**
@@ -77,14 +82,14 @@ public class App extends BaseApplication {
         String processName = getProcessName(android.os.Process.myPid());
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(mApp);
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        CrashReport.initCrashReport(mApp, "f0114ed064", false);
+        CrashReport.initCrashReport(mApp, "977e66581f", false);
 
         this.registerActivityLifecycleCallbacks(new AppLifecycleCallback());
         EasyFloat.init(this, true);
         ShareLoginLib.init(this, getString(R.string.app_name), null, isApkInDebug(mApp));
         ShareLoginLib.initPlatforms(
                 MapBuilder.of(
-                        QQPlatform.KEY_APP_ID, "101940151",
+                        QQPlatform.KEY_APP_ID, "101959662",
                         QQPlatform.KEY_SCOPE, "get_user_info,"
                                 + "get_simple_userinfo,"
                                 + "add_share,"
@@ -96,6 +101,15 @@ public class App extends BaseApplication {
         );
         Once.initialise(this);
         App.currentUser = UserJar.isLogin(mApp) ? UserJar.loadFromDisk(mApp) : null;
+
+        CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .cookieJar(cookieJar)
+                .build();
+
+        OkHttpUtils.initClient(okHttpClient);
     }
 
     public static boolean isApkInDebug(Context context) {

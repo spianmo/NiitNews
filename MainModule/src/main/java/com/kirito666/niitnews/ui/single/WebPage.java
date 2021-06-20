@@ -9,7 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.kirito666.niitnews.databinding.PageWebBinding;
-import com.kirshi.framework.mvp.base.BaseActivity;
+import com.kirshi.framework.BaseActivity;
 
 import java.net.URISyntaxException;
 
@@ -19,7 +19,7 @@ import java.net.URISyntaxException;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:WebPage.java
- * @LastModified:2021/06/17 16:57:17
+ * @LastModified:2021/06/20 00:37:20
  */
 
 /**

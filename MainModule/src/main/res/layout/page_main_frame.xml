@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_main_frame.xml
-  ~ @LastModified:2021/06/19 21:50:19
+  ~ @LastModified:2021/06/20 00:29:20
   -->
 
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
-    tools:context=".ui.MainFrame.MainFrame"
+    tools:context=".ui.main_frame.MainFrame"
     android:orientation="vertical">
 
 

@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright (c) 2021
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:AndroidManifest.xml
-  ~ @LastModified:2021/06/19 21:50:19
+  ~ @LastModified:2021/06/20 00:46:20
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,13 +34,14 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:name=".App"
+        android:allowBackup="true"
+        android:icon="@drawable/app"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/app"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme.MD.NoActionBar">
+        <activity android:name=".ui.post_detail.PostDetailActivity"></activity>
         <activity android:name=".ui.single.OpenSourcePage" />
         <activity android:name=".ui.single.SplashPage">
             <intent-filter>
@@ -57,7 +59,7 @@
             android:name=".ui.single.AboutPage"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
-            android:name=".ui.MainFrame.MainFrame"
+            android:name=".ui.main_frame.MainFrame"
             android:theme="@style/AppTheme.MD.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -67,8 +69,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="freya"
-                    android:host="fastassist" />
+                    android:host="fastassist"
+                    android:scheme="freya" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.single.TimeLinePage" />

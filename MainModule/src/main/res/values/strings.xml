@@ -3,9 +3,11 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:strings.xml
-  ~ @LastModified:2021/06/17 15:37:17
+  ~ @LastModified:2021/06/20 00:29:20
   -->
 
 <resources>
     <string name="app_name">每日南工</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
