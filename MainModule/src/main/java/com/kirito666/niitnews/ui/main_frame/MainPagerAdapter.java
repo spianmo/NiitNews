@@ -1,4 +1,4 @@
-package com.kirito666.niitnews.ui.MainFrame;
+package com.kirito666.niitnews.ui.main_frame;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainPagerAdapter.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/20 00:29:20
  */
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
