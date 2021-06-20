@@ -1,17 +1,17 @@
-package com.kirshi.framework.mvp.base;
+package com.kirshi.framework;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 import androidx.viewbinding.ViewBinding;
 
 import java.lang.reflect.InvocationTargetException;
@@ -22,11 +22,11 @@ import java.lang.reflect.ParameterizedType;
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
- * @FileName:BaseFragment.java
- * @LastModified:2021/06/19 21:50:19
+ * @FileName:BaseDialogFragment.java
+ * @LastModified:2021/06/21 03:01:21
  */
 
-public abstract class BaseFragment<T extends ViewBinding> extends Fragment {
+public abstract class BaseDialogFragment<T extends ViewBinding> extends DialogFragment {
     Handler mainHandler;
     protected T v;
     protected Context mContext;
@@ -44,8 +44,28 @@ public abstract class BaseFragment<T extends ViewBinding> extends Fragment {
             e.printStackTrace();
         }
 
-        Log.e("===================>", "BaseFragment onCreateView");
+        inCreateView();
         return v.getRoot();
+    }
+
+    public abstract void inCreateView();
+
+    @Override
+    public void onStart() {
+        WindowManager.LayoutParams params = requireDialog().getWindow().getAttributes();
+        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        requireDialog().getWindow().setAttributes(params);
+        super.onStart();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
     }
 
     @Override
@@ -64,5 +84,4 @@ public abstract class BaseFragment<T extends ViewBinding> extends Fragment {
         mainHandler = new Handler(Looper.getMainLooper());
         mainHandler.post(runnable);
     }
-
 }

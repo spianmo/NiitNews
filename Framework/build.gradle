@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:build.gradle
- * @LastModified:2021/06/17 14:56:17
+ * @LastModified:2021/06/19 22:44:19
  */
 
 plugins {
@@ -12,7 +12,6 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 23
