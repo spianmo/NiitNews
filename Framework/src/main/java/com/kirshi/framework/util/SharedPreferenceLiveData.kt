@@ -3,10 +3,10 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SharedPreferenceLiveData.kt
- * @LastModified:2021/06/03 18:08:03
+ * @LastModified:2021/06/21 23:20:21
  */
 
-package com.kirito666.room.util;
+package com.kirshi.framework.util
 
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData

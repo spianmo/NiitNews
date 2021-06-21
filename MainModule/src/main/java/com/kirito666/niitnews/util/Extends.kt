@@ -3,10 +3,10 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Extends.kt
- * @LastModified:2021/06/21 23:16:21
+ * @LastModified:2021/06/21 23:20:21
  */
 
-package com.kirito666.room.util
+package com.kirito666.niitnews.util
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -70,9 +70,9 @@ fun Int.supplyZero(): String = if (this < 10) "0$this" else this.toString()
 
 //此生仅进行一次的操作
 fun once(key: String, block: () -> Unit) {
-    if (!com.kirito666.niitnews.util.Prefs.getBoolean(key, false)) {
+    if (!Prefs.getBoolean(key, false)) {
         block()
-        com.kirito666.niitnews.util.Prefs.save(key, true)
+        Prefs.save(key, true)
     }
 }
 
