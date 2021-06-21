@@ -3,6 +3,7 @@ package com.kirito666.niitnews.net;
 
 import androidx.lifecycle.LiveData;
 
+import com.kirito666.niitnews.entity.NewsGroup;
 import com.kirito666.niitnews.entity.Rank;
 import com.kirito666.niitnews.entity.User;
 import com.kirito666.niitnews.entity.base.BaseResponse;
@@ -20,9 +21,9 @@ import retrofit2.http.POST;
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
- * @Author:Finger
+ * @Author:Shinonon
  * @FileName:APIService.java
- * @LastModified:2021/06/19 21:24:19
+ * @LastModified:2021/06/21 09:29:21
  */
 
 public interface APIService {
@@ -59,7 +60,42 @@ public interface APIService {
     @GET("/news")
     LiveData<BaseResponse<NewsPageData>> fetchNewsPage(@Field("pageId") int pageId,@Field("pageSize")int pageSize,@Field("groupId") int groupId );
 
+
+    @GET("/news/groups")
+    LiveData<BaseResponse<List<NewsGroup>>> fetchNewsGroup();
+
+    @FormUrlEncoded
+    @GET("/news/xxyw")
+    LiveData<BaseResponse<NewsPageData>> fetchNews1(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/news/xwsd")
+    LiveData<BaseResponse<NewsPageData>> fetchNews2(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/news/ybfc")
+    LiveData<BaseResponse<NewsPageData>> fetchNews3(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
     @FormUrlEncoded
     @GET("/news/dsxx")
+    LiveData<BaseResponse<NewsPageData>> fetchNews4(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/news/mtjj")
+    LiveData<BaseResponse<NewsPageData>> fetchNews5(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/news/tzgg")
+    LiveData<BaseResponse<NewsPageData>> fetchNews6(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/news/zbgg")
+    LiveData<BaseResponse<NewsPageData>> fetchNews7(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/news/kyzl")
+    LiveData<BaseResponse<NewsPageData>> fetchNews8(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+
 
 }
