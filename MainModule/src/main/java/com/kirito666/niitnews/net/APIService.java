@@ -1,29 +1,44 @@
 package com.kirito666.niitnews.net;
 
 
+import android.content.pm.LabeledIntent;
+
 import androidx.lifecycle.LiveData;
 
+import com.kirito666.niitnews.entity.Application;
+import com.kirito666.niitnews.entity.Banner;
+import com.kirito666.niitnews.entity.Bling;
+import com.kirito666.niitnews.entity.Commit;
 import com.kirito666.niitnews.entity.NewsGroup;
+import com.kirito666.niitnews.entity.Post;
 import com.kirito666.niitnews.entity.Rank;
 import com.kirito666.niitnews.entity.User;
 import com.kirito666.niitnews.entity.base.BaseResponse;
+import com.kirito666.niitnews.entity.dto.FriendDto;
 import com.kirito666.niitnews.entity.dto.NewsPageData;
+import com.kirito666.niitnews.entity.dto.PostDto;
+import com.kirito666.niitnews.entity.dto.PostPageData;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Shinonon
  * @FileName:APIService.java
- * @LastModified:2021/06/21 09:29:21
+ * @LastModified:2021/06/21 11:39:21
  */
 
 public interface APIService {
@@ -95,6 +110,93 @@ public interface APIService {
     @FormUrlEncoded
     @GET("/news/kyzl")
     LiveData<BaseResponse<NewsPageData>> fetchNews8(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/posts")
+    LiveData<BaseResponse<PostPageData>> fetchPost(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+
+    @POST("/posts")
+    LiveData<BaseResponse<String>> insertPost(@Body Post post);
+
+
+    @GET("/posts/{pid}")
+    LiveData<BaseResponse<PostDto>> postDetail(@Path("pid") int pid);
+
+
+    @PUT("/posts/{pid}")
+    LiveData< BaseResponse<String>> updatePost(@Body Post post,@Path("pid") int pid );
+
+    @DELETE("/posts/{pid}")
+    LiveData<BaseResponse<String>> deletePost(@Path("pid") int pid);
+
+    @POST("/posts/{pid}/favor")
+    LiveData<BaseResponse<String>> favorPost(@Path("pid")  int pid);
+
+    @FormUrlEncoded
+    @DELETE("/posts/{pid}/favor")
+    LiveData<BaseResponse<String>> deleteFavor(@Path("pid")  int pid, @Field("id")  int id);
+
+    @POST("/posts/{pid}/commit")
+    LiveData< BaseResponse<String>> commitPost(@Path("pid")  int pid,@Body Commit commit);
+
+    @FormUrlEncoded
+    @DELETE("/posts/{pid}/commit")
+    LiveData<BaseResponse<String>> deleteCommit(@Path("pid")  int pid,@Field("cid") int cid);
+
+    @POST("/posts/{pid}/forward")
+    LiveData<BaseResponse<String>> commitPost(@Path("pid")  int pid);
+
+    @GET("/friends")
+    LiveData<BaseResponse<List<FriendDto>>> getAllFriend();
+
+    @DELETE("/friends/{friendId}")
+    LiveData<BaseResponse<List<String>>> deleteFriend(@Path("friendId") int friendId);
+
+    @FormUrlEncoded
+    @POST("/friends/{friendId}")
+    LiveData<BaseResponse<List<String>>> addFriend(@Path("friendId") int friendId,@Field("remark")  String remark);
+
+
+    @PATCH("/friends/{friendId}")
+    LiveData< BaseResponse<List<String>>> remarkFriend(@Path("friendId") int friendId,@Field("remark")  String remark);
+
+
+    @PUT("/oss/avatar")
+    LiveData<BaseResponse<String>> uploadOssImg(@Part("uploadFile") MultipartBody.Part uploadFile);
+
+    @PUT("/oss/file")
+    LiveData<BaseResponse<String>> uploadOssFile(@Part("uploadFile") MultipartBody.Part uploadFile);
+
+    @GET("/app")
+    LiveData<BaseResponse<Application>> getCurrentApplicationInfo();
+
+    @GET("/app/{versionCode}")
+    LiveData<BaseResponse<Application>> getApplicationInfoByVersionCode(@Path("versionCode") long versionCode);
+
+    @GET("/app/history")
+    LiveData<BaseResponse<List<Application>>> getApplicationHistory();
+
+    @FormUrlEncoded
+    @GET("/app/banner/main")
+    LiveData<BaseResponse<List<Banner>>> getMainBanner(@Field("num")  int num);
+
+    @FormUrlEncoded
+    @GET("/app/banner/news")
+    LiveData<BaseResponse<List<Banner>>> getNewsBanner(@Field("num")  int num);
+
+    @FormUrlEncoded
+    @GET("/app/banner/adv")
+    LiveData<BaseResponse<List<Banner>>> getAdvBanner(@Field("num")  int num);
+
+    @FormUrlEncoded
+    @GET("/app/banner/common")
+    LiveData<BaseResponse<List<Banner>>> getCommonBanner(@Field("num") int num);
+
+    @GET("/app/bling")
+    LiveData< BaseResponse<Bling>> getApplicationBling();
+
+
 
 
 
