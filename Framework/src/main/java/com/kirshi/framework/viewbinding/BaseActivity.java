@@ -1,4 +1,4 @@
-package com.kirshi.framework;
+package com.kirshi.framework.viewbinding;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,7 +23,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseActivity.java
- * @LastModified:2021/06/21 03:01:21
+ * @LastModified:2021/06/21 22:10:21
  */
 
 public class BaseActivity<V extends ViewBinding> extends AppCompatActivity {

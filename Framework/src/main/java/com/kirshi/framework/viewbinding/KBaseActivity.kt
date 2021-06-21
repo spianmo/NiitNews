@@ -3,10 +3,10 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:KBaseActivity.kt
- * @LastModified:2021/06/21 11:37:21
+ * @LastModified:2021/06/21 22:10:21
  */
 
-package com.kirshi.framework
+package com.kirshi.framework.viewbinding
 
 import android.R
 import android.app.Activity

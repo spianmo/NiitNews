@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:build.gradle
- * @LastModified:2021/06/21 11:29:21
+ * @LastModified:2021/06/21 18:09:21
  */
 
 plugins {
@@ -34,6 +34,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
