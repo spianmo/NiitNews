@@ -1,9 +1,12 @@
 package com.kirshi.framework.util;
 
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.viewbinding.ViewBinding;
 
 import java.lang.reflect.Method;
@@ -15,7 +18,7 @@ import java.lang.reflect.Type;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BindingUtil.java
- * @LastModified:2021/06/21 22:11:21
+ * @LastModified:2021/06/21 23:17:21
  */
 
 public class BindingUtil {
@@ -81,6 +84,17 @@ public class BindingUtil {
                 findViewBinding(appCompatActivity);
 
         return createViewBinding(viewBindClass, layoutInflater);
+    }
+
+    /**
+     * 绑定
+     *
+     * @param parent   父布局
+     * @param layoutId 目标布局
+     */
+    public static ViewDataBinding bind(ViewGroup parent, int layoutId) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        return DataBindingUtil.inflate(layoutInflater, layoutId, parent, false);
     }
 
 }
