@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RetrofitClient.java
- * @LastModified:2021/06/21 09:49:21
+ * @LastModified:2021/06/21 13:23:21
  */
 
 public class RetrofitClient {
@@ -118,6 +118,7 @@ public class RetrofitClient {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 //设置网络请求适配器，使其支持RxJava与RxAndroid
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .build();
         //创建—— 网络请求接口—— 实例
         apiService = retrofit.create(APIService.class);
