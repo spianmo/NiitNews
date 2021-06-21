@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.R;
-import com.kirito666.niitnews.entity.Session;
 import com.kirito666.niitnews.net.APIService;
 import com.kirito666.niitnews.net.jar.SessionJar;
 import com.kirito666.niitnews.util.CertificatesUtil;
@@ -28,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RetrofitClient.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/21 07:58:21
  */
 
 public class RetrofitClient {

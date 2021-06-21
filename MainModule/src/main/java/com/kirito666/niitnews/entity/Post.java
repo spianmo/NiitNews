@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Post.java
- * @LastModified:2021/06/19 16:18:19
+ * @LastModified:2021/06/21 08:04:21
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Post {
     long pid;
     String title;
-    Timestamp createTime;
+    Timestamp createdTime;
     Timestamp modifiedTime;
     String text;
     long authorId;

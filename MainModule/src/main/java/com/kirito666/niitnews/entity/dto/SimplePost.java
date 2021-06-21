@@ -1,9 +1,9 @@
 package com.kirito666.niitnews.entity.dto;
 
-
 import java.sql.Timestamp;
 import java.util.List;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -11,14 +11,16 @@ import lombok.Data;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SimplePost.java
- * @LastModified:2021/06/19 16:18:19
+ * @LastModified:2021/06/21 08:04:21
  */
 
 @Data
+@Builder
 public class SimplePost {
     long pid;
     String title;
     Timestamp modifiedTime;
+    Timestamp createdTime;
     String textSmp;
     long authorId;
     List<String> attachPic;
@@ -27,5 +29,6 @@ public class SimplePost {
     long favorCount;
     long commitCount;
     long parentPid;
+    boolean isFavor;
     boolean allowComment;
 }

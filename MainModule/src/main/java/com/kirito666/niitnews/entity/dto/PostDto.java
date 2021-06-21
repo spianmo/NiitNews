@@ -1,11 +1,11 @@
 package com.kirito666.niitnews.entity.dto;
 
-
 import com.kirito666.niitnews.entity.Commit;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -13,14 +13,15 @@ import lombok.Data;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDto.java
- * @LastModified:2021/06/19 16:18:19
+ * @LastModified:2021/06/21 08:04:21
  */
 
 @Data
+@Builder
 public class PostDto {
     long pid;
     String title;
-    Timestamp createTime;
+    Timestamp createdTime;
     Timestamp modifiedTime;
     String text;
     long authorId;
@@ -33,5 +34,6 @@ public class PostDto {
     boolean allowComment;
     boolean allowFeed;
     boolean isSourceAuthor;
+    long score;
     List<Commit> commits;
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.kirito666.niitnews.entity.Session;
 import com.kirito666.niitnews.util.RC4Util;
 
 import java.io.File;
@@ -16,7 +15,7 @@ import java.io.FileOutputStream;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SessionJar.java
- * @LastModified:2021/06/19 17:39:19
+ * @LastModified:2021/06/21 07:58:21
  */
 
 public class SessionJar {
