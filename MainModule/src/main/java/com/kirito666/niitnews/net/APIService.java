@@ -34,7 +34,7 @@ import retrofit2.http.Path;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/21 22:23:21
+ * @LastModified:2021/06/21 22:24:21
  */
 
 public interface APIService {
@@ -191,9 +191,5 @@ public interface APIService {
 
     @GET("/app/bling")
     Call<BaseResponse<Bling>> getApplicationBling();
-
-
-
-
 
 }
