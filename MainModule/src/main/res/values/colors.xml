@@ -3,13 +3,13 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:colors.xml
-  ~ @LastModified:2021/06/17 14:56:17
+  ~ @LastModified:2021/06/21 11:18:21
   -->
 
 <resources>
-    <color name="colorPrimary">#FF3369E8</color>
-    <color name="colorPrimaryDark">#FF3369E8</color>
-    <color name="colorAccent">#FF3369E8</color>
+    <color name="colorPrimary">#4285F4</color>
+    <color name="colorPrimaryDark">#4285F4</color>
+    <color name="colorAccent">#4285F4</color>
     <color name="colorLightGray">#9E9E9E</color>
     <color name="colorDefaultBackground">#FFFFFFFF</color>
     <color name="black">#000000</color>
@@ -307,5 +307,6 @@
     <color name="google_red">#EB4334</color>
     <color name="google_yellow">#FBBD06</color>
     <color name="google_green">#35AA53</color>
+    <color name="grey_10">#e6e6e6</color>
 
 </resources>

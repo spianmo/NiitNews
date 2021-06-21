@@ -3,11 +3,11 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:ic_baseline_settings_24.xml
-  ~ @LastModified:2021/04/13 21:30:13
+  ~ @LastModified:2021/06/21 09:35:21
   -->
 
 <vector android:height="24dp"
-    android:tint="#6E6C6C"
+    android:tint="#A0A0A0"
     android:viewportHeight="24"
     android:viewportWidth="24"
     android:width="24dp"

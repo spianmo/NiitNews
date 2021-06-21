@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:AndroidManifest.xml
-  ~ @LastModified:2021/06/20 00:46:20
+  ~ @LastModified:2021/06/21 11:18:21
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,7 +41,14 @@
         android:roundIcon="@drawable/app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.MD.NoActionBar">
-        <activity android:name=".ui.post_detail.PostDetailActivity"></activity>
+        <activity android:name=".ui.search.SearchPage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.post_detail.PostDetailActivity" />
         <activity android:name=".ui.single.OpenSourcePage" />
         <activity android:name=".ui.single.SplashPage">
             <intent-filter>
@@ -62,16 +69,6 @@
             android:name=".ui.main_frame.MainFrame"
             android:theme="@style/AppTheme.MD.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter tools:ignore="AppLinkUrlError">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="fastassist"
-                    android:scheme="freya" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.single.TimeLinePage" />
 

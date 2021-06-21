@@ -1,36 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright (c) 2021
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:menu_main_extra.xml
-  ~ @LastModified:2021/06/17 15:25:17
+  ~ @LastModified:2021/06/21 09:36:21
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_thirdparty"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_source_24"
-        android:title="开源许可"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_timeline"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_miscellaneous_services_24"
-        android:title="更新历程"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_contact_developer"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_code_24"
-        android:title="关于开发者"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_baseline_view_in_ar_24"
-        android:title="关于FreyaLinker"
+        android:title="About"
+        android:icon="@drawable/ic_baseline_code_24"
         app:showAsAction="never" />
 </menu>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:asld_nav_people.xml
+  ~ @LastModified:2021/06/21 11:37:21
+  -->
+
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/selected"
+        android:drawable="@drawable/ic_baseline_people_24"
+        android:state_checked="true" />
+
+    <item
+        android:id="@+id/unselected"
+        android:drawable="@drawable/ic_baseline_people_24"
+        android:state_checked="false" />
+
+</animated-selector>

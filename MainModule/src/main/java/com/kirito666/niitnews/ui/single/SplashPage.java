@@ -26,7 +26,7 @@ import okhttp3.Call;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SplashPage.java
- * @LastModified:2021/06/21 03:06:21
+ * @LastModified:2021/06/21 11:24:21
  */
 
 /**
@@ -50,7 +50,7 @@ public class SplashPage extends BaseActivity<PageSplashBinding> {
             Intent intent = new Intent(SplashPage.this, MainFrame.class);
             startActivity(intent);
             finish();
-        }, 3000);
+        }, 1200);
     }
 
     /**

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:navigation.xml
+  ~ @LastModified:2021/06/21 11:37:21
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/asld_nav_agenda"
+        android:title="新闻资讯" />
+
+    <item
+        android:id="@+id/navigation_rank"
+        android:icon="@drawable/asld_nav_schedule"
+        android:title="校内热榜" />
+
+
+    <item
+        android:id="@+id/navigation_posts"
+        android:icon="@drawable/asld_nav_people"
+        android:title="校园圈子" />
+</menu>

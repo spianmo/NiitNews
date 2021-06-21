@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:activity_main_drawer.xml
+  ~ @LastModified:2021/06/21 11:37:21
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_calendar_view_day_24"
+            android:checked="true"
+            android:title="CardView" />
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_baseline_tab_24"
+            android:title="TabLayout" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@drawable/ic_baseline_chat_bubble_24"
+            android:title="Message" />
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:title="Setting" />
+        </menu>
+    </item>
+</menu>

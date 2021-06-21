@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:build.gradle
- * @LastModified:2021/06/21 07:55:21
+ * @LastModified:2021/06/21 10:55:21
  */
 
 plugins {
@@ -117,4 +117,6 @@ dependencies {
 
     //implementation 'org.projectlombok:lombok:1.18.20'
     //kapt 'org.projectlombok:lombok:1.18.20'
+
+    implementation 'com.google.android:flexbox:0.3.2'
 }

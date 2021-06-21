@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/21 03:15:21
+ * @LastModified:2021/06/21 11:24:21
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -32,7 +32,6 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DaemonHolder.init(this, HeartBeatService.class);
-
     }
 
     @Override
