@@ -1,28 +1,44 @@
 package com.kirito666.niitnews.net;
 
 
+import android.content.pm.LabeledIntent;
+
+import androidx.lifecycle.LiveData;
+
+import com.kirito666.niitnews.entity.Application;
+import com.kirito666.niitnews.entity.Banner;
+import com.kirito666.niitnews.entity.Bling;
+import com.kirito666.niitnews.entity.Commit;
 import com.kirito666.niitnews.entity.NewsGroup;
+import com.kirito666.niitnews.entity.Post;
 import com.kirito666.niitnews.entity.Rank;
 import com.kirito666.niitnews.entity.User;
 import com.kirito666.niitnews.entity.base.BaseResponse;
+import com.kirito666.niitnews.entity.dto.FriendDto;
 import com.kirito666.niitnews.entity.dto.NewsPageData;
+import com.kirito666.niitnews.entity.dto.PostDto;
+import com.kirito666.niitnews.entity.dto.PostPageData;
 
 import java.util.List;
 
-import retrofit2.Call;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
- * @Author:Finger
+ * @Author:Shinonon
  * @FileName:APIService.java
- * @LastModified:2021/06/21 22:14:21
+ * @LastModified:2021/06/21 11:39:21
  */
 
 public interface APIService {
@@ -31,69 +47,156 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("/user/login")
-    Call<BaseResponse<User>> login(@Field("account") String account, @Field("passwd") String passwd);
+    LiveData<BaseResponse<User>> login(@Field("account") String account, @Field("passwd") String passwd);
 
     @POST("/user/register")
-    Call<BaseResponse<User>> register(@Body User user);
+    LiveData<BaseResponse<User>> register(@Body User user);
 
     @FormUrlEncoded
     @PATCH("/user/passwd")
-    Call<BaseResponse<String>> resetPasswd(@Field("passwd") String passwd);
+    LiveData<BaseResponse<String>> resetPasswd(@Field("passwd") String passwd);
 
     @FormUrlEncoded
     @PATCH("/user/nickname")
-    Call<BaseResponse<String>> patchNickname(@Field("nickname") String nickname);
+    LiveData<BaseResponse<String>> patchNickname(@Field("nickname") String nickname);
 
     @FormUrlEncoded
     @PATCH("/user/avater")
-    Call<BaseResponse<String>> updateAvater(@Field("avater") String avater);
+    LiveData<BaseResponse<String>> updateAvater(@Field("avater") String avater);
 
     @FormUrlEncoded
     @GET("/ranks/news")
-    Call<BaseResponse<List<Rank>>> fetchNewsRank(@Field("afterTime") String afterTime);
+    LiveData<BaseResponse<List<Rank>>> fetchNewsRank(@Field("afterTime") String afterTime);
 
     @GET("/ranks/posts")
-    Call<BaseResponse<List<Rank>>> fetchRank();
+    LiveData<BaseResponse<List<Rank>>> fetchRank() ;
 
     @FormUrlEncoded
     @GET("/news")
-    Call<BaseResponse<NewsPageData>> fetchNewsPage(@Field("pageId") int pageId, @Field("pageSize") int pageSize, @Field("groupId") int groupId);
+    LiveData<BaseResponse<NewsPageData>> fetchNewsPage(@Field("pageId") int pageId,@Field("pageSize")int pageSize,@Field("groupId") int groupId );
 
 
     @GET("/news/groups")
-    Call<BaseResponse<List<NewsGroup>>> fetchNewsGroup();
+    LiveData<BaseResponse<List<NewsGroup>>> fetchNewsGroup();
 
     @FormUrlEncoded
     @GET("/news/xxyw")
-    Call<BaseResponse<NewsPageData>> fetchNews1(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews1(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @GET("/news/xwsd")
-    Call<BaseResponse<NewsPageData>> fetchNews2(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews2(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @GET("/news/ybfc")
-    Call<BaseResponse<NewsPageData>> fetchNews3(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews3(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @GET("/news/dsxx")
-    Call<BaseResponse<NewsPageData>> fetchNews4(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews4(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @GET("/news/mtjj")
-    Call<BaseResponse<NewsPageData>> fetchNews5(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews5(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @GET("/news/tzgg")
-    Call<BaseResponse<NewsPageData>> fetchNews6(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews6(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @GET("/news/zbgg")
-    Call<BaseResponse<NewsPageData>> fetchNews7(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews7(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
 
     @FormUrlEncoded
     @GET("/news/kyzl")
-    Call<BaseResponse<NewsPageData>> fetchNews8(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    LiveData<BaseResponse<NewsPageData>> fetchNews8(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+    @FormUrlEncoded
+    @GET("/posts")
+    LiveData<BaseResponse<PostPageData>> fetchPost(@Field("pageId") int pageId,@Field("pageSize") int pageSize);
+
+
+    @POST("/posts")
+    LiveData<BaseResponse<String>> insertPost(@Body Post post);
+
+
+    @GET("/posts/{pid}")
+    LiveData<BaseResponse<PostDto>> postDetail(@Path("pid") int pid);
+
+
+    @PUT("/posts/{pid}")
+    LiveData< BaseResponse<String>> updatePost(@Body Post post,@Path("pid") int pid );
+
+    @DELETE("/posts/{pid}")
+    LiveData<BaseResponse<String>> deletePost(@Path("pid") int pid);
+
+    @POST("/posts/{pid}/favor")
+    LiveData<BaseResponse<String>> favorPost(@Path("pid")  int pid);
+
+    @FormUrlEncoded
+    @DELETE("/posts/{pid}/favor")
+    LiveData<BaseResponse<String>> deleteFavor(@Path("pid")  int pid, @Field("id")  int id);
+
+    @POST("/posts/{pid}/commit")
+    LiveData< BaseResponse<String>> commitPost(@Path("pid")  int pid,@Body Commit commit);
+
+    @FormUrlEncoded
+    @DELETE("/posts/{pid}/commit")
+    LiveData<BaseResponse<String>> deleteCommit(@Path("pid")  int pid,@Field("cid") int cid);
+
+    @POST("/posts/{pid}/forward")
+    LiveData<BaseResponse<String>> commitPost(@Path("pid")  int pid);
+
+    @GET("/friends")
+    LiveData<BaseResponse<List<FriendDto>>> getAllFriend();
+
+    @DELETE("/friends/{friendId}")
+    LiveData<BaseResponse<List<String>>> deleteFriend(@Path("friendId") int friendId);
+
+    @FormUrlEncoded
+    @POST("/friends/{friendId}")
+    LiveData<BaseResponse<List<String>>> addFriend(@Path("friendId") int friendId,@Field("remark")  String remark);
+
+
+    @PATCH("/friends/{friendId}")
+    LiveData< BaseResponse<List<String>>> remarkFriend(@Path("friendId") int friendId,@Field("remark")  String remark);
+
+
+    @PUT("/oss/avatar")
+    LiveData<BaseResponse<String>> uploadOssImg(@Part("uploadFile") MultipartBody.Part uploadFile);
+
+    @PUT("/oss/file")
+    LiveData<BaseResponse<String>> uploadOssFile(@Part("uploadFile") MultipartBody.Part uploadFile);
+
+    @GET("/app")
+    LiveData<BaseResponse<Application>> getCurrentApplicationInfo();
+
+    @GET("/app/{versionCode}")
+    LiveData<BaseResponse<Application>> getApplicationInfoByVersionCode(@Path("versionCode") long versionCode);
+
+    @GET("/app/history")
+    LiveData<BaseResponse<List<Application>>> getApplicationHistory();
+
+    @FormUrlEncoded
+    @GET("/app/banner/main")
+    LiveData<BaseResponse<List<Banner>>> getMainBanner(@Field("num")  int num);
+
+    @FormUrlEncoded
+    @GET("/app/banner/news")
+    LiveData<BaseResponse<List<Banner>>> getNewsBanner(@Field("num")  int num);
+
+    @FormUrlEncoded
+    @GET("/app/banner/adv")
+    LiveData<BaseResponse<List<Banner>>> getAdvBanner(@Field("num")  int num);
+
+    @FormUrlEncoded
+    @GET("/app/banner/common")
+    LiveData<BaseResponse<List<Banner>>> getCommonBanner(@Field("num") int num);
+
+    @GET("/app/bling")
+    LiveData< BaseResponse<Bling>> getApplicationBling();
+
+
 
 
 
