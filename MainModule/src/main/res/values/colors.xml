@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:colors.xml
-  ~ @LastModified:2021/06/21 11:18:21
+  ~ @LastModified:2021/06/21 13:48:21
   -->
 
 <resources>
@@ -308,5 +308,6 @@
     <color name="google_yellow">#FBBD06</color>
     <color name="google_green">#35AA53</color>
     <color name="grey_10">#e6e6e6</color>
+    <color name="grey_60">#666666</color>
 
 </resources>

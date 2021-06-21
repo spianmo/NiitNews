@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:dimens.xml
-  ~ @LastModified:2021/06/21 10:55:21
+  ~ @LastModified:2021/06/21 22:00:21
   -->
 
 <resources>
@@ -78,7 +78,10 @@
     <dimen name="expand_drawable_size">24dp</dimen>
     <dimen name="spacing_large">15dp</dimen>
     <dimen name="spacing_xlarge">35dp</dimen>
-    <dimen name="spacing_mxlarge">25dp</dimen>
-    <dimen name="spacing_xmlarge">45dp</dimen>
+    <dimen name="spacing_mxlarge">55dp</dimen>
+    <dimen name="spacing_xmlarge">40dp</dimen>
     <dimen name="spacing_middle">10dp</dimen>
+    <dimen name="spacing_smlarge">18dp</dimen>
+    <dimen name="spacing_xsmall">2dp</dimen>
+    <dimen name="spacing_small">3dp</dimen>
 </resources>

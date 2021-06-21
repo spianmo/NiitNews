@@ -14,7 +14,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.kirito666.niitnews.databinding.PageSplashBinding;
 import com.kirito666.niitnews.ui.main_frame.MainFrame;
-import com.kirshi.framework.BaseActivity;
+import com.kirshi.framework.viewbinding.BaseActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -26,7 +26,7 @@ import okhttp3.Call;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SplashPage.java
- * @LastModified:2021/06/21 11:24:21
+ * @LastModified:2021/06/21 22:10:21
  */
 
 /**

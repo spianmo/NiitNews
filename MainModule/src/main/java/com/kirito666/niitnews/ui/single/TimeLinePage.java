@@ -10,7 +10,7 @@ import com.kirito666.niitnews.component.model.OrderStatus;
 import com.kirito666.niitnews.component.model.Orientation;
 import com.kirito666.niitnews.component.model.TimeLineModel;
 import com.kirito666.niitnews.databinding.PageTimelineBinding;
-import com.kirshi.framework.BaseActivity;
+import com.kirshi.framework.viewbinding.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:TimeLinePage.java
- * @LastModified:2021/06/20 00:37:20
+ * @LastModified:2021/06/21 22:10:21
  */
 
 public class TimeLinePage extends BaseActivity<PageTimelineBinding> {

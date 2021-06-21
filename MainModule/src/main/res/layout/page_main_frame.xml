@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_main_frame.xml
-  ~ @LastModified:2021/06/21 10:01:21
+  ~ @LastModified:2021/06/21 13:37:21
   -->
 
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
@@ -66,6 +66,7 @@
                 android:layout_gravity="top"
                 android:src="@drawable/ic_baseline_edit_24"
                 app:fabSize="normal"
+                android:backgroundTint="@color/colorPrimary"
                 app:layout_anchor="@id/navigation"
                 app:layout_anchorGravity="top|end"
                 app:layout_behavior=".component.behavior.BottomNavigationFABBehavior"
