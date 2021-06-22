@@ -22,7 +22,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsPageViewModel.java
- * @LastModified:2021/06/22 08:23:22
+ * @LastModified:2021/06/22 21:47:22
  */
 
 public class NewsPageViewModel extends ViewModel {
@@ -48,6 +48,9 @@ public class NewsPageViewModel extends ViewModel {
             public void onResponse(Call<BaseResponse<NewsPageData>> call, Response<BaseResponse<NewsPageData>> response) {
                 if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
                     List<News> diffNews = news.getValue();
+                    if (pageId == 1) {
+                        diffNews.clear();
+                    }
                     diffNews.addAll(response.body().getData().getNewsData());
                     news.setValue(diffNews);
                 }

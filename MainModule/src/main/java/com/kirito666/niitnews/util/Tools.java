@@ -23,7 +23,7 @@ import com.kirito666.niitnews.R;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Tools.java
- * @LastModified:2021/06/22 09:54:22
+ * @LastModified:2021/06/22 21:34:22
  */
 
 public class Tools {
@@ -62,6 +62,7 @@ public class Tools {
     public static void displayImageOriginal(Context ctx, ImageView img, String url) {
         try {
             Glide.with(ctx).load(url)
+                    .error(R.drawable.image_news)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(img);
         } catch (Exception ignored) {

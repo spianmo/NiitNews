@@ -2,8 +2,10 @@ package com.kirito666.niitnews.ui.news;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -13,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentNewsChildBinding;
@@ -32,7 +35,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/22 10:42:22
+ * @LastModified:2021/06/22 21:47:22
  */
 
 public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBinding> {
@@ -85,10 +88,29 @@ public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBind
         mNewsPageViewModel.news.observe(getViewLifecycleOwner(), new Observer<List<News>>() {
             @Override
             public void onChanged(List<News> news) {
+                Log.e("=============>", "第" + pageId + "页，" + news.size());
+                if (pageId == 1) {
+                    //mAdapter.clearData();
+                } else {
+                    //mAdapter.changeMoreStatus(NewsListAdapter.PULLUP_LOAD_MORE);
+                }
                 mAdapter.notifyDataSetChanged();
+                v.refreshLayout.setRefreshing(false);
             }
         });
         mNewsPageViewModel.fetchNews(1, 10);
+        v.refreshLayout.setColorSchemeResources(R.color.google_blue,
+                R.color.google_green, R.color.google_yellow,
+                R.color.google_red);
+        v.refreshLayout.setDistanceToTriggerSync(300);
+        v.refreshLayout.setProgressBackgroundColorSchemeColor(Color.WHITE);
+        v.refreshLayout.setOnRefreshListener(() -> {
+            v.refreshLayout.setRefreshing(true);
+            if (v != null) {
+                mNewsPageViewModel.fetchNews(1, 10);
+            }
+        });
+        initLoadMoreListener();
     }
 
     public static class ClickProxy implements Toolbar.OnMenuItemClickListener {
@@ -97,5 +119,32 @@ public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBind
         public boolean onMenuItemClick(MenuItem item) {
             return true;
         }
+    }
+
+    private int pageId = 1;
+
+    private void initLoadMoreListener() {
+        v.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            int lastVisibleItem;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                //判断RecyclerView的状态 是空闲时，同时，是最后一个可见的ITEM时才加载
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
+                    mAdapter.changeMoreStatus(NewsListAdapter.LOADING_MORE);
+                    mNewsPageViewModel.fetchNews(++pageId, 10);
+                }
+            }
+
+            @Override
+            public void onScrolled(@NotNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                lastVisibleItem = layoutManager.findLastVisibleItemPosition();
+            }
+        });
+
     }
 }

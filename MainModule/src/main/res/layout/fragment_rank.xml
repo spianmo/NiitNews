@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2021
   ~ @Project:NiitNews
-  ~ @Author:Shinonon
+  ~ @Author:Finger
   ~ @FileName:fragment_rank.xml
-  ~ @LastModified:2021/06/22 13:53:22
+  ~ @LastModified:2021/06/22 18:48:22
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,17 +23,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:scrollingCache="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical"
+                android:scrollingCache="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
