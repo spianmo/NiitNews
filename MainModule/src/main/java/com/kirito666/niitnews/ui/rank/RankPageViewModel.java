@@ -21,7 +21,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankPageViewModel.java
- * @LastModified:2021/06/22 14:08:22
+ * @LastModified:2021/06/22 14:12:22
  */
 
 public class RankPageViewModel extends ViewModel {
