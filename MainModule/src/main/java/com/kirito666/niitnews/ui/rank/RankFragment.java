@@ -28,7 +28,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Shinonon
  * @FileName:RankFragment.java
- * @LastModified:2021/06/22 13:47:22
+ * @LastModified:2021/06/22 14:04:22
  */
 
 public class RankFragment extends DataBindingFragment<FragmentRankBinding> {

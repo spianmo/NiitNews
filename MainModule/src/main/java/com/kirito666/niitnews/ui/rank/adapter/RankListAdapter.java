@@ -22,7 +22,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Shinonon
  * @FileName:RankListAdapter.java
- * @LastModified:2021/06/22 13:32:22
+ * @LastModified:2021/06/22 14:04:22
  */
 
 public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -77,7 +77,7 @@ public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             view.v.subtitle.setText(currentRank.getDesc());
             SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             view.v.date.setText(sdt.format(currentRank.getWashTime()));
-            Tools.displayImageOriginal(ctx,view.v.image,currentRank.getCoverImg());
+            Tools.displayImageOriginal(ctx, view.v.image, currentRank.getCoverImg());
             // TODO: 6/22/2021 热搜榜item视图显示逻辑
             view.v.itemRoot.setOnClickListener(v -> {
                 if (mOnItemClickListener == null) {

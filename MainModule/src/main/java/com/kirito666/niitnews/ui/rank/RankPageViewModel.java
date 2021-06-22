@@ -21,7 +21,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Shinonon
  * @FileName:RankPageViewModel.java
- * @LastModified:2021/06/22 13:49:22
+ * @LastModified:2021/06/22 14:04:22
  */
 
 public class RankPageViewModel extends ViewModel {
@@ -42,7 +42,7 @@ public class RankPageViewModel extends ViewModel {
     }
 
     public void fetchRank() {
-        Call<BaseResponse<List<Rank>>> call = isPost? mRepository.fetchPostsRank(): mRepository.fetchNewsRank();
+        Call<BaseResponse<List<Rank>>> call = isPost ? mRepository.fetchPostsRank() : mRepository.fetchNewsRank();
         call.enqueue(new Callback<BaseResponse<List<Rank>>>() {
             @Override
             public void onResponse(Call<BaseResponse<List<Rank>>> call, Response<BaseResponse<List<Rank>>> response) {
