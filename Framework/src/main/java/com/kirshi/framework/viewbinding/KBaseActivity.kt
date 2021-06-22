@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:KBaseActivity.kt
- * @LastModified:2021/06/21 22:11:21
+ * @LastModified:2021/06/22 08:43:22
  */
 
 package com.kirshi.framework.viewbinding
@@ -48,7 +48,7 @@ open class KBaseActivity<V : ViewBinding> : AppCompatActivity() {
     }
 
     protected lateinit var v: V
-    private var mContext: Activity? = null
+    protected var mContext: Activity? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

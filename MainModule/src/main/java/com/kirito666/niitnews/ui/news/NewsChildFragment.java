@@ -1,7 +1,9 @@
 package com.kirito666.niitnews.ui.news;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -14,9 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentNewsChildBinding;
-import com.kirito666.niitnews.databinding.PageNewsDetailBinding;
 import com.kirito666.niitnews.entity.News;
 import com.kirito666.niitnews.ui.news.adapter.NewsListAdapter;
+import com.kirito666.niitnews.ui.single.NewsDetailPage;
+import com.kirito666.niitnews.ui.single.WebPage;
 import com.kirshi.framework.databinding.DataBindingConfig;
 import com.kirshi.framework.databinding.DataBindingFragment;
 
@@ -29,7 +32,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/22 08:23:22
+ * @LastModified:2021/06/22 10:31:22
  */
 
 public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBinding> {
@@ -61,11 +64,23 @@ public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBind
         mAdapter.setOnItemClickListener(new NewsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, News news, int position) {
-                Intent intent = new Intent(mActivity, PageNewsDetailBinding.class);
-                intent.putExtra("news", news);
-                mActivity.startActivity(intent);
+                if (TextUtils.isEmpty(news.getContent())) {
+                    ///_redirect?siteId=133&columnId=4002&articleId=39723
+                    Intent intent = new Intent(mActivity, WebPage.class);
+                    intent.putExtra("title", news.getTitle());
+                    intent.putExtra("url", "http://news.niit.edu.cn/" + news.getSourceUrl());
+                    mActivity.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(mActivity, NewsDetailPage.class);
+                    intent.putExtra("news", news);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity, view, "EXTRA_VIEW");
+                    mActivity.startActivity(intent, options.toBundle());
+                    //mActivity.startActivity(intent);
+                }
             }
         });
+        //((SimpleItemAnimator)v.recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+        //v.recyclerView.getItemAnimator().setChangeDuration(0);
         v.recyclerView.setAdapter(mAdapter);
         mNewsPageViewModel.news.observe(getViewLifecycleOwner(), new Observer<List<News>>() {
             @Override
