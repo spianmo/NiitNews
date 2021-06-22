@@ -20,9 +20,9 @@ import java.util.List;
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
- * @Author:Shinonon
+ * @Author:Finger
  * @FileName:RankListAdapter.java
- * @LastModified:2021/06/22 14:04:22
+ * @LastModified:2021/06/22 14:08:22
  */
 
 public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

@@ -19,9 +19,9 @@ import retrofit2.Response;
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
- * @Author:Shinonon
+ * @Author:Finger
  * @FileName:RankPageViewModel.java
- * @LastModified:2021/06/22 14:04:22
+ * @LastModified:2021/06/22 14:08:22
  */
 
 public class RankPageViewModel extends ViewModel {

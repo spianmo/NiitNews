@@ -26,9 +26,9 @@ import java.util.List;
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
- * @Author:Shinonon
+ * @Author:Finger
  * @FileName:RankFragment.java
- * @LastModified:2021/06/22 14:04:22
+ * @LastModified:2021/06/22 14:08:22
  */
 
 public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
