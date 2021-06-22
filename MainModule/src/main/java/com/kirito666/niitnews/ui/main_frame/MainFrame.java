@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/22 08:23:22
+ * @LastModified:2021/06/22 08:24:22
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -159,6 +159,8 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
                         })
                         .show();
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + item.getItemId());
         }
         return true;
     }
