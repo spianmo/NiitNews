@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.kirito666.niitnews.entity.Session;
-import com.kirito666.niitnews.util.RC4Util;
+import com.kirito666.niitnews.util.Rc4Util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +16,7 @@ import java.io.FileOutputStream;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SessionJar.java
- * @LastModified:2021/06/21 09:49:21
+ * @LastModified:2021/06/21 23:48:21
  */
 
 public class SessionJar {
@@ -32,7 +32,7 @@ public class SessionJar {
             FileInputStream is = new FileInputStream(fs);
             byte[] b = new byte[is.available()];
             is.read(b);
-            String result = RC4Util.decode(context, new String(b));
+            String result = Rc4Util.decode(context, new String(b));
             Log.e("========>", "读取持久化成功，" + result);
             Log.e("========>", new Gson().fromJson(result, Session.class).toString());
             return new Gson().fromJson(result, Session.class);
@@ -49,7 +49,7 @@ public class SessionJar {
                 fs.createNewFile();
             }
             FileOutputStream outputStream = new FileOutputStream(fs);
-            outputStream.write(RC4Util.encode(context, new Gson().toJson(session)).getBytes());
+            outputStream.write(Rc4Util.encode(context, new Gson().toJson(session)).getBytes());
             Log.e("========>", "持久化到硬盘成功，" + new Gson().toJson(session));
             Log.e("========>", session.toString());
             outputStream.flush();

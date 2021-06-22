@@ -3,19 +3,51 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:fragment_news.xml
-  ~ @LastModified:2021/06/21 03:06:21
+  ~ @LastModified:2021/06/22 07:22:22
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.news.NewsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_mlarge"
+        android:layout_marginBottom="@dimen/spacing_middle"
+        android:text="Welcome\nNIIU Daily News❤"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/grey_60"
+        android:textStyle="bold"
+        app:layout_scrollFlags="scroll|enterAlways" />
 
-</FrameLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:background="@android:color/transparent"
+        app:tabBackground="@android:color/transparent"
+        app:tabGravity="fill"
+        app:tabIndicator="@drawable/shape_round_corner"
+        app:tabIndicatorColor="@color/red_A200"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorGravity="top"
+        app:tabIndicatorHeight="@dimen/spacing_medium"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/red_A200"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:tabTextColor="@color/grey_40">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

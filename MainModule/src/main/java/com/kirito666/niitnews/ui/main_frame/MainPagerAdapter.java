@@ -1,24 +1,24 @@
 package com.kirito666.niitnews.ui.main_frame;
 
+import android.util.SparseArray;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-
-import java.util.ArrayList;
 
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainPagerAdapter.java
- * @LastModified:2021/06/20 00:29:20
+ * @LastModified:2021/06/21 23:49:21
  */
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
-    private ArrayList<Fragment> fragments;
+    private SparseArray<Fragment> fragments;
 
-    public MainPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {
+    public MainPagerAdapter(FragmentManager fm, SparseArray<Fragment> fragments) {
         super(fm);
         this.fragments = fragments;
     }

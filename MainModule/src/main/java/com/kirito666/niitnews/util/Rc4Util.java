@@ -13,11 +13,11 @@ import java.security.MessageDigest;
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
- * @FileName:RC4Util.java
- * @LastModified:2021/06/19 21:50:19
+ * @FileName:Rc4Util.java
+ * @LastModified:2021/06/22 08:23:22
  */
 
-public class RC4Util {
+public class Rc4Util {
 
     /**
      * RC4加密，将加密后的数据进行哈希

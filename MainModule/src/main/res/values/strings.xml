@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:strings.xml
-  ~ @LastModified:2021/06/21 15:08:21
+  ~ @LastModified:2021/06/22 02:27:22
   -->
 
 <resources>
@@ -12,4 +12,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="searchNews">搜索新闻...</string>
     <string name="searchPost">搜索动态...</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="short_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
 </resources>

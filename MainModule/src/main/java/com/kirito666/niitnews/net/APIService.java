@@ -28,13 +28,14 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/21 22:24:21
+ * @LastModified:2021/06/22 02:35:22
  */
 
 public interface APIService {
@@ -67,9 +68,8 @@ public interface APIService {
     @GET("/ranks/posts")
     Call<BaseResponse<List<Rank>>> fetchRank();
 
-    @FormUrlEncoded
     @GET("/news")
-    Call<BaseResponse<NewsPageData>> fetchNewsPage(@Field("pageId") int pageId, @Field("pageSize") int pageSize, @Field("groupId") int groupId);
+    Call<BaseResponse<NewsPageData>> fetchNewsPage(@Query("pageId") int pageId, @Query("pageSize") int pageSize, @Query("groupId") int groupId);
 
 
     @GET("/news/groups")

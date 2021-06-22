@@ -9,7 +9,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.entity.User;
-import com.kirito666.niitnews.util.RC4Util;
+import com.kirito666.niitnews.util.Rc4Util;
 import com.kirshi.framework.daemon.DaemonHolder;
 
 import java.io.File;
@@ -23,7 +23,7 @@ import java.security.NoSuchAlgorithmException;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:UserJar.java
- * @LastModified:2021/06/19 17:39:19
+ * @LastModified:2021/06/21 23:48:21
  */
 
 public class UserJar {
@@ -39,7 +39,7 @@ public class UserJar {
             FileInputStream is = new FileInputStream(fs);
             byte[] b = new byte[is.available()];
             is.read(b);
-            String result = RC4Util.decode(context, new String(b));
+            String result = Rc4Util.decode(context, new String(b));
             Log.e("========>", "读取持久化成功，" + result);
             Log.e("========>", new Gson().fromJson(result, User.class).toString());
             return new Gson().fromJson(result, User.class);
@@ -55,7 +55,7 @@ public class UserJar {
                 fs.createNewFile();
             }
             FileOutputStream outputStream = new FileOutputStream(fs);
-            outputStream.write(RC4Util.encode(context, new Gson().toJson(user)).getBytes());
+            outputStream.write(Rc4Util.encode(context, new Gson().toJson(user)).getBytes());
             Log.e("========>", "持久化到硬盘成功，" + new Gson().toJson(user));
             Log.e("========>", user.toString());
             outputStream.flush();

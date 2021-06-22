@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:dimens.xml
-  ~ @LastModified:2021/06/21 22:00:21
+  ~ @LastModified:2021/06/22 02:27:22
   -->
 
 <resources>
@@ -84,4 +84,7 @@
     <dimen name="spacing_smlarge">18dp</dimen>
     <dimen name="spacing_xsmall">2dp</dimen>
     <dimen name="spacing_small">3dp</dimen>
+    <dimen name="spacing_mlarge">20dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="spacing_xmedium">7dp</dimen>
 </resources>

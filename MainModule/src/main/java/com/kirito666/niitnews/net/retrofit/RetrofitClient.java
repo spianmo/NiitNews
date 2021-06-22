@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RetrofitClient.java
- * @LastModified:2021/06/21 13:23:21
+ * @LastModified:2021/06/22 02:47:22
  */
 
 public class RetrofitClient {
@@ -106,7 +106,7 @@ public class RetrofitClient {
                     .build();
         }
         Gson gson = new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX")
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 //.serializeNulls()
                 .create();
         Retrofit retrofit = new Retrofit.Builder()

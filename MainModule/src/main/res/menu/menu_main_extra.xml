@@ -4,15 +4,21 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:menu_main_extra.xml
-  ~ @LastModified:2021/06/21 09:36:21
+  ~ @LastModified:2021/06/22 02:12:22
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:title="Search"
+        android:icon="@drawable/ic_search_black_24dp"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
         android:title="About"
         android:icon="@drawable/ic_baseline_code_24"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>

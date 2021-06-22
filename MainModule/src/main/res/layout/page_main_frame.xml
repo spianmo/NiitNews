@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_main_frame.xml
-  ~ @LastModified:2021/06/21 13:37:21
+  ~ @LastModified:2021/06/22 01:57:22
   -->
 
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,16 +19,18 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:fitsSystemWindows="true"
+        app:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            app:navigationIcon="@drawable/ic_notes"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:contentInsetStartWithNavigation="0dp"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -66,11 +68,14 @@
                 android:layout_gravity="top"
                 android:src="@drawable/ic_baseline_edit_24"
                 app:fabSize="normal"
+                android:clickable="true"
+                android:visibility="gone"
                 android:backgroundTint="@color/colorPrimary"
                 app:layout_anchor="@id/navigation"
                 app:layout_anchorGravity="top|end"
                 app:layout_behavior=".component.behavior.BottomNavigationFABBehavior"
-                app:useCompatPadding="true" />
+                app:useCompatPadding="true"
+                android:focusable="true" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
