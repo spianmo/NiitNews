@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:colors.xml
-  ~ @LastModified:2021/06/22 08:21:22
+  ~ @LastModified:2021/06/22 08:37:22
   -->
 
 <resources>
@@ -314,5 +314,7 @@
     <color name="red_A200">#FF5252</color>
     <color name="grey_5">#f2f2f2</color>
     <color name="grey_80">#37474F</color>
+    <color name="overlay_dark_40">#66000000</color>
+    <color name="overlay_dark_10">#1A000000</color>
 
 </resources>

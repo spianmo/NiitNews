@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:AndroidManifest.xml
-  ~ @LastModified:2021/06/22 08:12:22
+  ~ @LastModified:2021/06/22 09:10:22
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -66,6 +66,7 @@
             android:theme="@style/AppTheme.MD.NoActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".ui.single.TimeLinePage" />
+        <activity android:name=".ui.single.WebPage" />
 
         <service
             android:name=".service.HeartBeatService"
