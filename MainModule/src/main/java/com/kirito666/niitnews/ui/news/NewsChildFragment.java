@@ -32,7 +32,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/22 10:31:22
+ * @LastModified:2021/06/22 10:42:22
  */
 
 public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBinding> {
@@ -74,8 +74,8 @@ public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBind
                     Intent intent = new Intent(mActivity, NewsDetailPage.class);
                     intent.putExtra("news", news);
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity, view, "EXTRA_VIEW");
-                    mActivity.startActivity(intent, options.toBundle());
-                    //mActivity.startActivity(intent);
+                    //mActivity.startActivity(intent, options.toBundle());
+                    mActivity.startActivity(intent);
                 }
             }
         });

@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsDetailPage.kt
- * @LastModified:2021/06/22 10:32:22
+ * @LastModified:2021/06/22 10:47:22
  */
 
 package com.kirito666.niitnews.ui.single
@@ -20,7 +20,6 @@ import android.view.Window
 import androidx.annotation.RequiresApi
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.transition.platform.MaterialContainerTransform
-import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.kirito666.niitnews.databinding.PageNewsDetailBinding
 import com.kirito666.niitnews.entity.News
 import com.kirito666.niitnews.util.Tools
@@ -39,9 +38,9 @@ class NewsDetailPage : KBaseActivity<PageNewsDetailBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         findViewById<View>(R.id.content).transitionName = "EXTRA_VIEW"
-        setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
-        window.sharedElementEnterTransition = buildContainerTransform(true)
-        window.sharedElementReturnTransition = buildContainerTransform(false)
+        //setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        //window.sharedElementEnterTransition = buildContainerTransform(true)
+        //window.sharedElementReturnTransition = buildContainerTransform(false)
         super.onCreate(savedInstanceState)
         val news = intent.getSerializableExtra("news") as News?
         LOGE(news.toString())
