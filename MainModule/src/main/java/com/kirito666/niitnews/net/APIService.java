@@ -35,7 +35,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/22 02:35:22
+ * @LastModified:2021/06/22 11:36:22
  */
 
 public interface APIService {
@@ -61,12 +61,11 @@ public interface APIService {
     @PATCH("/user/avater")
     Call<BaseResponse<String>> updateAvater(@Field("avater") String avater);
 
-    @FormUrlEncoded
     @GET("/ranks/news")
-    Call<BaseResponse<List<Rank>>> fetchNewsRank(@Field("afterTime") String afterTime);
+    Call<BaseResponse<List<Rank>>> fetchNewsRank();
 
     @GET("/ranks/posts")
-    Call<BaseResponse<List<Rank>>> fetchRank();
+    Call<BaseResponse<List<Rank>>> fetchPostsRank();
 
     @GET("/news")
     Call<BaseResponse<NewsPageData>> fetchNewsPage(@Query("pageId") int pageId, @Query("pageSize") int pageSize, @Query("groupId") int groupId);

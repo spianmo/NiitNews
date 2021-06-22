@@ -24,7 +24,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsListAdapter.java
- * @LastModified:2021/06/22 10:32:22
+ * @LastModified:2021/06/22 11:36:22
  */
 
 public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -83,7 +83,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             view.v.title.setText(n.getTitle());
             view.v.subtitle.setText(n.getHint());
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             view.v.date.setText(sdf.format(n.getPostTime().getTime()));
             view.v.itemRoot.setOnClickListener(v -> {
                 if (mOnItemClickListener == null) {

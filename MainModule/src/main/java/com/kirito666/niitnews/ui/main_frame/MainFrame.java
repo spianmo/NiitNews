@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/22 08:24:22
+ * @LastModified:2021/06/22 11:38:22
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -41,7 +41,7 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
     MainPagerAdapter mainPagerAdapter;
 
     Fragment newsFragment = new NewsFragment();
-    Fragment rankFragment = new RankFragment();
+    Fragment rankFragment = new RankFragment(false);
     Fragment forumFragment = new ForumFragment();
 
     @Override
