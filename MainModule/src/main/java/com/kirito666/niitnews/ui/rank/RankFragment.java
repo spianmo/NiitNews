@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -54,7 +55,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankFragment.java
- * @LastModified:2021/06/23 23:42:23
+ * @LastModified:2021/06/24 01:48:24
  */
 
 public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
@@ -145,6 +146,53 @@ public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
         mRankPageViewModel.fetchBanner();
 
         sliderAdapter = new SliderAdapter(mActivity, mRankPageViewModel.banners.getValue());
+        sliderAdapter.setOnItemClickListener(new SliderAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, Banner banner) {
+                switch (banner.getTarget()) {
+                    case NEWS:
+                        RetrofitClient.getInstance().getApi().getNewsById(Integer.parseInt(banner.getResource())).enqueue(new Callback<BaseResponse<News>>() {
+                            @Override
+                            public void onResponse(Call<BaseResponse<News>> call, Response<BaseResponse<News>> response) {
+                                if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
+                                    News news = response.body().getData();
+                                    if (TextUtils.isEmpty(news.getContent())) {
+                                        ///_redirect?siteId=133&columnId=4002&articleId=39723
+                                        Intent intent = new Intent(mActivity, WebPage.class);
+                                        intent.putExtra("title", news.getTitle());
+                                        intent.putExtra("url", "http://news.niit.edu.cn/" + news.getSourceUrl());
+                                        mActivity.startActivity(intent);
+                                    } else {
+                                        Intent intent = new Intent(mActivity, NewsDetailPage.class);
+                                        intent.putExtra("news", news);
+                                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity, view, "EXTRA_VIEW");
+                                        //mActivity.startActivity(intent, options.toBundle());
+                                        mActivity.startActivity(intent);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<BaseResponse<News>> call, Throwable t) {
+
+                            }
+                        });
+                        break;
+                    case POST:
+                        // TODO: 6/24/2021 点击跳转到帖子详情页
+                        break;
+                    case URL:
+                        Intent intent = new Intent(mActivity, WebPage.class);
+                        intent.putExtra("title", banner.getTitle());
+                        intent.putExtra("url", banner.getResource());
+                        mActivity.startActivity(intent);
+                        break;
+                    case SCHEME:
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(banner.getResource())));
+                        break;
+                }
+            }
+        });
         v.pager.setAdapter(sliderAdapter);
         mRankPageViewModel.banners.observe(getViewLifecycleOwner(), new Observer<List<Banner>>() {
             @Override

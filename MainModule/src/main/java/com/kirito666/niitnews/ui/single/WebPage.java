@@ -3,8 +3,13 @@ package com.kirito666.niitnews.ui.single;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.http.SslError;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -19,7 +24,7 @@ import java.net.URISyntaxException;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:WebPage.java
- * @LastModified:2021/06/21 22:10:21
+ * @LastModified:2021/06/24 01:10:24
  */
 
 /**
@@ -46,10 +51,22 @@ public class WebPage extends BaseActivity<PageWebBinding> {
         v.webview.getSettings().setSavePassword(false);
         v.webview.getSettings().setSaveFormData(false);
         v.webview.getSettings().setSupportZoom(false);
-        v.webview.setWebViewClient(new WebViewClient() {
+        v.webview.getSettings().setSupportMultipleWindows(true);
+        v.webview.setWebChromeClient(new WebChromeClient() {
             @Override
-            public void onReceivedError(WebView view, int errorCode,
-                                        String description, String failingUrl) { // Handle the error
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+                if (TextUtils.isEmpty(v.toolbar.getTitle())) {
+                    v.toolbar.setTitle(title);
+                }
+            }
+
+        });
+        v.webview.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
             }
 
             @Override
@@ -60,9 +77,7 @@ public class WebPage extends BaseActivity<PageWebBinding> {
                 return super.shouldOverrideUrlLoading(view, url);
             }
         });
-        //设置背景颜色 透明
         v.webview.setBackgroundColor(Color.argb(0, 0, 0, 0));
-        //载入js
         try {
             v.webview.loadUrl(getIntent().getStringExtra("url"));
         } catch (Exception e) {
@@ -100,5 +115,17 @@ public class WebPage extends BaseActivity<PageWebBinding> {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (v.webview.canGoBack()) {
+                v.webview.goBack();
+                return true;
+
+            }
+        }
+        return super.onKeyDown(keyCode, keyEvent);
     }
 }
