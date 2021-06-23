@@ -7,24 +7,25 @@ import java.sql.Timestamp;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Banner.java
- * @LastModified:2021/06/21 08:04:21
+ * @LastModified:2021/06/23 20:15:23
  */
-
 public class Banner {
     long id;
     String title;
     String hint;
     String picUrl;
     Target target;
+    String resource;
     Type type;
     Timestamp createTime;
 
-    public Banner(long id, String title, String hint, String picUrl, Target target, Type type, Timestamp createTime) {
+    public Banner(long id, String title, String hint, String picUrl, Target target, String resource, Type type, Timestamp createTime) {
         this.id = id;
         this.title = title;
         this.hint = hint;
         this.picUrl = picUrl;
         this.target = target;
+        this.resource = resource;
         this.type = type;
         this.createTime = createTime;
     }
@@ -50,6 +51,10 @@ public class Banner {
 
     public Target getTarget() {
         return this.target;
+    }
+
+    public String getResource() {
+        return this.resource;
     }
 
     public Type getType() {
@@ -78,6 +83,10 @@ public class Banner {
 
     public void setTarget(Target target) {
         this.target = target;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 
     public void setType(Type type) {
@@ -109,6 +118,10 @@ public class Banner {
         final Object other$target = other.getTarget();
         if (this$target == null ? other$target != null : !this$target.equals(other$target))
             return false;
+        final Object this$resource = this.getResource();
+        final Object other$resource = other.getResource();
+        if (this$resource == null ? other$resource != null : !this$resource.equals(other$resource))
+            return false;
         final Object this$type = this.getType();
         final Object other$type = other.getType();
         if (this$type == null ? other$type != null : !this$type.equals(other$type)) return false;
@@ -136,6 +149,8 @@ public class Banner {
         result = result * PRIME + ($picUrl == null ? 43 : $picUrl.hashCode());
         final Object $target = this.getTarget();
         result = result * PRIME + ($target == null ? 43 : $target.hashCode());
+        final Object $resource = this.getResource();
+        result = result * PRIME + ($resource == null ? 43 : $resource.hashCode());
         final Object $type = this.getType();
         result = result * PRIME + ($type == null ? 43 : $type.hashCode());
         final Object $createTime = this.getCreateTime();
@@ -144,7 +159,7 @@ public class Banner {
     }
 
     public String toString() {
-        return "Banner(id=" + this.getId() + ", title=" + this.getTitle() + ", hint=" + this.getHint() + ", picUrl=" + this.getPicUrl() + ", target=" + this.getTarget() + ", type=" + this.getType() + ", createTime=" + this.getCreateTime() + ")";
+        return "Banner(id=" + this.getId() + ", title=" + this.getTitle() + ", hint=" + this.getHint() + ", picUrl=" + this.getPicUrl() + ", target=" + this.getTarget() + ", resource=" + this.getResource() + ", type=" + this.getType() + ", createTime=" + this.getCreateTime() + ")";
     }
 
     public enum Target {

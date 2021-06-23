@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_search.xml
-  ~ @LastModified:2021/06/21 22:17:21
+  ~ @LastModified:2021/06/23 08:24:23
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,6 +48,8 @@
                 android:hint="@{vm.isNews?@string/searchNews:@string/searchPost}"
                 android:imeOptions="actionSearch"
                 android:maxLines="1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@android:color/white"

@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SearchPage.kt
- * @LastModified:2021/06/21 22:17:21
+ * @LastModified:2021/06/23 08:24:23
  */
 
 package com.kirito666.niitnews.ui.search
@@ -59,6 +59,7 @@ class SearchPage : BaseBindingActivity<PageSearchBinding>() {
 
 
     fun initView() {
+        v.etSearch.requestFocus()
         mSearchViewModel.fetchNewsGroup()
     }
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:auto_image_view.xml
+  ~ @LastModified:2021/06/23 21:26:23
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/de_frm_backgroud"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_backgroud"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="-100dp"
+        android:layout_marginEnd="-300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login_background" />
+
+
+</FrameLayout>

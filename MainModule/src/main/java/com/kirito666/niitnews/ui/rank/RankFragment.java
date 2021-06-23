@@ -1,9 +1,17 @@
 package com.kirito666.niitnews.ui.rank;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,11 +19,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentRankBinding;
+import com.kirito666.niitnews.databinding.ItemSliderImageBinding;
+import com.kirito666.niitnews.entity.Banner;
 import com.kirito666.niitnews.entity.Rank;
 import com.kirito666.niitnews.ui.rank.adapter.RankListAdapter;
+import com.kirito666.niitnews.util.Tools;
 import com.kirshi.framework.databinding.DataBindingConfig;
 import com.kirshi.framework.databinding.DataBindingFragment;
 
@@ -28,13 +41,17 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankFragment.java
- * @LastModified:2021/06/22 14:12:22
+ * @LastModified:2021/06/23 21:26:23
  */
 
 public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
     private RankPageViewModel mRankPageViewModel;
     private RankListAdapter mAdapter;
     private final boolean isPost;
+
+    private SliderAdapter sliderAdapter;
+    private Runnable runnable = null;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     public RankFragment(boolean isPost) {
         this.isPost = isPost;
@@ -85,6 +102,73 @@ public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
                 mRankPageViewModel.fetchRank();
             }
         });
+
+        mRankPageViewModel.fetchBanner();
+
+        sliderAdapter = new SliderAdapter(mActivity, mRankPageViewModel.banners.getValue());
+        v.pager.setAdapter(sliderAdapter);
+        mRankPageViewModel.banners.observe(getViewLifecycleOwner(), new Observer<List<Banner>>() {
+            @Override
+            public void onChanged(List<Banner> banners) {
+                sliderAdapter.notifyDataSetChanged();
+                if (!banners.isEmpty()) {
+                    v.pager.setCurrentItem(0);
+                    addBottomDots(v.layoutDots, sliderAdapter.getCount(), 0);
+                    v.title.setText(mRankPageViewModel.banners.getValue().get(0).getTitle());
+                    v.brief.setText(mRankPageViewModel.banners.getValue().get(0).getHint());
+                    startAutoSlider(sliderAdapter.getCount());
+                }
+            }
+        });
+
+        v.pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int pos, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                v.title.setText(mRankPageViewModel.banners.getValue().get(position).getTitle());
+                v.brief.setText(mRankPageViewModel.banners.getValue().get(position).getHint());
+                addBottomDots(v.layoutDots, sliderAdapter.getCount(), position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+    }
+
+    private void addBottomDots(LinearLayout layout_dots, int size, int current) {
+        ImageView[] dots = new ImageView[size];
+
+        layout_dots.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new ImageView(mActivity);
+            int width_height = 15;
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(new ViewGroup.LayoutParams(width_height, width_height));
+            params.setMargins(10, 10, 10, 10);
+            dots[i].setLayoutParams(params);
+            dots[i].setImageResource(R.drawable.shape_circle_outline);
+            layout_dots.addView(dots[i]);
+        }
+
+        if (dots.length > 0) {
+            dots[current].setImageResource(R.drawable.shape_circle);
+        }
+    }
+
+    private void startAutoSlider(final int count) {
+        runnable = () -> {
+            int pos = v.pager.getCurrentItem();
+            pos = pos + 1;
+            if (pos >= count) {
+                pos = 0;
+            }
+            v.pager.setCurrentItem(pos);
+            handler.postDelayed(runnable, 3000);
+        };
+        handler.postDelayed(runnable, 3000);
     }
 
     public static class ClickProxy implements Toolbar.OnMenuItemClickListener {
@@ -94,4 +178,79 @@ public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
             return true;
         }
     }
+
+    private static class SliderAdapter extends PagerAdapter {
+
+        private final Activity activity;
+        private List<Banner> items;
+
+        private SliderAdapter.OnItemClickListener onItemClickListener;
+
+        private interface OnItemClickListener {
+            void onItemClick(View view, Banner banner);
+        }
+
+        public void setOnItemClickListener(SliderAdapter.OnItemClickListener onItemClickListener) {
+            this.onItemClickListener = onItemClickListener;
+        }
+
+        private SliderAdapter(Activity activity, List<Banner> items) {
+            this.activity = activity;
+            this.items = items;
+        }
+
+        @Override
+        public int getCount() {
+            return this.items.size();
+        }
+
+        public Banner getItem(int pos) {
+            return items.get(pos);
+        }
+
+        public void setItems(List<Banner> items) {
+            this.items = items;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public boolean isViewFromObject(@NotNull View view, @NotNull Object object) {
+            return view == ((RelativeLayout) object);
+        }
+
+        @NotNull
+        @Override
+        public Object instantiateItem(@NotNull ViewGroup container, int position) {
+            final Banner banner = items.get(position);
+            ItemSliderImageBinding v = ItemSliderImageBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
+            Tools.displayImageOriginal(activity, v.image, banner.getPicUrl());
+            v.rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(v, banner);
+                    }
+                }
+            });
+
+            ((ViewPager) container).addView(v.getRoot());
+            return v.getRoot();
+        }
+
+        @Override
+        public void destroyItem(@NotNull ViewGroup container, int position, @NotNull Object object) {
+            ((ViewPager) container).removeView((RelativeLayout) object);
+
+        }
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (runnable != null) {
+            handler.removeCallbacks(runnable);
+        }
+        super.onDestroyView();
+    }
+
 }

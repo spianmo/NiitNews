@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:AndroidManifest.xml
-  ~ @LastModified:2021/06/22 09:10:22
+  ~ @LastModified:2021/06/23 21:26:23
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,7 +43,9 @@
         android:theme="@style/AppTheme.MD.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.single.NewsDetailPage"></activity>
-        <activity android:name=".ui.search.SearchPage" />
+        <activity
+            android:name=".ui.search.SearchPage"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity android:name=".ui.post_detail.PostDetailActivity" />
         <activity android:name=".ui.single.OpenSourcePage" />
         <activity android:name=".ui.single.SplashPage">

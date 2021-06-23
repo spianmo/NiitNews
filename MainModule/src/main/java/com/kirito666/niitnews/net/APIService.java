@@ -35,7 +35,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/22 11:36:22
+ * @LastModified:2021/06/23 11:25:23
  */
 
 public interface APIService {
@@ -172,21 +172,17 @@ public interface APIService {
     @GET("/app/history")
     Call<BaseResponse<List<Application>>> getApplicationHistory();
 
-    @FormUrlEncoded
     @GET("/app/banner/main")
-    Call<BaseResponse<List<Banner>>> getMainBanner(@Field("num") int num);
+    Call<BaseResponse<List<Banner>>> getMainBanner(@Query("num") int num);
 
-    @FormUrlEncoded
     @GET("/app/banner/news")
-    Call<BaseResponse<List<Banner>>> getNewsBanner(@Field("num") int num);
+    Call<BaseResponse<List<Banner>>> getNewsBanner(@Query("num") int num);
 
-    @FormUrlEncoded
     @GET("/app/banner/adv")
-    Call<BaseResponse<List<Banner>>> getAdvBanner(@Field("num") int num);
+    Call<BaseResponse<List<Banner>>> getAdvBanner(@Query("num") int num);
 
-    @FormUrlEncoded
     @GET("/app/banner/common")
-    Call<BaseResponse<List<Banner>>> getCommonBanner(@Field("num") int num);
+    Call<BaseResponse<List<Banner>>> getCommonBanner(@Query("num") int num);
 
     @GET("/app/bling")
     Call<BaseResponse<Bling>> getApplicationBling();

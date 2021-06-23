@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/22 11:38:22
+ * @LastModified:2021/06/23 21:12:23
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -71,9 +71,12 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
             final int id = item.getItemId();
             switch (id) {
                 case R.id.navigation_news:
+                    v.toolbar.setTitle("");
                     v.viewPager.setCurrentItem(0);
                     break;
                 case R.id.navigation_rank:
+                    v.toolbar.setTitle("南工热榜");
+                    v.toolbar.setTitle("校友圈");
                     v.viewPager.setCurrentItem(1);
                     break;
                 case R.id.navigation_posts:
@@ -84,15 +87,17 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
             return true;
         });
         v.navigation.setOnNavigationItemSelectedListener(item -> {
-            v.toolbar.setSubtitle(item.getTitle());
             switch (item.getItemId()) {
                 case R.id.navigation_news:
+                    v.toolbar.setTitle("");
                     v.viewPager.setCurrentItem(0);
                     return true;
                 case R.id.navigation_rank:
+                    v.toolbar.setTitle("南工热榜");
                     v.viewPager.setCurrentItem(1);
                     return true;
                 case R.id.navigation_posts:
+                    v.toolbar.setTitle("校友圈");
                     v.viewPager.setCurrentItem(2);
                     return true;
             }

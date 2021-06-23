@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:attrs.xml
-  ~ @LastModified:2021/06/17 14:56:17
+  ~ @LastModified:2021/06/23 21:26:23
   -->
 
 <resources>
@@ -75,5 +75,8 @@
         <attr name="exp_animateExpand" format="boolean" />
         <attr name="exp_backgroundColor" format="color" />
         <attr name="exp_expandIndicator" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="RxAutoImageView">
+        <attr name="ImageSrc" format="reference" />
     </declare-styleable>
 </resources>

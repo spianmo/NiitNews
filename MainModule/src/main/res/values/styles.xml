@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:styles.xml
-  ~ @LastModified:2021/06/17 16:19:17
+  ~ @LastModified:2021/06/23 01:16:23
   -->
 
 <resources>
@@ -107,6 +107,45 @@
 
     <style name="AppTheme.BottomToolbarTheme">
         <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.Subhead.Bold" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Toolbar.Light" parent="@style/AppTheme">
+        <item name="colorControlNormal">@color/grey_60</item>
+        <item name="android:textColorPrimary">@color/grey_60</item>
+    </style>
+
+    <style name="EditText.Grey" parent="@style/AppTheme">
+        <item name="colorControlActivated">@color/grey_60</item>
+        <item name="colorControlHighlight">@color/grey_60</item>
+        <item name="colorControlNormal">@color/grey_40</item>
+    </style>
+
+    <style name="Checkbox.Blue" parent="@style/AppTheme">
+        <item name="colorPrimary">@color/google_blue</item>
+        <item name="colorAccent">@color/google_blue</item>
+        <item name="colorControlActivated">@color/google_blue</item>
+        <item name="colorControlHighlight">@color/google_blue</item>
+        <item name="colorControlNormal">@color/grey_40</item>
+    </style>
+
+    <style name="EditText.White" parent="@style/AppTheme">
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="colorControlNormal">@color/grey_10</item>
+    </style>
+
+    <style name="EditText.White.Hint" parent="@style/EditText.White">
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColorHint">@color/grey_10</item>
+    </style>
+
+    <style name="ProgressBar.White" parent="@style/AppTheme">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorAccent">@android:color/white</item>
     </style>
 
 </resources>

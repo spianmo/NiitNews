@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:navigation.xml
-  ~ @LastModified:2021/06/21 11:37:21
+  ~ @LastModified:2021/06/23 20:56:23
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
@@ -15,7 +15,7 @@
     <item
         android:id="@+id/navigation_rank"
         android:icon="@drawable/asld_nav_schedule"
-        android:title="校内热榜" />
+        android:title="校园热榜" />
 
 
     <item

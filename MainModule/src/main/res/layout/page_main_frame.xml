@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_main_frame.xml
-  ~ @LastModified:2021/06/22 01:57:22
+  ~ @LastModified:2021/06/23 21:12:23
   -->
 
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,6 +27,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             app:navigationIcon="@drawable/ic_notes"
+            app:titleTextColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:contentInsetStartWithNavigation="0dp"

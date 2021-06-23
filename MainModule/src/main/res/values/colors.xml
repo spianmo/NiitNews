@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:colors.xml
-  ~ @LastModified:2021/06/22 08:37:22
+  ~ @LastModified:2021/06/23 00:51:23
   -->
 
 <resources>
@@ -304,6 +304,7 @@
     <color name="md_yellow_a400">#ffea00</color>
     <color name="md_yellow_a700">#ffd600</color>
     <color name="color_dialog_gray">#ededf3</color>
+    <color name="google_blue_ae6">#A34586F3</color>
     <color name="google_blue">#4586F3</color>
     <color name="google_red">#EB4334</color>
     <color name="google_yellow">#FBBD06</color>
@@ -316,5 +317,6 @@
     <color name="grey_80">#37474F</color>
     <color name="overlay_dark_40">#66000000</color>
     <color name="overlay_dark_10">#1A000000</color>
+    <color name="grey_20">#cccccc</color>
 
 </resources>
