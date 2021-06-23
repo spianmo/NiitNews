@@ -24,7 +24,7 @@ import java.net.URISyntaxException;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:WebPage.java
- * @LastModified:2021/06/24 01:10:24
+ * @LastModified:2021/06/24 01:49:24
  */
 
 /**
@@ -123,7 +123,6 @@ public class WebPage extends BaseActivity<PageWebBinding> {
             if (v.webview.canGoBack()) {
                 v.webview.goBack();
                 return true;
-
             }
         }
         return super.onKeyDown(keyCode, keyEvent);
