@@ -1,10 +1,13 @@
 package com.kirito666.niitnews.ui.rank;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,8 +29,14 @@ import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentRankBinding;
 import com.kirito666.niitnews.databinding.ItemSliderImageBinding;
 import com.kirito666.niitnews.entity.Banner;
+import com.kirito666.niitnews.entity.News;
 import com.kirito666.niitnews.entity.Rank;
+import com.kirito666.niitnews.entity.base.BaseResponse;
+import com.kirito666.niitnews.entity.base.HttpStatusCode;
+import com.kirito666.niitnews.net.retrofit.RetrofitClient;
 import com.kirito666.niitnews.ui.rank.adapter.RankListAdapter;
+import com.kirito666.niitnews.ui.single.NewsDetailPage;
+import com.kirito666.niitnews.ui.single.WebPage;
 import com.kirito666.niitnews.util.Tools;
 import com.kirshi.framework.databinding.DataBindingConfig;
 import com.kirshi.framework.databinding.DataBindingFragment;
@@ -36,12 +45,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankFragment.java
- * @LastModified:2021/06/23 21:26:23
+ * @LastModified:2021/06/23 23:42:23
  */
 
 public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
@@ -78,6 +91,32 @@ public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
             @Override
             public void onItemClick(View view, Rank rank, int position) {
                 // TODO: 6/22/2021 热搜榜点击事件
+                RetrofitClient.getInstance().getApi().getNewsById((int) rank.getPid()).enqueue(new Callback<BaseResponse<News>>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse<News>> call, Response<BaseResponse<News>> response) {
+                        if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
+                            News news = response.body().getData();
+                            if (TextUtils.isEmpty(news.getContent())) {
+                                ///_redirect?siteId=133&columnId=4002&articleId=39723
+                                Intent intent = new Intent(mActivity, WebPage.class);
+                                intent.putExtra("title", news.getTitle());
+                                intent.putExtra("url", "http://news.niit.edu.cn/" + news.getSourceUrl());
+                                mActivity.startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(mActivity, NewsDetailPage.class);
+                                intent.putExtra("news", news);
+                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity, view, "EXTRA_VIEW");
+                                //mActivity.startActivity(intent, options.toBundle());
+                                mActivity.startActivity(intent);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse<News>> call, Throwable t) {
+
+                    }
+                });
             }
         });
         //((SimpleItemAnimator)v.recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);

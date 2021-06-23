@@ -1,5 +1,7 @@
 package com.kirito666.niitnews.ui.rank;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,7 +12,9 @@ import com.kirito666.niitnews.entity.base.HttpStatusCode;
 import com.kirito666.niitnews.net.APIService;
 import com.kirito666.niitnews.net.retrofit.RetrofitClient;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -22,7 +26,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankPageViewModel.java
- * @LastModified:2021/06/23 21:26:23
+ * @LastModified:2021/06/23 23:42:23
  */
 
 public class RankPageViewModel extends ViewModel {
@@ -71,7 +75,9 @@ public class RankPageViewModel extends ViewModel {
     }
 
     public void fetchRank() {
-        Call<BaseResponse<List<Rank>>> call = isPost ? mRepository.fetchPostsRank() : mRepository.fetchNewsRank();
+        Timestamp afterTime = new Timestamp(getMonthFirstDay());
+        Log.e("=========>", afterTime.toGMTString());
+        Call<BaseResponse<List<Rank>>> call = isPost ? mRepository.fetchPostsRank(afterTime) : mRepository.fetchNewsRank(afterTime);
         call.enqueue(new Callback<BaseResponse<List<Rank>>>() {
             @Override
             public void onResponse(Call<BaseResponse<List<Rank>>> call, Response<BaseResponse<List<Rank>>> response) {
@@ -90,7 +96,13 @@ public class RankPageViewModel extends ViewModel {
         });
     }
 
-    public void search() {
-
+    private long getMonthFirstDay() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -2);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        return calendar.getTimeInMillis();
     }
 }

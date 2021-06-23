@@ -1,11 +1,14 @@
 package com.kirito666.niitnews.ui.main_frame;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
@@ -14,6 +17,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.kirito666.niitnews.R;
+import com.kirito666.niitnews.component.bling.Bling;
+import com.kirito666.niitnews.component.bling.BlingType;
 import com.kirito666.niitnews.databinding.PageMainFrameBinding;
 import com.kirito666.niitnews.service.HeartBeatService;
 import com.kirito666.niitnews.ui.forum.ForumFragment;
@@ -31,7 +36,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/23 21:12:23
+ * @LastModified:2021/06/23 23:42:23
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -44,11 +49,44 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
     Fragment rankFragment = new RankFragment(false);
     Fragment forumFragment = new ForumFragment();
 
+    private Bling mBling;
+    int[] colors = new int[]{
+            Color.parseColor("#F44336"),
+            Color.parseColor("#3F51B5"),
+            Color.parseColor("#009688"),
+
+            Color.parseColor("#E91E63"),
+            Color.parseColor("#2196F3"),
+            Color.parseColor("#5AB963"),
+            Color.parseColor("#FFC107"),
+
+            Color.parseColor("#9C28B0"),
+            Color.parseColor("#03A9F4"),
+            Color.parseColor("#8BC34A"),
+            Color.parseColor("#FF9800"),
+
+            Color.parseColor("#673AB7"),
+            Color.parseColor("#00BCD4"),
+            Color.parseColor("#CDDC39"),
+            Color.parseColor("#FF5722"),
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DaemonHolder.init(this, HeartBeatService.class);
         initToolbar();
+        mBling = new Bling.Builder((ViewGroup) getWindow().getDecorView())
+                .setDuration(6000)
+                .setShapeCount(66)
+                .setRadiusRange(10, 20)
+                .setRotationSpeedRange(-3f, 3f)
+                .setAutoHide(true)
+                .setColors(colors)
+                .setSpeedRange(0.2f, 0.6f)
+                .setRotationRange(90, 150)
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .build();
         v.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -120,6 +158,10 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Tools.setSystemBarColor(this, R.color.grey_5);
         Tools.setSystemBarLight(this);
+    }
+
+    public void showBling() {
+        mBling.show(BlingType.TRIANGLE);
     }
 
     @Override

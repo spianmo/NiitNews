@@ -4,6 +4,7 @@ import com.kirito666.niitnews.entity.Application;
 import com.kirito666.niitnews.entity.Banner;
 import com.kirito666.niitnews.entity.Bling;
 import com.kirito666.niitnews.entity.Commit;
+import com.kirito666.niitnews.entity.News;
 import com.kirito666.niitnews.entity.NewsGroup;
 import com.kirito666.niitnews.entity.Post;
 import com.kirito666.niitnews.entity.Rank;
@@ -14,6 +15,7 @@ import com.kirito666.niitnews.entity.dto.NewsPageData;
 import com.kirito666.niitnews.entity.dto.PostDto;
 import com.kirito666.niitnews.entity.dto.PostPageData;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -35,7 +37,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/23 11:25:23
+ * @LastModified:2021/06/23 23:33:23
  */
 
 public interface APIService {
@@ -62,14 +64,16 @@ public interface APIService {
     Call<BaseResponse<String>> updateAvater(@Field("avater") String avater);
 
     @GET("/ranks/news")
-    Call<BaseResponse<List<Rank>>> fetchNewsRank();
+    Call<BaseResponse<List<Rank>>> fetchNewsRank(@Query("afterTime") Timestamp afterTime);
 
     @GET("/ranks/posts")
-    Call<BaseResponse<List<Rank>>> fetchPostsRank();
+    Call<BaseResponse<List<Rank>>> fetchPostsRank(@Query("afterTime") Timestamp afterTime);
 
     @GET("/news")
     Call<BaseResponse<NewsPageData>> fetchNewsPage(@Query("pageId") int pageId, @Query("pageSize") int pageSize, @Query("groupId") int groupId);
 
+    @GET("/news/{id}")
+    Call<BaseResponse<News>> getNewsById(@Path("id") int id);
 
     @GET("/news/groups")
     Call<BaseResponse<List<NewsGroup>>> fetchNewsGroup();
