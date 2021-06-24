@@ -23,17 +23,18 @@ import java.security.NoSuchAlgorithmException;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:UserJar.java
- * @LastModified:2021/06/21 23:48:21
+ * @LastModified:2021/06/24 11:16:24
  */
 
 public class UserJar {
     private static final String CORECONFIG = "user";
 
-    public static boolean isLogin(Context context) {
-        return loadFromDisk(context) != null;
+    public static boolean isLogin() {
+        return loadFromDisk() != null;
     }
 
-    public static User loadFromDisk(Context context) {
+    public static User loadFromDisk() {
+        Context context = App.getAppContext();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             FileInputStream is = new FileInputStream(fs);
@@ -48,7 +49,9 @@ public class UserJar {
         }
     }
 
-    public static void saveToDisk(Context context, User user) {
+    public static void saveToDisk(User user) {
+        App.currentUser = user;
+        Context context = App.getAppContext();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (!fs.exists()) {
@@ -65,7 +68,8 @@ public class UserJar {
         }
     }
 
-    public static void logout(Context context) {
+    public static void logout() {
+        Context context = App.getAppContext();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (fs.exists()) {
@@ -74,7 +78,7 @@ public class UserJar {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        SessionJar.fireSession(context);
+        SessionJar.fireSession();
         if (App.currentUser != null) {
             App.currentUser = null;
         }

@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:AndroidManifest.xml
-  ~ @LastModified:2021/06/23 21:26:23
+  ~ @LastModified:2021/06/24 01:52:24
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -42,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.MD.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.single.NewsDetailPage"></activity>
+        <activity android:name=".ui.single.NewsDetailPage" />
         <activity
             android:name=".ui.search.SearchPage"
             android:windowSoftInputMode="stateVisible|adjustPan" />
@@ -66,7 +66,7 @@
         <activity
             android:name=".ui.main_frame.MainFrame"
             android:theme="@style/AppTheme.MD.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.single.TimeLinePage" />
         <activity android:name=".ui.single.WebPage" />
 

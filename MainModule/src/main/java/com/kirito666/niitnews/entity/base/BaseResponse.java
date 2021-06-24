@@ -5,7 +5,7 @@ package com.kirito666.niitnews.entity.base;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseResponse.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/24 11:06:24
  */
 
 /**
@@ -45,6 +45,10 @@ public class BaseResponse<T> {
         this.data = data;
         this.msg = msg;
         this.statusCode = statusCode;
+    }
+
+    public BaseResponse() {
+
     }
 
     public T getData() {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.entity.Session;
 import com.kirito666.niitnews.util.Rc4Util;
 
@@ -16,17 +17,18 @@ import java.io.FileOutputStream;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SessionJar.java
- * @LastModified:2021/06/21 23:48:21
+ * @LastModified:2021/06/24 11:11:24
  */
 
 public class SessionJar {
     private static final String CORECONFIG = "session";
 
-    public static boolean isExist(Context context) {
-        return loadSessionFromDisk(context) != null;
+    public static boolean isExist() {
+        return loadSessionFromDisk() != null;
     }
 
-    public static Session loadSessionFromDisk(Context context) {
+    public static Session loadSessionFromDisk() {
+        Context context = App.getAppContext();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             FileInputStream is = new FileInputStream(fs);
@@ -42,7 +44,8 @@ public class SessionJar {
         }
     }
 
-    public static void saveSessionToDisk(Context context, Session session) {
+    public static void saveSessionToDisk(Session session) {
+        Context context = App.getAppContext();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (!fs.exists()) {
@@ -59,7 +62,8 @@ public class SessionJar {
         }
     }
 
-    public static void fireSession(Context context) {
+    public static void fireSession() {
+        Context context = App.getAppContext();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (fs.exists()) {

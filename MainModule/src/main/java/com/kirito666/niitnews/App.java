@@ -33,7 +33,7 @@ import okhttp3.OkHttpClient;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:App.java
- * @LastModified:2021/06/20 00:19:20
+ * @LastModified:2021/06/24 11:22:24
  */
 
 /**
@@ -100,7 +100,7 @@ public class App extends BaseApplication {
                         QQPlatform.class)
         );
         Once.initialise(this);
-        App.currentUser = UserJar.isLogin(mApp) ? UserJar.loadFromDisk(mApp) : null;
+        App.currentUser = UserJar.isLogin() ? UserJar.loadFromDisk() : null;
 
         CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -22,7 +24,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseFragment.java
- * @LastModified:2021/06/21 22:10:21
+ * @LastModified:2021/06/24 10:10:24
  */
 
 public abstract class BaseFragment<T extends ViewBinding> extends Fragment {
@@ -31,6 +33,7 @@ public abstract class BaseFragment<T extends ViewBinding> extends Fragment {
     protected Context mContext;
 
     @Nullable
+    @Deprecated
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = getActivity();
@@ -64,5 +67,12 @@ public abstract class BaseFragment<T extends ViewBinding> extends Fragment {
         mainHandler = new Handler(Looper.getMainLooper());
         mainHandler.post(runnable);
     }
+
+    public Snackbar showSnackBar(String message) {
+        Snackbar snackbar = Snackbar.make(v.getRoot(), message, Snackbar.LENGTH_SHORT);
+        runOnUI(snackbar::show);
+        return snackbar;
+    }
+
 
 }

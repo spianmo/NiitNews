@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,18 +21,21 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:DataBindingFragment.java
- * @LastModified:2021/06/21 22:11:21
+ * @LastModified:2021/06/24 14:06:24
  */
 
 public abstract class DataBindingFragment<Binding extends ViewDataBinding> extends Fragment {
 
     protected AppCompatActivity mActivity;
     protected Binding v;
+    Handler mainHandler;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -102,4 +107,16 @@ public abstract class DataBindingFragment<Binding extends ViewDataBinding> exten
         v.unbind();
         v = null;
     }
+
+    public void runOnUI(Runnable runnable) {
+        mainHandler = new Handler(Looper.getMainLooper());
+        mainHandler.post(runnable);
+    }
+
+    public Snackbar showSnackBar(String message) {
+        Snackbar snackbar = Snackbar.make(v.getRoot(), message, Snackbar.LENGTH_SHORT);
+        runOnUI(snackbar::show);
+        return snackbar;
+    }
+
 }

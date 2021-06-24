@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RetrofitClient.java
- * @LastModified:2021/06/22 02:47:22
+ * @LastModified:2021/06/24 11:11:24
  */
 
 public class RetrofitClient {
@@ -40,7 +40,7 @@ public class RetrofitClient {
 
 
     private RetrofitClient() {
-        session = SessionJar.loadSessionFromDisk(App.getAppContext());
+        session = SessionJar.loadSessionFromDisk();
         InputStream inputStreams = App.getAppContext().getResources().openRawResource(R.raw.cert);
         sslParams = CertificatesUtil.getSslSocketFactory(inputStreams, null, null);
     }
@@ -66,9 +66,9 @@ public class RetrofitClient {
             Request original = chain.request();
             Request.Builder requestBuilder = original.newBuilder();
             if (session == null) {
-                session = SessionJar.loadSessionFromDisk(App.getAppContext());
+                session = SessionJar.loadSessionFromDisk();
             }
-            if (SessionJar.isExist(App.getAppContext())) {
+            if (SessionJar.isExist()) {
                 requestBuilder
                         .addHeader("uid", String.valueOf(session.getUid()))
                         .addHeader("superkey", session.getSuperkey());

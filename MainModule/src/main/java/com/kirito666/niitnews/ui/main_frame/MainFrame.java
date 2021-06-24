@@ -16,12 +16,13 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.component.bling.Bling;
 import com.kirito666.niitnews.component.bling.BlingType;
 import com.kirito666.niitnews.databinding.PageMainFrameBinding;
 import com.kirito666.niitnews.service.HeartBeatService;
-import com.kirito666.niitnews.ui.forum.ForumFragment;
+import com.kirito666.niitnews.ui.forum.ForumHostFragment;
 import com.kirito666.niitnews.ui.news.NewsFragment;
 import com.kirito666.niitnews.ui.rank.RankFragment;
 import com.kirito666.niitnews.ui.search.SearchPage;
@@ -36,7 +37,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/23 23:42:23
+ * @LastModified:2021/06/24 14:06:24
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -47,7 +48,7 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
 
     Fragment newsFragment = new NewsFragment();
     Fragment rankFragment = new RankFragment(false);
-    Fragment forumFragment = new ForumFragment();
+    Fragment forumFragment = new ForumHostFragment();
 
     private Bling mBling;
     int[] colors = new int[]{
@@ -96,7 +97,7 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
             @Override
             public void onPageSelected(int position) {
                 LOGE("===>" + position);
-                v.floatingActionButton.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
+                v.floatingActionButton.setVisibility((position == 2) && App.currentUser != null ? View.VISIBLE : View.GONE);
                 v.navigation.getMenu().getItem(position).setChecked(true);
             }
 
