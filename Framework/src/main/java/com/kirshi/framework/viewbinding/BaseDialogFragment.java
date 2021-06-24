@@ -1,9 +1,12 @@
 package com.kirshi.framework.viewbinding;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +26,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseDialogFragment.java
- * @LastModified:2021/06/21 22:10:21
+ * @LastModified:2021/06/24 18:42:24
  */
 
 public abstract class BaseDialogFragment<T extends ViewBinding> extends DialogFragment {
@@ -43,7 +46,6 @@ public abstract class BaseDialogFragment<T extends ViewBinding> extends DialogFr
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-
         inCreateView();
         return v.getRoot();
     }
@@ -53,7 +55,11 @@ public abstract class BaseDialogFragment<T extends ViewBinding> extends DialogFr
     @Override
     public void onStart() {
         WindowManager.LayoutParams params = requireDialog().getWindow().getAttributes();
-        params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        DisplayMetrics dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        requireDialog().getWindow().setLayout((int) (dm.widthPixels * 0.85), ViewGroup.LayoutParams.WRAP_CONTENT);
+        requireDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         requireDialog().getWindow().setAttributes(params);
         super.onStart();
     }

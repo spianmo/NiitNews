@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:attrs.xml
-  ~ @LastModified:2021/06/23 21:26:23
+  ~ @LastModified:2021/06/24 18:17:24
   -->
 
 <resources>
@@ -78,5 +78,11 @@
     </declare-styleable>
     <declare-styleable name="RxAutoImageView">
         <attr name="ImageSrc" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SwipeCaptchaView">
+        <attr name="captchaWidth" format="dimension" />
+        <attr name="captchaHeight" format="dimension" />
+        <attr name="matchDeviation" format="dimension" />
     </declare-styleable>
 </resources>

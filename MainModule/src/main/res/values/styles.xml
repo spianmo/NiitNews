@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:styles.xml
-  ~ @LastModified:2021/06/23 01:16:23
+  ~ @LastModified:2021/06/24 18:27:24
   -->
 
 <resources>
@@ -148,4 +148,13 @@
         <item name="colorAccent">@android:color/white</item>
     </style>
 
+<!--    <style name="App.DialogFragment" parent="@style/AppTheme">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>-->
 </resources>
