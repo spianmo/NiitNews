@@ -18,7 +18,7 @@ import androidx.databinding.ViewDataBinding;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseBindingActivity.java
- * @LastModified:2021/06/21 22:11:21
+ * @LastModified:2021/06/24 22:36:24
  */
 
 public abstract class BaseBindingActivity<Binding extends ViewDataBinding> extends AppCompatActivity {
@@ -33,7 +33,7 @@ public abstract class BaseBindingActivity<Binding extends ViewDataBinding> exten
         super.onCreate(savedInstanceState);
         initViewModel();
         DataBindingConfig dataBindingConfig = getDataBindingConfig();
-        v = (Binding) DataBindingUtil.setContentView(this, dataBindingConfig.getLayout());
+        v = DataBindingUtil.setContentView(this, dataBindingConfig.getLayout());
         setContentView(((ViewDataBinding) v).getRoot());
         v.setLifecycleOwner(this);
         v.setVariable(dataBindingConfig.getVmVariableId(), dataBindingConfig.getStateViewModel());

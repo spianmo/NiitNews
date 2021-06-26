@@ -23,8 +23,8 @@ import com.kirito666.niitnews.entity.News;
 import com.kirito666.niitnews.ui.news.adapter.NewsListAdapter;
 import com.kirito666.niitnews.ui.single.NewsDetailPage;
 import com.kirito666.niitnews.ui.single.WebPage;
+import com.kirshi.framework.databinding.BaseBindingFragment;
 import com.kirshi.framework.databinding.DataBindingConfig;
-import com.kirshi.framework.databinding.DataBindingFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,10 +35,10 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/22 21:47:22
+ * @LastModified:2021/06/26 15:58:26
  */
 
-public class NewsChildFragment extends DataBindingFragment<FragmentNewsChildBinding> {
+public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBinding> {
     private NewsPageViewModel mNewsPageViewModel;
     private final int newsGroupId;
     private NewsListAdapter mAdapter;

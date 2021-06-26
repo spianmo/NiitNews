@@ -39,8 +39,8 @@ import com.kirito666.niitnews.ui.rank.adapter.RankListAdapter;
 import com.kirito666.niitnews.ui.single.NewsDetailPage;
 import com.kirito666.niitnews.ui.single.WebPage;
 import com.kirito666.niitnews.util.Tools;
+import com.kirshi.framework.databinding.BaseBindingFragment;
 import com.kirshi.framework.databinding.DataBindingConfig;
-import com.kirshi.framework.databinding.DataBindingFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -55,10 +55,10 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankFragment.java
- * @LastModified:2021/06/24 01:48:24
+ * @LastModified:2021/06/26 15:58:26
  */
 
-public class RankFragment extends DataBindingFragment<FragmentRankBinding> {
+public class RankFragment extends BaseBindingFragment<FragmentRankBinding> {
     private RankPageViewModel mRankPageViewModel;
     private RankListAdapter mAdapter;
     private final boolean isPost;
