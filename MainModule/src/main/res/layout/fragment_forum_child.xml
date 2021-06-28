@@ -3,11 +3,12 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:fragment_forum_child.xml
-  ~ @LastModified:2021/06/28 13:38:28
+  ~ @LastModified:2021/06/28 14:18:28
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -41,7 +42,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tv_01"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/ic_empty"
+                binding:local="@{vm.emptyEntity.resId}"
                 android:layout_width="320dp"
                 android:layout_height="280dp" />
 
@@ -50,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="空空如也~"
+                android:text="@{vm.emptyEntity.desc}"
                 android:textColor="@color/grey_40"
                 android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="parent"

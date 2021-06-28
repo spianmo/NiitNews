@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kirito666.niitnews.databinding.ItemPostsLightBinding;
@@ -21,7 +20,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostsListAdapter.java
- * @LastModified:2021/06/28 10:54:28
+ * @LastModified:2021/06/28 20:02:28
  */
 
 public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -40,9 +39,6 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private int mLoadMoreStatus = 1;
 
-    @LayoutRes
-    private final int layoutId;
-
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
@@ -53,10 +49,9 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.mOnItemClickListener = mItemClickListener;
     }
 
-    public PostsListAdapter(Context context, List<SimplePost> items, @LayoutRes int layoutId) {
+    public PostsListAdapter(Context context, List<SimplePost> items) {
         this.items = items;
         ctx = context;
-        this.layoutId = layoutId;
     }
 
 

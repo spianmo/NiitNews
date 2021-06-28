@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kirito666.niitnews.databinding.ItemRankHorizontalBinding;
@@ -22,7 +21,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankListAdapter.java
- * @LastModified:2021/06/23 21:26:23
+ * @LastModified:2021/06/28 20:02:28
  */
 
 public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -30,9 +29,6 @@ public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final List<Rank> items;
 
     private final Context ctx;
-
-    @LayoutRes
-    private final int layoutId;
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -44,10 +40,9 @@ public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.mOnItemClickListener = mItemClickListener;
     }
 
-    public RankListAdapter(Context context, List<Rank> items, @LayoutRes int layoutId) {
+    public RankListAdapter(Context context, List<Rank> items) {
         this.items = items;
         ctx = context;
-        this.layoutId = layoutId;
     }
 
 

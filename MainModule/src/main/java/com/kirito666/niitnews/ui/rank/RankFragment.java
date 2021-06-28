@@ -55,7 +55,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankFragment.java
- * @LastModified:2021/06/26 15:58:26
+ * @LastModified:2021/06/28 20:02:28
  */
 
 public class RankFragment extends BaseBindingFragment<FragmentRankBinding> {
@@ -87,7 +87,7 @@ public class RankFragment extends BaseBindingFragment<FragmentRankBinding> {
         super.onViewCreated(view, savedInstanceState);
         v.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         v.recyclerView.setHasFixedSize(true);
-        mAdapter = new RankListAdapter(getContext(), mRankPageViewModel.ranks.getValue(), R.layout.item_news_light);
+        mAdapter = new RankListAdapter(getContext(), mRankPageViewModel.ranks.getValue());
         mAdapter.setOnItemClickListener(new RankListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Rank rank, int position) {

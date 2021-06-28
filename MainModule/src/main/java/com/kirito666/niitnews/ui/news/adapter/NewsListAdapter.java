@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kirito666.niitnews.databinding.ItemNewsLightBinding;
@@ -25,7 +24,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsListAdapter.java
- * @LastModified:2021/06/27 21:06:27
+ * @LastModified:2021/06/28 20:02:28
  */
 
 public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -44,9 +43,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private int mLoadMoreStatus = 1;
 
-    @LayoutRes
-    private final int layoutId;
-
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
@@ -57,10 +53,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.mOnItemClickListener = mItemClickListener;
     }
 
-    public NewsListAdapter(Context context, List<News> items, @LayoutRes int layoutId) {
+    public NewsListAdapter(Context context, List<News> items) {
         this.items = items;
         ctx = context;
-        this.layoutId = layoutId;
     }
 
 

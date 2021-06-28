@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/28 13:38:28
+ * @LastModified:2021/06/28 20:02:28
  */
 
 public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBinding> {
@@ -60,7 +60,7 @@ public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBind
         getLifecycle().addObserver(mNewsPageViewModel);
         v.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         v.recyclerView.setHasFixedSize(true);
-        mAdapter = new NewsListAdapter(getContext(), mNewsPageViewModel.news.getValue(), R.layout.item_news_light);
+        mAdapter = new NewsListAdapter(getContext(), mNewsPageViewModel.news.getValue());
         mAdapter.setOnItemClickListener(new NewsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, News news, int position) {

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentForumChildBinding;
 import com.kirito666.niitnews.entity.dto.SimplePost;
+import com.kirito666.niitnews.ui.empty.EmptyEntity;
 import com.kirito666.niitnews.ui.forum.adapter.PostsListAdapter;
 import com.kirito666.niitnews.ui.news.adapter.NewsListAdapter;
 import com.kirshi.framework.databinding.BaseBindingFragment;
@@ -27,21 +28,23 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumChildFragment.java
- * @LastModified:2021/06/28 11:47:28
+ * @LastModified:2021/06/28 20:03:28
  */
 
 public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBinding> {
     private ForumPageViewModel mForumPageViewModel;
     private final boolean isPublic;
     private PostsListAdapter mAdapter;
+    public final EmptyEntity emptyEntity;
 
-    public ForumChildFragment(boolean isPublic) {
+    public ForumChildFragment(boolean isPublic, EmptyEntity emptyEntity) {
         this.isPublic = isPublic;
+        this.emptyEntity = emptyEntity;
     }
 
     @Override
     protected void initViewModel() {
-        mForumPageViewModel = new ForumPageViewModel(isPublic);
+        mForumPageViewModel = new ForumPageViewModel(isPublic, emptyEntity);
     }
 
     @Override
@@ -56,7 +59,7 @@ public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBi
         getLifecycle().addObserver(mForumPageViewModel);
         v.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         v.recyclerView.setHasFixedSize(true);
-        mAdapter = new PostsListAdapter(getContext(), mForumPageViewModel.posts.getValue(), R.layout.item_posts_light);
+        mAdapter = new PostsListAdapter(getContext(), mForumPageViewModel.posts.getValue());
         mAdapter.setOnItemClickListener(new PostsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, SimplePost post, int position) {

@@ -12,6 +12,7 @@ import com.kirito666.niitnews.entity.dto.PostPageData;
 import com.kirito666.niitnews.entity.dto.SimplePost;
 import com.kirito666.niitnews.net.APIService;
 import com.kirito666.niitnews.net.retrofit.RetrofitClient;
+import com.kirito666.niitnews.ui.empty.EmptyEntity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,16 +28,18 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumPageViewModel.java
- * @LastModified:2021/06/28 10:54:28
+ * @LastModified:2021/06/28 14:18:28
  */
 
 public class ForumPageViewModel extends ViewModel implements LifecycleObserver {
     private final APIService mRepository = RetrofitClient.getInstance().getApi();
     public MutableLiveData<List<SimplePost>> posts;
     private final boolean isPublic;
+    public final EmptyEntity emptyEntity;
 
-    public ForumPageViewModel(boolean isPublic) {
+    public ForumPageViewModel(boolean isPublic, EmptyEntity emptyEntity) {
         this.isPublic = isPublic;
+        this.emptyEntity = emptyEntity;
         if (posts == null) {
             posts = new MutableLiveData<>();
             posts.setValue(new ArrayList<>());
