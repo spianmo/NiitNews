@@ -25,7 +25,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsListAdapter.java
- * @LastModified:2021/06/22 21:47:22
+ * @LastModified:2021/06/27 21:06:27
  */
 
 public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -42,7 +42,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     //没有加载更多 隐藏
     public static final int NO_LOAD_MORE = 2;
 
-    private int mLoadMoreStatus = 0;
+    private int mLoadMoreStatus = 1;
 
     @LayoutRes
     private final int layoutId;

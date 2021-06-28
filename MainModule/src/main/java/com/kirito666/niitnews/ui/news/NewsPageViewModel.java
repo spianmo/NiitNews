@@ -1,6 +1,9 @@
 package com.kirito666.niitnews.ui.news;
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ViewModel;
 
 import com.kirito666.niitnews.entity.News;
@@ -9,6 +12,8 @@ import com.kirito666.niitnews.entity.base.HttpStatusCode;
 import com.kirito666.niitnews.entity.dto.NewsPageData;
 import com.kirito666.niitnews.net.APIService;
 import com.kirito666.niitnews.net.retrofit.RetrofitClient;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +27,10 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsPageViewModel.java
- * @LastModified:2021/06/22 21:47:22
+ * @LastModified:2021/06/28 08:05:28
  */
 
-public class NewsPageViewModel extends ViewModel {
+public class NewsPageViewModel extends ViewModel implements LifecycleObserver {
     private final APIService mRepository = RetrofitClient.getInstance().getApi();
     public MutableLiveData<List<News>> news;
     private final int newsGroupId;
@@ -42,10 +47,15 @@ public class NewsPageViewModel extends ViewModel {
         }
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    public void fetchNews() {
+        fetchNews(1, 10);
+    }
+
     public void fetchNews(int pageId, int pageSize) {
         mRepository.fetchNewsPage(pageId, pageSize, newsGroupId).enqueue(new Callback<BaseResponse<NewsPageData>>() {
             @Override
-            public void onResponse(Call<BaseResponse<NewsPageData>> call, Response<BaseResponse<NewsPageData>> response) {
+            public void onResponse(@NotNull Call<BaseResponse<NewsPageData>> call, @NotNull Response<BaseResponse<NewsPageData>> response) {
                 if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
                     List<News> diffNews = news.getValue();
                     if (pageId == 1) {

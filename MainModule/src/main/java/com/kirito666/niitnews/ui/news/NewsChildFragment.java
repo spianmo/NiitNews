@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.library.baseAdapters.BR;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,14 +27,12 @@ import com.kirshi.framework.databinding.DataBindingConfig;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/26 15:58:26
+ * @LastModified:2021/06/27 21:10:27
  */
 
 public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBinding> {
@@ -61,6 +58,7 @@ public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBind
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getLifecycle().addObserver(mNewsPageViewModel);
         v.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         v.recyclerView.setHasFixedSize(true);
         mAdapter = new NewsListAdapter(getContext(), mNewsPageViewModel.news.getValue(), R.layout.item_news_light);
@@ -82,23 +80,14 @@ public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBind
                 }
             }
         });
-        //((SimpleItemAnimator)v.recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        //v.recyclerView.getItemAnimator().setChangeDuration(0);
+
         v.recyclerView.setAdapter(mAdapter);
-        mNewsPageViewModel.news.observe(getViewLifecycleOwner(), new Observer<List<News>>() {
-            @Override
-            public void onChanged(List<News> news) {
-                Log.e("=============>", "第" + pageId + "页，" + news.size());
-                if (pageId == 1) {
-                    //mAdapter.clearData();
-                } else {
-                    //mAdapter.changeMoreStatus(NewsListAdapter.PULLUP_LOAD_MORE);
-                }
-                mAdapter.notifyDataSetChanged();
-                v.refreshLayout.setRefreshing(false);
-            }
+        mNewsPageViewModel.news.observe(getViewLifecycleOwner(), news -> {
+            Log.e("=============>", "第" + pageId + "页，" + news.size());
+            mAdapter.notifyDataSetChanged();
+            v.refreshLayout.setRefreshing(false);
         });
-        mNewsPageViewModel.fetchNews(1, 10);
+
         v.refreshLayout.setColorSchemeResources(R.color.google_blue,
                 R.color.google_green, R.color.google_yellow,
                 R.color.google_red);
@@ -107,7 +96,7 @@ public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBind
         v.refreshLayout.setOnRefreshListener(() -> {
             v.refreshLayout.setRefreshing(true);
             if (v != null) {
-                mNewsPageViewModel.fetchNews(1, 10);
+                mNewsPageViewModel.fetchNews();
             }
         });
         initLoadMoreListener();
