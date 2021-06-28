@@ -33,7 +33,7 @@ import okhttp3.OkHttpClient;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:App.java
- * @LastModified:2021/06/24 11:22:24
+ * @LastModified:2021/06/28 09:34:28
  */
 
 /**
@@ -119,6 +119,10 @@ public class App extends BaseApplication {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static boolean isLogin() {
+        return currentUser != null;
     }
 }
 

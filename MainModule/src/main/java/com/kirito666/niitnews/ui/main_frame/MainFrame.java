@@ -37,7 +37,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/24 14:06:24
+ * @LastModified:2021/06/28 09:34:28
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -97,7 +97,7 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
             @Override
             public void onPageSelected(int position) {
                 LOGE("===>" + position);
-                v.floatingActionButton.setVisibility((position == 2) && App.currentUser != null ? View.VISIBLE : View.GONE);
+                v.floatingActionButton.setVisibility((position == 2) && App.isLogin() ? View.VISIBLE : View.GONE);
                 v.navigation.getMenu().getItem(position).setChecked(true);
             }
 
@@ -163,6 +163,10 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
 
     public void showBling() {
         mBling.show(BlingType.TRIANGLE);
+    }
+
+    public void showFab(boolean show) {
+        v.floatingActionButton.setVisibility(App.isLogin() && show ? View.VISIBLE : View.GONE);
     }
 
     @Override

@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_login.xml
-  ~ @LastModified:2021/06/24 14:06:24
+  ~ @LastModified:2021/06/24 17:21:24
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -192,6 +192,7 @@
                     android:layout_weight="1"
                     android:textSize="15sp"
                     android:text="尚且没有账户?"
+                    android:onClick="@{()->click.showRegisterDialog()}"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/grey_10" />
 
@@ -203,6 +204,7 @@
                     android:textAlignment="textEnd"
                     android:textSize="15sp"
                     android:text="忘记密码"
+                    android:onClick="@{()->click.jumpPasswordReset()}"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                     android:textColor="@color/grey_10" />
             </LinearLayout>

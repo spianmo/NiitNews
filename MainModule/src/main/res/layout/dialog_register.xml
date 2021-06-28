@@ -3,106 +3,120 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:dialog_register.xml
-  ~ @LastModified:2021/06/24 18:43:24
+  ~ @LastModified:2021/06/28 08:43:28
   -->
 
-<androidx.cardview.widget.CardView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_small"
     app:cardCornerRadius="12dp"
-    app:cardElevation="1dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:cardElevation="1dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_mlarge">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_middle"
-            android:text="Register"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:textColor="@color/google_blue"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="40dp"
-            android:layout_height="4dp"
-            android:background="@color/google_blue" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_xlarge" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册账号"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/grey_40" />
-
-        <com.google.android.material.textfield.TextInputEditText
+        <LinearLayout
+            android:id="@+id/form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="text"
-            android:id="@+id/account"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:textColor="@color/google_blue"
-            android:textStyle="bold"
-            android:theme="@style/EditText.Grey" />
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_mlarge"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_mlarge" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_middle"
+                android:text="Register"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/google_blue"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册密码"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
-            android:textColor="@color/grey_40" />
+            <View
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:background="@color/google_blue" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:inputType="textPassword"
-            android:id="@+id/tv_password"
-            android:maxLength="50"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:textColor="@color/google_blue"
-            android:textStyle="bold"
-            android:theme="@style/EditText.Grey" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="注册账号"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@color/grey_40" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="@dimen/spacing_middle" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:inputType="text"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/google_blue"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_mlarge" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册密码"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+                android:textColor="@color/grey_40" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-4dp"
+                android:layout_marginRight="-4dp"
+                android:inputType="textPassword"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="@color/google_blue"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginTop="@dimen/spacing_middle"
-            android:layout_marginRight="-4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="20dp"
+            android:checked="true"
+            android:clickable="false"
             android:text="保持登录态"
             android:textColor="@color/google_blue"
             android:textStyle="bold"
-            android:theme="@style/Checkbox.Blue" />
+            android:theme="@style/Checkbox.Blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_register"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_button"
+            android:text="立即注册"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
 </androidx.cardview.widget.CardView>

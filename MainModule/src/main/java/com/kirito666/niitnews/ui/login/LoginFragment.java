@@ -20,8 +20,9 @@ import com.kirito666.niitnews.entity.User;
 import com.kirito666.niitnews.entity.base.BaseResponse;
 import com.kirito666.niitnews.entity.base.HttpStatusCode;
 import com.kirito666.niitnews.ui.forum.ForumHostFragment;
+import com.kirito666.niitnews.ui.register.RegisterDialog;
+import com.kirshi.framework.databinding.BaseBindingFragment;
 import com.kirshi.framework.databinding.DataBindingConfig;
-import com.kirshi.framework.databinding.DataBindingFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,10 +31,10 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:LoginFragment.java
- * @LastModified:2021/06/24 14:06:24
+ * @LastModified:2021/06/28 09:34:28
  */
 
-public class LoginFragment extends DataBindingFragment<PageLoginBinding> {
+public class LoginFragment extends BaseBindingFragment<PageLoginBinding> {
 
     LoginViewModel mLoginViewModel;
 
@@ -54,15 +55,17 @@ public class LoginFragment extends DataBindingFragment<PageLoginBinding> {
         mLoginViewModel.loginResponse.observe(getViewLifecycleOwner(), new Observer<BaseResponse<User>>() {
             @Override
             public void onChanged(BaseResponse<User> userBaseResponse) {
-                if (userBaseResponse.getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
-                    showSnackBar("登陆成功");
-                    // TODO: 6/24/2021 more
-                    Fragment parent = getParentFragment();
-                    if (parent instanceof ForumHostFragment) {
-                        ((ForumHostFragment) parent).switchChildFragment(true);
+                if (userBaseResponse.getStatusCode() != 0) {
+                    if (userBaseResponse.getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
+                        showSnackBar("登陆成功");
+                        // TODO: 6/24/2021 more
+                        Fragment parent = getParentFragment();
+                        if (parent instanceof ForumHostFragment) {
+                            ((ForumHostFragment) parent).switchChildFragment(true);
+                        }
+                    } else {
+                        showSnackBar(HttpStatusCode.getMessageByStatusCode(userBaseResponse.getStatusCode()));
                     }
-                } else {
-                    showSnackBar(HttpStatusCode.getMessageByStatusCode(userBaseResponse.getStatusCode()));
                 }
             }
         });
@@ -91,9 +94,31 @@ public class LoginFragment extends DataBindingFragment<PageLoginBinding> {
             v.fabLogin.setAlpha(0f);
 
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                if (v == null) {
+                    return;
+                }
                 v.progressBar.setVisibility(View.GONE);
                 v.fabLogin.setAlpha(1f);
             }, 1000);
+        }
+
+        public void showRegisterDialog() {
+            RegisterDialog dialog = new RegisterDialog();
+            dialog.setOnRegisterCallback(new RegisterDialog.OnRegisterCallback() {
+                @Override
+                public void onSuccess() {
+                    showSnackBar("注册成功, Welcome!");
+                    Fragment parent = getParentFragment();
+                    if (parent instanceof ForumHostFragment) {
+                        ((ForumHostFragment) parent).switchChildFragment(true);
+                    }
+                }
+            });
+            dialog.show(mActivity.getSupportFragmentManager(), "RegisterDialog");
+        }
+
+        public void jumpPasswordReset() {
+            showSnackBar("忘记密码Build...");
         }
     }
 
