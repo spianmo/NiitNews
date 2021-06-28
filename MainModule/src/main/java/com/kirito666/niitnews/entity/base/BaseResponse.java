@@ -1,11 +1,13 @@
 package com.kirito666.niitnews.entity.base;
 
+import java.io.Serializable;
+
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseResponse.java
- * @LastModified:2021/06/24 11:06:24
+ * @LastModified:2021/06/29 01:56:29
  */
 
 /**
@@ -14,7 +16,7 @@ package com.kirito666.niitnews.entity.base;
  * @Author Finger
  * @Date 1/4/2021
  **/
-public class BaseResponse<T> {
+public class BaseResponse<T> implements Serializable {
     private T data;
     private String msg;
     private int statusCode;

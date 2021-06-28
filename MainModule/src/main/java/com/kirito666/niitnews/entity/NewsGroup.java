@@ -1,14 +1,16 @@
 package com.kirito666.niitnews.entity;
 
+import java.io.Serializable;
+
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsGroup.java
- * @LastModified:2021/06/21 08:04:21
+ * @LastModified:2021/06/29 01:56:29
  */
 
-public class NewsGroup {
+public class NewsGroup implements Serializable {
     long id;
     String name;
     String description;

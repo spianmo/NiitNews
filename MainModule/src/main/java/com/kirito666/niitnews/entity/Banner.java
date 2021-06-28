@@ -1,5 +1,6 @@
 package com.kirito666.niitnews.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -7,9 +8,9 @@ import java.sql.Timestamp;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Banner.java
- * @LastModified:2021/06/23 20:15:23
+ * @LastModified:2021/06/29 01:56:29
  */
-public class Banner {
+public class Banner implements Serializable {
     long id;
     String title;
     String hint;

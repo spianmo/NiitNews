@@ -2,6 +2,7 @@ package com.kirito666.niitnews.entity.dto;
 
 import com.kirito666.niitnews.entity.Commit;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -10,10 +11,10 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDto.java
- * @LastModified:2021/06/21 08:04:21
+ * @LastModified:2021/06/29 01:56:29
  */
 
-public class PostDto {
+public class PostDto implements Serializable {
     long pid;
     String title;
     Timestamp createdTime;

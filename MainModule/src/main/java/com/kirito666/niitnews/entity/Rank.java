@@ -1,15 +1,16 @@
 package com.kirito666.niitnews.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
- * @Author:Shinonon
+ * @Author:Finger
  * @FileName:Rank.java
- * @LastModified:2021/06/22 11:34:22
+ * @LastModified:2021/06/29 01:56:29
  */
-public class Rank {
+public class Rank implements Serializable {
     long rid;
     String title;
     String desc;

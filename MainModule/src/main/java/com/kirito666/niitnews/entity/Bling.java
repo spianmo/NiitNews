@@ -1,13 +1,15 @@
 package com.kirito666.niitnews.entity;
 
+import java.io.Serializable;
+
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Bling.java
- * @LastModified:2021/06/21 08:04:21
+ * @LastModified:2021/06/29 01:56:29
  */
-public class Bling {
+public class Bling implements Serializable {
     long id;
     String splashPic;
     String bulletin;

@@ -2,6 +2,7 @@ package com.kirito666.niitnews.entity.dto;
 
 import com.kirito666.niitnews.entity.News;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,10 +10,10 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsPageData.java
- * @LastModified:2021/06/21 08:04:21
+ * @LastModified:2021/06/29 01:56:29
  */
 
-public class NewsPageData {
+public class NewsPageData implements Serializable {
     int pageId;
     int pageSize;
     int count;

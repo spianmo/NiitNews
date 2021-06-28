@@ -1,5 +1,6 @@
 package com.kirito666.niitnews.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -7,10 +8,10 @@ import java.sql.Timestamp;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:User.java
- * @LastModified:2021/06/21 08:04:21
+ * @LastModified:2021/06/29 01:56:29
  */
 
-public class User {
+public class User implements Serializable {
     long id;
     String account;
     String nickname;
