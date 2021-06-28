@@ -19,7 +19,7 @@ import com.kirito666.niitnews.entity.dto.SimplePost;
 import com.kirito666.niitnews.ui.empty.EmptyEntity;
 import com.kirito666.niitnews.ui.forum.adapter.PostsListAdapter;
 import com.kirito666.niitnews.ui.news.adapter.NewsListAdapter;
-import com.kirito666.niitnews.ui.post_detail.PostDetailActivity;
+import com.kirito666.niitnews.ui.post_detail.PostDetailPage;
 import com.kirshi.framework.databinding.BaseBindingFragment;
 import com.kirshi.framework.databinding.DataBindingConfig;
 
@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumChildFragment.java
- * @LastModified:2021/06/29 00:56:29
+ * @LastModified:2021/06/29 02:05:29
  */
 
 public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBinding> {
@@ -65,7 +65,9 @@ public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBi
         mAdapter.setOnItemClickListener(new PostsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, SimplePost post, int position) {
-                startActivity(new Intent(mActivity, PostDetailActivity.class));
+                Intent intent = new Intent(mActivity, PostDetailPage.class);
+                intent.putExtra("post", post);
+                startActivity(intent);
             }
         });
 

@@ -31,7 +31,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostsListAdapter.java
- * @LastModified:2021/06/29 01:31:29
+ * @LastModified:2021/06/29 02:05:29
  */
 
 public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -196,11 +196,14 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     if (mOnItemClickListener == null) {
                         return;
                     }
-                    mOnItemClickListener.onItemClick(v, items.get(position), position);
+                    if (post.isAllowComment()) {
+                        mOnItemClickListener.onItemClick(v, items.get(position), position);
+                    } else {
+                        ctx.showSnackBar("该动态不允许评论");
+                    }
                 }
             });
 
-            // TODO: 6/28/2021 帖子点击事件与视图显示
             originalViewHolder.v.postContent.setOnClickListener(v -> {
                 if (mOnItemClickListener == null) {
                     return;
