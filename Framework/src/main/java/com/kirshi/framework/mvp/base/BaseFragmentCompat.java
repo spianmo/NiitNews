@@ -24,7 +24,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseFragmentCompat.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public abstract class BaseFragmentCompat<T extends BasePresenter, V extends ViewBinding> extends Fragment implements BaseView {

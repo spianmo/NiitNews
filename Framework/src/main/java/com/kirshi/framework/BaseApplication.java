@@ -12,7 +12,7 @@ import com.kirshi.framework.hookapp.HookApplication;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseApplication.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public abstract class BaseApplication extends HookApplication {

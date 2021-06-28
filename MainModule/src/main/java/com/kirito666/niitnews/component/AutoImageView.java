@@ -18,7 +18,7 @@ import com.kirito666.niitnews.R;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:AutoImageView.java
- * @LastModified:2021/06/23 08:15:23
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class AutoImageView extends FrameLayout {

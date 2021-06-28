@@ -28,7 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseBindingFragment.java
- * @LastModified:2021/06/26 15:58:26
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public abstract class BaseBindingFragment<Binding extends ViewDataBinding> extends Fragment {

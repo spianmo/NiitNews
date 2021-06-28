@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:KBaseActivity.kt
- * @LastModified:2021/06/22 08:43:22
+ * @LastModified:2021/06/29 02:05:29
  */
 
 package com.kirshi.framework.viewbinding

@@ -22,7 +22,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SearchViewModel.java
- * @LastModified:2021/06/21 22:17:21
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class SearchViewModel extends ViewModel {

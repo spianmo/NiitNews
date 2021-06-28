@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseAndroidViewModel.java
- * @LastModified:2021/06/24 21:35:24
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class BaseAndroidViewModel extends AndroidViewModel implements LifecycleObserver {

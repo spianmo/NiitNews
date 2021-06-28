@@ -26,7 +26,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseDialogFragment.java
- * @LastModified:2021/06/24 18:42:24
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public abstract class BaseDialogFragment<T extends ViewBinding> extends DialogFragment {

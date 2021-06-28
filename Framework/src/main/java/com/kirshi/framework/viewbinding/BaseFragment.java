@@ -24,7 +24,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseFragment.java
- * @LastModified:2021/06/24 10:10:24
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public abstract class BaseFragment<T extends ViewBinding> extends Fragment {

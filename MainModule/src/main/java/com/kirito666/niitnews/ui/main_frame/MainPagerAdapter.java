@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainPagerAdapter.java
- * @LastModified:2021/06/21 23:49:21
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {

@@ -8,7 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseView.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public interface BaseView {

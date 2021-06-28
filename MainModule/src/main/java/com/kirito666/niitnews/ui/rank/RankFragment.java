@@ -55,7 +55,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankFragment.java
- * @LastModified:2021/06/28 20:02:28
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class RankFragment extends BaseBindingFragment<FragmentRankBinding> {

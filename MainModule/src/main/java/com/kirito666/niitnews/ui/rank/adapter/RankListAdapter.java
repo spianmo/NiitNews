@@ -21,7 +21,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankListAdapter.java
- * @LastModified:2021/06/28 20:02:28
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

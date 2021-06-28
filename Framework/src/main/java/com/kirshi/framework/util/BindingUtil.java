@@ -18,7 +18,7 @@ import java.lang.reflect.Type;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BindingUtil.java
- * @LastModified:2021/06/21 23:17:21
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class BindingUtil {

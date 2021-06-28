@@ -11,7 +11,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDto.java
- * @LastModified:2021/06/29 01:56:29
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class PostDto implements Serializable {
@@ -32,6 +32,9 @@ public class PostDto implements Serializable {
     boolean isSourceAuthor;
     long score;
     List<Commit> commits;
+
+    public PostDto() {
+    }
 
     PostDto(long pid, String title, Timestamp createdTime, Timestamp modifiedTime, String text, long authorId, List<String> attachPic, long shareCount, long viewsNum, long favorCount, long commitCount, long parentPid, boolean allowComment, boolean allowFeed, boolean isSourceAuthor, long score, List<Commit> commits) {
         this.pid = pid;

@@ -29,7 +29,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseActivityCompat.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public abstract class BaseActivityCompat<P extends BasePresenter, V extends ViewBinding> extends AppCompatActivity implements BaseView, Toolbar.OnMenuItemClickListener {

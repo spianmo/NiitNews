@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/28 20:02:28
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBinding> {

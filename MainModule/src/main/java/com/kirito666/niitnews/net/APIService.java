@@ -37,7 +37,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/29 00:41:29
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public interface APIService {

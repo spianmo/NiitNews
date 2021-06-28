@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RetrofitClient.java
- * @LastModified:2021/06/24 11:11:24
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class RetrofitClient {

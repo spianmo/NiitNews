@@ -18,7 +18,7 @@ import androidx.databinding.ViewDataBinding;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseBindingActivity.java
- * @LastModified:2021/06/24 22:36:24
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public abstract class BaseBindingActivity<Binding extends ViewDataBinding> extends AppCompatActivity {

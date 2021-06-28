@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:News.java
- * @LastModified:2021/06/22 08:23:22
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class News implements Serializable {

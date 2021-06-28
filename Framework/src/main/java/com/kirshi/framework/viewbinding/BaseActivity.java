@@ -23,7 +23,7 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseActivity.java
- * @LastModified:2021/06/21 22:10:21
+ * @LastModified:2021/06/29 02:16:29
  */
 
 public class BaseActivity<V extends ViewBinding> extends AppCompatActivity {

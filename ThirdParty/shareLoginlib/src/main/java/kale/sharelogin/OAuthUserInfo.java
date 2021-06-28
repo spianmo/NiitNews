@@ -5,7 +5,7 @@ package kale.sharelogin;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:OAuthUserInfo.java
- * @LastModified:2021/06/19 21:50:19
+ * @LastModified:2021/06/29 02:16:29
  */
 
 /**
