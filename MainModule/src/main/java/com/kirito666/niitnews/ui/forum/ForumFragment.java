@@ -22,7 +22,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumFragment.java
- * @LastModified:2021/06/28 10:54:28
+ * @LastModified:2021/06/28 12:54:28
  */
 
 public class ForumFragment extends BaseFragment<FragmentForumBinding> {
@@ -48,9 +48,9 @@ public class ForumFragment extends BaseFragment<FragmentForumBinding> {
             List<String> titles = new ArrayList<>();
             int count = 0;
             for (String forum : FORUM_TYPE.keySet()) {
+                count++;
                 titles.add(forum);
-                boolean isPublic = FORUM_TYPE.get(forum);
-                mForumChildFragments.append(++count, new ForumChildFragment(isPublic));
+                mForumChildFragments.append(count, new ForumChildFragment(FORUM_TYPE.get(forum)));
             }
             forumPageAdapter = new ForumPageAdapter(getChildFragmentManager(), titles, mForumChildFragments);
             v.viewPager.setAdapter(forumPageAdapter);

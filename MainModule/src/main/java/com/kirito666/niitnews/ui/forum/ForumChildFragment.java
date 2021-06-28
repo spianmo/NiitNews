@@ -2,7 +2,6 @@ package com.kirito666.niitnews.ui.forum;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -28,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumChildFragment.java
- * @LastModified:2021/06/28 10:26:28
+ * @LastModified:2021/06/28 11:47:28
  */
 
 public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBinding> {
@@ -67,7 +66,6 @@ public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBi
 
         v.recyclerView.setAdapter(mAdapter);
         mForumPageViewModel.posts.observe(getViewLifecycleOwner(), posts -> {
-            Log.e("=============>", "第" + pageId + "页，" + posts.size());
             mAdapter.notifyDataSetChanged();
             v.refreshLayout.setRefreshing(false);
         });

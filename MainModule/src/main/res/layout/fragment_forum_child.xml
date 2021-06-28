@@ -3,13 +3,16 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:fragment_forum_child.xml
-  ~ @LastModified:2021/06/28 10:49:28
+  ~ @LastModified:2021/06/28 13:38:28
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="vm"
@@ -20,9 +23,44 @@
             type="com.kirito666.niitnews.ui.forum.ForumChildFragment.ClickProxy" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.forum.ForumChildFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view_empty"
+            android:visibility="@{vm.posts.isEmpty()?View.VISIBLE:View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/empty_img"
+                app:layout_constraintBottom_toTopOf="@+id/tv_01"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_empty"
+                android:layout_width="320dp"
+                android:layout_height="280dp" />
+
+            <TextView
+                android:id="@+id/tv_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="空空如也~"
+                android:textColor="@color/grey_40"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
@@ -31,11 +69,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
+                android:visibility="@{vm.posts.isEmpty()?View.GONE:View.VISIBLE}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
                 android:scrollingCache="true"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </layout>

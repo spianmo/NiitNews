@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:fragment_forum.xml
-  ~ @LastModified:2021/06/28 10:54:28
+  ~ @LastModified:2021/06/28 13:34:28
   -->
 
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,7 +11,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.forum.ForumHostFragment">
+    android:orientation="vertical"
+    tools:context=".ui.forum.ForumFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
@@ -21,13 +22,13 @@
         app:tabBackground="@android:color/transparent"
         app:tabGravity="fill"
         app:tabIndicator="@drawable/shape_round_corner"
-        app:tabIndicatorColor="@color/red_A200"
+        app:tabIndicatorColor="@color/google_blue"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorGravity="top"
         app:tabIndicatorHeight="@dimen/spacing_medium"
-        app:tabMode="scrollable"
+        app:tabMode="auto"
         app:tabRippleColor="@android:color/transparent"
-        app:tabSelectedTextColor="@color/red_A200"
+        app:tabSelectedTextColor="@color/google_blue"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:tabTextColor="@color/grey_40">
 

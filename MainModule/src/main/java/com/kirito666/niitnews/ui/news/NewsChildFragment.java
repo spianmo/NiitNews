@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -32,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/27 21:10:27
+ * @LastModified:2021/06/28 13:38:28
  */
 
 public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBinding> {
@@ -83,7 +82,6 @@ public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBind
 
         v.recyclerView.setAdapter(mAdapter);
         mNewsPageViewModel.news.observe(getViewLifecycleOwner(), news -> {
-            Log.e("=============>", "第" + pageId + "页，" + news.size());
             mAdapter.notifyDataSetChanged();
             v.refreshLayout.setRefreshing(false);
         });

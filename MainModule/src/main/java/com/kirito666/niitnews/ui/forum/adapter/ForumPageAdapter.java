@@ -1,5 +1,6 @@
 package com.kirito666.niitnews.ui.forum.adapter;
 
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
@@ -18,7 +19,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumPageAdapter.java
- * @LastModified:2021/06/28 10:54:28
+ * @LastModified:2021/06/28 13:38:28
  */
 
 public class ForumPageAdapter extends FragmentStatePagerAdapter {
@@ -34,6 +35,7 @@ public class ForumPageAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        Log.e("####################", "getItem" + position);
         return mFragments.valueAt(position);
     }
 
@@ -46,6 +48,7 @@ public class ForumPageAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        Log.e("####################", "instantiateItem" + position);
         return super.instantiateItem(container, position);
     }
 
