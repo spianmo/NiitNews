@@ -37,7 +37,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/23 23:33:23
+ * @LastModified:2021/06/28 09:47:28
  */
 
 public interface APIService {
@@ -110,10 +110,11 @@ public interface APIService {
     @GET("/news/kyzl")
     Call<BaseResponse<NewsPageData>> fetchNews8(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
 
-    @FormUrlEncoded
     @GET("/posts")
-    Call<BaseResponse<PostPageData>> fetchPost(@Field("pageId") int pageId, @Field("pageSize") int pageSize);
+    Call<BaseResponse<PostPageData>> fetchPost(@Query("pageId") int pageId, @Query("pageSize") int pageSize);
 
+    @GET("/posts/public")
+    Call<BaseResponse<PostPageData>> fetchPostPublic(@Query("pageId") int pageId, @Query("pageSize") int pageSize);
 
     @POST("/posts")
     Call<BaseResponse<String>> insertPost(@Body Post post);

@@ -10,6 +10,7 @@ import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentForumHostBinding;
 import com.kirito666.niitnews.ui.login.LoginFragment;
+import com.kirito666.niitnews.ui.main_frame.MainFrame;
 import com.kirshi.framework.viewbinding.BaseFragment;
 
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumHostFragment.java
- * @LastModified:2021/06/24 14:06:24
+ * @LastModified:2021/06/28 10:54:28
  */
 
 public class ForumHostFragment extends BaseFragment<FragmentForumHostBinding> {
@@ -56,6 +57,9 @@ public class ForumHostFragment extends BaseFragment<FragmentForumHostBinding> {
                 .setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit)
                 .replace(R.id.fragment_container, switchForum ? forumFragment : loginFragment)
                 .commit();
+        if (switchForum && App.isLogin()) {
+            ((MainFrame) mContext).showFab(true);
+        }
     }
 
 
