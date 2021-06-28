@@ -1,5 +1,6 @@
 package com.kirito666.niitnews.ui.forum;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import com.kirito666.niitnews.entity.dto.SimplePost;
 import com.kirito666.niitnews.ui.empty.EmptyEntity;
 import com.kirito666.niitnews.ui.forum.adapter.PostsListAdapter;
 import com.kirito666.niitnews.ui.news.adapter.NewsListAdapter;
+import com.kirito666.niitnews.ui.post_detail.PostDetailActivity;
 import com.kirshi.framework.databinding.BaseBindingFragment;
 import com.kirshi.framework.databinding.DataBindingConfig;
 
@@ -28,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumChildFragment.java
- * @LastModified:2021/06/28 20:03:28
+ * @LastModified:2021/06/29 00:56:29
  */
 
 public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBinding> {
@@ -59,11 +61,11 @@ public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBi
         getLifecycle().addObserver(mForumPageViewModel);
         v.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         v.recyclerView.setHasFixedSize(true);
-        mAdapter = new PostsListAdapter(getContext(), mForumPageViewModel.posts.getValue());
+        mAdapter = new PostsListAdapter(this, mForumPageViewModel.posts.getValue());
         mAdapter.setOnItemClickListener(new PostsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, SimplePost post, int position) {
-                // TODO: 6/28/2021 Simple帖子点击事件，跳转帖子详情页
+                startActivity(new Intent(mActivity, PostDetailActivity.class));
             }
         });
 

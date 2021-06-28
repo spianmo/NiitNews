@@ -3,14 +3,12 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsDetailPage.kt
- * @LastModified:2021/06/22 10:47:22
+ * @LastModified:2021/06/29 01:31:29
  */
 
 package com.kirito666.niitnews.ui.single
 
 import android.R
-import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -50,7 +48,7 @@ class NewsDetailPage : KBaseActivity<PageNewsDetailBinding>() {
         initToolbar()
 
         v.fab.setOnClickListener {
-            share(this@NewsDetailPage, news.sourceUrl, news.title)
+            Tools.share(this@NewsDetailPage, news.sourceUrl, news.title)
         }
     }
 
@@ -81,12 +79,5 @@ class NewsDetailPage : KBaseActivity<PageNewsDetailBinding>() {
             super.onBackPressed()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    fun share(context: Context, shareText: String?, shareTitle: String?) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.setType("text/plain")
-        intent.putExtra(Intent.EXTRA_TEXT, shareText)
-        context.startActivity(Intent.createChooser(intent, shareTitle))
     }
 }

@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:item_posts_light.xml
-  ~ @LastModified:2021/06/22 10:33:22
+  ~ @LastModified:2021/06/29 01:31:29
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,75 +13,231 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/item_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/spacing_large"
-        android:paddingTop="@dimen/spacing_medium"
-        android:paddingRight="@dimen/spacing_large"
-        android:paddingBottom="@dimen/spacing_medium">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardview"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:clipToPadding="true"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="false">
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/image_news" />
-
-        </androidx.cardview.widget.CardView>
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xmedium"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginRight="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Politics"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@color/grey_40" />
+            <com.kirito666.niitnews.component.CircleImageView
+                android:id="@+id/post_author_avatar"
+                android:layout_width="@dimen/posts_nick_logo"
+                android:layout_height="@dimen/posts_nick_logo"
+                android:foreground="@color/overlay_light_20"
+                android:src="@drawable/photo_male" />
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_width="@dimen/spacing_large"
+                android:layout_height="0dp" />
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wed, 20 Jan 19, 05:08 PM"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/grey_40" />
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/post_author_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="Lillie Hoyos "
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/post_author_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text=" \@LillieH"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/grey_40" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text=" . 10m"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@color/grey_40" />
+
+                    <ImageButton
+                        android:id="@+id/btn_post_share"
+                        android:layout_width="@dimen/spacing_mlarge"
+                        android:layout_height="@dimen/spacing_mlarge"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        app:srcCompat="@drawable/ic_down"
+                        app:tint="@color/grey_40" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/post_content"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/post_content_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:fontFamily="sans-serif-light"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Mauris sagittis non elit quis"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:id="@+id/post_cover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="140dp"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image_post_example" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_height="@dimen/spacing_mlarge"
+                            android:layout_marginEnd="@dimen/spacing_middle"
+                            app:srcCompat="@drawable/ic_baseline_remove_red_eye_24"
+                            app:tint="@color/grey_20" />
+
+                        <TextView
+                            android:id="@+id/tv_views_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="3k"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_40" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btn_post_forward"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_height="@dimen/spacing_mlarge"
+                            android:layout_marginEnd="@dimen/spacing_middle"
+                            app:srcCompat="@drawable/ic_repeat"
+                            app:tint="@color/grey_20" />
+
+                        <TextView
+                            android:id="@+id/tv_share_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="55"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_40" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btn_post_favor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.sackcentury.shinebuttonlib.ShineButton
+                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_height="@dimen/spacing_mlarge"
+                            android:layout_marginEnd="@dimen/spacing_middle"
+                            android:src="@android:color/darker_gray"
+                            android:id="@+id/btn_favor_bling"
+                            app:btn_color="@android:color/darker_gray"
+                            app:btn_fill_color="#FF6666"
+                            app:allow_random_color="false"
+                            app:enable_flashing="false"
+                            app:big_shine_color="#FF6666"
+                            app:click_animation_duration="200"
+                            app:shine_animation_duration="1500"
+                            app:shine_turn_angle="10"
+                            app:small_shine_offset_angle="20"
+                            app:shine_distance_multiple="1.5"
+                            app:small_shine_color="#CC9999"
+                            app:shine_count="8"
+                            app:siShape="@raw/heart" />
+
+                        <TextView
+                            android:id="@+id/tv_favor_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="75"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_40" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/btn_post_commit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/spacing_mlarge"
+                            android:layout_height="@dimen/spacing_mlarge"
+                            android:layout_marginEnd="@dimen/spacing_middle"
+                            android:layout_marginRight="@dimen/spacing_middle"
+                            app:srcCompat="@drawable/ic_chat"
+                            app:tint="@color/grey_20" />
+
+                        <TextView
+                            android:id="@+id/tv_commit_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="75"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_40" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small"
-            android:text="@string/short_lorem_ipsum"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/grey_80"
-            app:fontFamily="sans-serif-medium" />
     </LinearLayout>
 
     <View

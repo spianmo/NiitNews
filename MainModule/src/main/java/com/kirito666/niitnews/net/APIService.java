@@ -37,12 +37,15 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/28 09:47:28
+ * @LastModified:2021/06/29 00:41:29
  */
 
 public interface APIService {
 
     String BASE_URL = "http://niit.cache.ren:9090/";
+
+    @GET("/user/{id}")
+    Call<BaseResponse<User>> getUserDetail(@Query("id") int id);
 
     @FormUrlEncoded
     @POST("/user/login")
@@ -135,7 +138,7 @@ public interface APIService {
 
     @FormUrlEncoded
     @DELETE("/posts/{pid}/favor")
-    Call<BaseResponse<String>> deleteFavor(@Path("pid") int pid, @Field("id") int id);
+    Call<BaseResponse<String>> deleteFavor(@Path("pid") int pid);
 
     @POST("/posts/{pid}/commit")
     Call<BaseResponse<String>> commitPost(@Path("pid") int pid, @Body Commit commit);
@@ -145,7 +148,7 @@ public interface APIService {
     Call<BaseResponse<String>> deleteCommit(@Path("pid") int pid, @Field("cid") int cid);
 
     @POST("/posts/{pid}/forward")
-    Call<BaseResponse<String>> commitPost(@Path("pid") int pid);
+    Call<BaseResponse<String>> forwardPost(@Path("pid") int pid);
 
     @GET("/friends")
     Call<BaseResponse<List<FriendDto>>> getAllFriend();

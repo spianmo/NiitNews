@@ -2,6 +2,7 @@ package com.kirito666.niitnews.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -23,7 +24,7 @@ import com.kirito666.niitnews.R;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Tools.java
- * @LastModified:2021/06/22 21:34:22
+ * @LastModified:2021/06/29 01:31:29
  */
 
 public class Tools {
@@ -67,5 +68,12 @@ public class Tools {
                     .into(img);
         } catch (Exception ignored) {
         }
+    }
+
+    public static void share(Context context, String shareText, String shareTitle) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, shareText);
+        context.startActivity(Intent.createChooser(intent, shareTitle));
     }
 }

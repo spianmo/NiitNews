@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:build.gradle
- * @LastModified:2021/06/22 11:36:22
+ * @LastModified:2021/06/28 20:22:28
  */
 
 plugins {
@@ -119,4 +119,6 @@ dependencies {
     kapt 'org.projectlombok:lombok:1.18.20'
 
     implementation 'com.google.android:flexbox:0.3.2'
+
+    implementation 'com.sackcentury:shinebutton:1.0.0'
 }
