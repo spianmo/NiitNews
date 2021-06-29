@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_post_detail.xml
-  ~ @LastModified:2021/06/29 13:26:29
+  ~ @LastModified:2021/06/29 13:52:29
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -134,6 +134,7 @@
 
                                     <ImageButton
                                         android:id="@+id/btn_post_share"
+                                        android:onClick="@{()->click.sharePost()}"
                                         android:layout_width="@dimen/spacing_mlarge"
                                         android:layout_height="@dimen/spacing_mlarge"
                                         android:background="?attr/selectableItemBackgroundBorderless"

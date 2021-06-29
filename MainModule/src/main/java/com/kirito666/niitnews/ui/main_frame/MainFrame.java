@@ -19,6 +19,7 @@ import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.PageMainFrameBinding;
 import com.kirito666.niitnews.service.HeartBeatService;
 import com.kirito666.niitnews.ui.news.NewsFragment;
+import com.kirito666.niitnews.ui.post_edit.PostEditPage;
 import com.kirito666.niitnews.ui.posts.ForumHostFragment;
 import com.kirito666.niitnews.ui.rank.RankFragment;
 import com.kirito666.niitnews.ui.search.SearchPage;
@@ -33,7 +34,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/29 13:49:29
+ * @LastModified:2021/06/29 14:06:29
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -134,6 +135,10 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
         v.viewPager.setAdapter(mainPagerAdapter);
         //绑定抽屉布局
         bindNavigationDrawer();
+
+        v.floatingActionButton.setOnClickListener(view -> {
+            startActivity(new Intent(mContext, PostEditPage.class));
+        });
     }
 
     private void initToolbar() {
