@@ -1,0 +1,17 @@
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_ic_flash_on.xml
+  ~ @LastModified:2021/06/29 20:53:29
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M7,2v11h3v9l7,-12h-4l4,-8z" />
+</vector>

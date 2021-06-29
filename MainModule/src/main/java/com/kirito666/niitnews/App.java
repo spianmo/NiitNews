@@ -4,11 +4,20 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+import androidx.camera.camera2.Camera2Config;
+import androidx.camera.core.CameraXConfig;
+
 import com.kirito666.niitnews.entity.User;
 import com.kirito666.niitnews.net.jar.UserJar;
+import com.kirito666.niitnews.util.PictureSelectorEngineImp;
 import com.kirshi.framework.AppLifecycleCallback;
 import com.kirshi.framework.BaseApplication;
 import com.kirshi.framework.hookapp.AppConfig;
+import com.luck.picture.lib.app.IApp;
+import com.luck.picture.lib.app.PictureAppMaster;
+import com.luck.picture.lib.crash.PictureSelectorCrashUtils;
+import com.luck.picture.lib.engine.PictureSelectorEngine;
 import com.lzf.easyfloat.EasyFloat;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -33,13 +42,13 @@ import okhttp3.OkHttpClient;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:App.java
- * @LastModified:2021/06/28 09:34:28
+ * @LastModified:2021/06/29 20:53:29
  */
 
 /**
  * @author Finger
  */
-public class App extends BaseApplication {
+public class App extends BaseApplication implements IApp, CameraXConfig.Provider {
 
     public static User currentUser;
 
@@ -66,8 +75,19 @@ public class App extends BaseApplication {
         return null;
     }
 
-    public static Context getAppContext() {
+
+    public static Context Instance() {
         return mApp;
+    }
+
+    @Override
+    public Context getAppContext() {
+        return this;
+    }
+
+    @Override
+    public PictureSelectorEngine getPictureSelectorEngine() {
+        return new PictureSelectorEngineImp();
     }
 
     @Override
@@ -110,6 +130,13 @@ public class App extends BaseApplication {
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
+
+        PictureAppMaster.getInstance().setApp(this);
+        // PictureSelector Crash日志监听
+        PictureSelectorCrashUtils.init((t, e) -> {
+            // Crash之后的一些操作可再此处理，没有就忽略...
+
+        });
     }
 
     public static boolean isApkInDebug(Context context) {
@@ -124,6 +151,13 @@ public class App extends BaseApplication {
     public static boolean isLogin() {
         return currentUser != null;
     }
+
+    @NonNull
+    @Override
+    public CameraXConfig getCameraXConfig() {
+        return Camera2Config.defaultConfig();
+    }
+
 }
 
 

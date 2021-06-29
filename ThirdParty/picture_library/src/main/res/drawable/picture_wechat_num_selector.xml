@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_wechat_num_selector.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/picture_wechat_num_oval_normal" android:state_selected="false"></item>
+    <item android:drawable="@drawable/picture_wechat_num_oval_selected" android:state_selected="true"></item>
+</selector>

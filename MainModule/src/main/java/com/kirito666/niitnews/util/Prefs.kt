@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Prefs.kt
- * @LastModified:2021/06/29 02:05:29
+ * @LastModified:2021/06/29 19:59:29
  */
 
 package com.kirito666.niitnews.util
@@ -20,7 +20,7 @@ import com.kirito666.niitnews.App
 
 object Prefs {
     private val sharedPreferences: SharedPreferences =
-        App.getAppContext().getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        App.Instance().getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
     /**
      * 保存

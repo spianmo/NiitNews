@@ -1,0 +1,43 @@
+package com.luck.picture.lib.dialog;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+
+import com.luck.picture.lib.R;
+
+/**
+ * Copyright (c) 2021
+ * @Project:NiitNews
+ * @Author:Finger
+ * @FileName:PictureCustomDialog.java
+ * @LastModified:2021/06/29 17:27:29
+ */
+
+public class PictureCustomDialog extends Dialog {
+
+    public PictureCustomDialog(Context context, int layout) {
+        super(context, R.style.Picture_Theme_Dialog);
+        setContentView(layout);
+        initParams();
+    }
+
+    public PictureCustomDialog(Context context, View layout) {
+        super(context, R.style.Picture_Theme_Dialog);
+        setContentView(layout);
+        initParams();
+    }
+
+    private void initParams() {
+        Window window = getWindow();
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        params.gravity = Gravity.CENTER;
+        window.setAttributes(params);
+    }
+}

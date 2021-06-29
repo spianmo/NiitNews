@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:ucrop_aspect_ratio.xml
+  ~ @LastModified:2021/06/29 20:53:29
+  -->
+
+<FrameLayout style="@style/ucrop_WrapperIconState">
+
+    <com.yalantis.ucrop.view.widget.AspectRatioTextView style="@style/ucrop_TextViewCropAspectRatio" />
+
+</FrameLayout>

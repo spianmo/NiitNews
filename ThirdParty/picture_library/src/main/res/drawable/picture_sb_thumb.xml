@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_sb_thumb.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/picture_seek_bar_thumb_pressed" android:state_pressed="true" />
+    <item android:drawable="@drawable/picture_seek_bar_thumb_normal" android:state_pressed="false" />
+</selector>

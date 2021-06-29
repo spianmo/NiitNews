@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SessionJar.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 19:59:29
  */
 
 public class SessionJar {
@@ -28,7 +28,7 @@ public class SessionJar {
     }
 
     public static Session loadSessionFromDisk() {
-        Context context = App.getAppContext();
+        Context context = App.Instance();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             FileInputStream is = new FileInputStream(fs);
@@ -45,7 +45,7 @@ public class SessionJar {
     }
 
     public static void saveSessionToDisk(Session session) {
-        Context context = App.getAppContext();
+        Context context = App.Instance();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (!fs.exists()) {
@@ -63,7 +63,7 @@ public class SessionJar {
     }
 
     public static void fireSession() {
-        Context context = App.getAppContext();
+        Context context = App.Instance();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (fs.exists()) {

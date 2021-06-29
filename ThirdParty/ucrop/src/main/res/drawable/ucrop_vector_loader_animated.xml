@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:ucrop_vector_loader_animated.xml
+  ~ @LastModified:2021/06/29 20:53:29
+  -->
+
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ucrop_vector_loader">
+    <target
+        android:name="circleGroup"
+        android:animation="@anim/ucrop_loader_circle_scale" />
+    <target
+        android:name="circlePath"
+        android:animation="@anim/ucrop_loader_circle_path" />
+
+</animated-vector>

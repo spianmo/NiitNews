@@ -23,10 +23,11 @@ import java.lang.reflect.ParameterizedType;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseActivity.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 18:20:29
  */
 
 public class BaseActivity<V extends ViewBinding> extends AppCompatActivity {
+    protected String TAG = getClass().getSimpleName();
     Handler mainHandler;
     protected V v;
     protected Activity mContext;

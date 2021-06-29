@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_check_green.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/picture_icon_checked"
+    android:tint="@color/picture_color_ffe85d" />

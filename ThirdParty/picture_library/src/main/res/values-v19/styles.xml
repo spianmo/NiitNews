@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:styles.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<resources>
+
+    <style name="Picture.Theme.Translucent" parent="Base.Theme.NoActionBar">
+
+        <item name="android:windowBackground">@color/picture_color_transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

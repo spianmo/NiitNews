@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_preview_gallery_border_bg.xml
+  ~ @LastModified:2021/06/29 20:53:29
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/picture_color_transparent" />
+    <stroke
+        android:width="2dp"
+        android:color="@color/picture_color_ffe85d" />
+</shape>

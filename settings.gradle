@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:settings.gradle
- * @LastModified:2021/06/17 14:56:17
+ * @LastModified:2021/06/29 20:46:29
  */
 
 rootProject.name = "NiitNews"
@@ -11,3 +11,5 @@ include ':MainModule'
 include ':Framework'
 include 'ThirdParty:core-4.3.1-openDefaultRelease'
 include 'ThirdParty:shareLoginlib'
+include 'ThirdParty:ucrop'
+include 'ThirdParty:picture_library'

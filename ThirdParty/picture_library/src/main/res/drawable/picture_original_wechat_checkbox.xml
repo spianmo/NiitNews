@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_original_wechat_checkbox.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/picture_original_wechat_normal" android:state_checked="false" />
+    <item android:drawable="@drawable/picture_original_wechat_selected" android:state_checked="true" />
+</selector>

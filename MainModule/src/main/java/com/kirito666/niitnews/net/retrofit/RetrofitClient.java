@@ -28,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RetrofitClient.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 19:59:29
  */
 
 public class RetrofitClient {
@@ -41,7 +41,7 @@ public class RetrofitClient {
 
     private RetrofitClient() {
         session = SessionJar.loadSessionFromDisk();
-        InputStream inputStreams = App.getAppContext().getResources().openRawResource(R.raw.cert);
+        InputStream inputStreams = App.Instance().getResources().openRawResource(R.raw.cert);
         sslParams = CertificatesUtil.getSslSocketFactory(inputStreams, null, null);
     }
 
@@ -92,9 +92,9 @@ public class RetrofitClient {
 
     public APIService getApi() {
         OkHttpClient client;
-        if (App.isApkInDebug(App.getAppContext())) {
+        if (App.isApkInDebug(App.Instance())) {
             client = new OkHttpClient().newBuilder()
-                    .cookieJar(new CookieJarImpl(new PersistentCookieStore(App.getAppContext())))
+                    .cookieJar(new CookieJarImpl(new PersistentCookieStore(App.Instance())))
                     .addInterceptor(getHeaderInterceptor())
                     .addInterceptor(getInterceptor())
                     .build();
@@ -102,7 +102,7 @@ public class RetrofitClient {
             client = new OkHttpClient().newBuilder()
                     .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
                     .addInterceptor(getHeaderInterceptor())
-                    .cookieJar(new CookieJarImpl(new PersistentCookieStore(App.getAppContext())))
+                    .cookieJar(new CookieJarImpl(new PersistentCookieStore(App.Instance())))
                     .build();
         }
         Gson gson = new GsonBuilder()

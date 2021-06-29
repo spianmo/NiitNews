@@ -14,7 +14,9 @@
             <option value="$PROJECT_DIR$/MainModule" />
             <option value="$PROJECT_DIR$/ThirdParty" />
             <option value="$PROJECT_DIR$/ThirdParty/core-4.3.1-openDefaultRelease" />
+            <option value="$PROJECT_DIR$/ThirdParty/picture_library" />
             <option value="$PROJECT_DIR$/ThirdParty/shareLoginlib" />
+            <option value="$PROJECT_DIR$/ThirdParty/ucrop" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

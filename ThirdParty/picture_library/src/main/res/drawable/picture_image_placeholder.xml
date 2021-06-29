@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_image_placeholder.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <size
+                android:width="100dp"
+                android:height="100dp"></size>
+            <solid android:color="@color/picture_color_light_grey"></solid>
+        </shape>
+    </item>
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/picture_icon_placeholder"></bitmap>
+    </item>
+</layer-list>

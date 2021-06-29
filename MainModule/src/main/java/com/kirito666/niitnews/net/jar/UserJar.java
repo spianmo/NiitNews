@@ -23,7 +23,7 @@ import java.security.NoSuchAlgorithmException;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:UserJar.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 19:59:29
  */
 
 public class UserJar {
@@ -34,7 +34,7 @@ public class UserJar {
     }
 
     public static User loadFromDisk() {
-        Context context = App.getAppContext();
+        Context context = App.Instance();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             FileInputStream is = new FileInputStream(fs);
@@ -51,7 +51,7 @@ public class UserJar {
 
     public static void saveToDisk(User user) {
         App.currentUser = user;
-        Context context = App.getAppContext();
+        Context context = App.Instance();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (!fs.exists()) {
@@ -69,7 +69,7 @@ public class UserJar {
     }
 
     public static void logout() {
-        Context context = App.getAppContext();
+        Context context = App.Instance();
         try {
             File fs = new File(context.getFilesDir() + File.separator + CORECONFIG);
             if (fs.exists()) {

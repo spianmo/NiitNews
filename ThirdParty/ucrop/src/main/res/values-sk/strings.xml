@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:strings.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<resources>
+
+    <string name="ucrop_label_original">Pôvodná</string>
+    <string name="ucrop_label_edit_photo">Upraviť fotografiu</string>
+    <string name="ucrop_menu_crop">Orezať</string>
+    <string name="ucrop_gif_tag">Pohybu</string>
+</resources>

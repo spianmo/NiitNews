@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:AndroidManifest.xml
-  ~ @LastModified:2021/06/29 14:06:29
+  ~ @LastModified:2021/06/29 20:53:29
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,6 +40,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/app"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme.MD.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.single.NewsDetailPage" />
@@ -69,7 +70,9 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.single.TimeLinePage" />
         <activity android:name=".ui.single.WebPage" />
-        <activity android:name=".ui.post_edit.PostEditPage" />
+        <activity
+            android:name=".ui.post_edit.PostEditPage"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".service.HeartBeatService"

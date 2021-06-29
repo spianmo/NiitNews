@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021
+  ~ @Project:NiitNews
+  ~ @Author:Finger
+  ~ @FileName:picture_anim_album_dismiss.xml
+  ~ @LastModified:2021/06/29 17:27:29
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="350">
+    <alpha
+        android:fillAfter="true"
+        android:fillBefore="false"
+        android:fromAlpha="1.0"
+        android:toAlpha="0" />
+</set>
+
