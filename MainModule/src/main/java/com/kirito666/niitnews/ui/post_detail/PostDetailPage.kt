@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDetailPage.kt
- * @LastModified:2021/06/29 13:49:29
+ * @LastModified:2021/06/29 13:54:29
  */
 
 package com.kirito666.niitnews.ui.post_detail
@@ -25,6 +25,7 @@ import com.kirito666.niitnews.entity.dto.CommitDto
 import com.kirito666.niitnews.entity.dto.SimplePost
 import com.kirito666.niitnews.ui.post_detail.adapter.CommitListAdapter
 import com.kirito666.niitnews.ui.profile.ProfilePage
+import com.kirito666.niitnews.util.Tools
 import com.kirshi.framework.databinding.BaseBindingActivity
 import com.kirshi.framework.databinding.DataBindingConfig
 import com.peanut.sdk.miuidialog.MIUIDialog
@@ -156,6 +157,14 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
     }
 
     inner class ClickProxy : Toolbar.OnMenuItemClickListener {
+
+        fun sharePost() {
+            Tools.share(
+                baseContext,
+                mPostDetailViewModel.post.value!!.title,
+                mPostDetailViewModel.post.value!!.text
+            )
+        }
 
         fun forwardPost() {
             mPostDetailViewModel.forwardPost(
