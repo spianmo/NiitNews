@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.databinding.ItemPostsLightBinding;
 import com.kirito666.niitnews.databinding.LoadMoreFootviewLayoutBinding;
-import com.kirito666.niitnews.entity.User;
 import com.kirito666.niitnews.entity.base.BaseResponse;
 import com.kirito666.niitnews.entity.base.HttpStatusCode;
 import com.kirito666.niitnews.entity.dto.SimplePost;
@@ -31,7 +30,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostsListAdapter.java
- * @LastModified:2021/06/29 02:05:29
+ * @LastModified:2021/06/29 09:37:29
  */
 
 public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -95,25 +94,9 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (holder instanceof OriginalViewHolder) {
             OriginalViewHolder originalViewHolder = (OriginalViewHolder) holder;
             SimplePost post = items.get(position);
-            RetrofitClient.getInstance().getApi().getUserDetail((int) post.getAuthorId()).enqueue(new Callback<BaseResponse<User>>() {
-                @Override
-                public void onResponse(Call<BaseResponse<User>> call, Response<BaseResponse<User>> response) {
-                    BaseResponse<User> rawResponse = response.body();
-                    if (rawResponse.getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
-                        User user = response.body().getData();
-                        originalViewHolder.v.postAuthorNickname.setText(user.getNickname());
-                        Tools.displayImageOriginal(ctx.getContext(), originalViewHolder.v.postAuthorAvatar, user.getAvatar());
-                        originalViewHolder.v.postAuthorAccount.setText(user.getAccount());
-                    } else {
-                        ctx.showSnackBar(rawResponse.getMsg());
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<BaseResponse<User>> call, Throwable t) {
-                    Toast.makeText(ctx.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            originalViewHolder.v.postAuthorNickname.setText(post.getNickname());
+            Tools.displayImageOriginal(ctx.getContext(), originalViewHolder.v.postAuthorAvatar, post.getAvatar());
+            originalViewHolder.v.postAuthorAccount.setText("@" + post.getAccount());
 
             originalViewHolder.v.postContentText.setText(post.getTextSmp());
             if (post.getAttachPic() == null || post.getAttachPic().isEmpty()) {
@@ -139,6 +122,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         @Override
                         public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
                             if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
+                                post.setShareCount(post.getShareCount() + 1);
+                                notifyDataSetChanged();
                                 ctx.showSnackBar("转发成功");
                             } else {
                                 ctx.showSnackBar("转发失败");
@@ -161,6 +146,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
                                 if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
                                     originalViewHolder.v.btnFavorBling.setChecked(true, true);
+                                    post.setFavorCount(post.getFavorCount() + 1);
+                                    notifyDataSetChanged();
                                 } else {
                                     ctx.showSnackBar("点赞失败");
                                 }
@@ -177,6 +164,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                             public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
                                 if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
                                     originalViewHolder.v.btnFavorBling.setChecked(false, true);
+                                    post.setFavorCount(post.getFavorCount() - 1);
+                                    notifyDataSetChanged();
                                 } else {
                                     ctx.showSnackBar("取消点赞失败");
                                 }
@@ -198,6 +187,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     }
                     if (post.isAllowComment()) {
                         mOnItemClickListener.onItemClick(v, items.get(position), position);
+                        post.setViewsNum(post.getViewsNum() + 1);
+                        notifyDataSetChanged();
                     } else {
                         ctx.showSnackBar("该动态不允许评论");
                     }
@@ -209,6 +200,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     return;
                 }
                 mOnItemClickListener.onItemClick(v, items.get(position), position);
+                post.setViewsNum(post.getViewsNum() + 1);
+                notifyDataSetChanged();
             });
         } else if (holder instanceof FooterViewHolder) {
             FooterViewHolder footerViewHolder = (FooterViewHolder) holder;

@@ -9,7 +9,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SimplePost.java
- * @LastModified:2021/06/29 01:56:29
+ * @LastModified:2021/06/29 10:37:29
  */
 
 public class SimplePost implements Serializable {
@@ -19,6 +19,9 @@ public class SimplePost implements Serializable {
     Timestamp createdTime;
     String textSmp;
     long authorId;
+    String avatar;
+    String nickname;
+    String account;
     List<String> attachPic;
     long shareCount;
     long viewsNum;
@@ -28,13 +31,16 @@ public class SimplePost implements Serializable {
     boolean isFavor;
     boolean allowComment;
 
-    SimplePost(long pid, String title, Timestamp modifiedTime, Timestamp createdTime, String textSmp, long authorId, List<String> attachPic, long shareCount, long viewsNum, long favorCount, long commitCount, long parentPid, boolean isFavor, boolean allowComment) {
+    SimplePost(long pid, String title, Timestamp modifiedTime, Timestamp createdTime, String textSmp, long authorId, String avatar, String nickname, String account, List<String> attachPic, long shareCount, long viewsNum, long favorCount, long commitCount, long parentPid, boolean isFavor, boolean allowComment) {
         this.pid = pid;
         this.title = title;
         this.modifiedTime = modifiedTime;
         this.createdTime = createdTime;
         this.textSmp = textSmp;
         this.authorId = authorId;
+        this.avatar = avatar;
+        this.nickname = nickname;
+        this.account = account;
         this.attachPic = attachPic;
         this.shareCount = shareCount;
         this.viewsNum = viewsNum;
@@ -71,6 +77,18 @@ public class SimplePost implements Serializable {
 
     public long getAuthorId() {
         return this.authorId;
+    }
+
+    public String getAvatar() {
+        return this.avatar;
+    }
+
+    public String getNickname() {
+        return this.nickname;
+    }
+
+    public String getAccount() {
+        return this.account;
     }
 
     public List<String> getAttachPic() {
@@ -129,6 +147,18 @@ public class SimplePost implements Serializable {
         this.authorId = authorId;
     }
 
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
     public void setAttachPic(List<String> attachPic) {
         this.attachPic = attachPic;
     }
@@ -184,6 +214,18 @@ public class SimplePost implements Serializable {
         if (this$textSmp == null ? other$textSmp != null : !this$textSmp.equals(other$textSmp))
             return false;
         if (this.getAuthorId() != other.getAuthorId()) return false;
+        final Object this$avatar = this.getAvatar();
+        final Object other$avatar = other.getAvatar();
+        if (this$avatar == null ? other$avatar != null : !this$avatar.equals(other$avatar))
+            return false;
+        final Object this$nickname = this.getNickname();
+        final Object other$nickname = other.getNickname();
+        if (this$nickname == null ? other$nickname != null : !this$nickname.equals(other$nickname))
+            return false;
+        final Object this$account = this.getAccount();
+        final Object other$account = other.getAccount();
+        if (this$account == null ? other$account != null : !this$account.equals(other$account))
+            return false;
         final Object this$attachPic = this.getAttachPic();
         final Object other$attachPic = other.getAttachPic();
         if (this$attachPic == null ? other$attachPic != null : !this$attachPic.equals(other$attachPic))
@@ -217,6 +259,12 @@ public class SimplePost implements Serializable {
         result = result * PRIME + ($textSmp == null ? 43 : $textSmp.hashCode());
         final long $authorId = this.getAuthorId();
         result = result * PRIME + (int) ($authorId >>> 32 ^ $authorId);
+        final Object $avatar = this.getAvatar();
+        result = result * PRIME + ($avatar == null ? 43 : $avatar.hashCode());
+        final Object $nickname = this.getNickname();
+        result = result * PRIME + ($nickname == null ? 43 : $nickname.hashCode());
+        final Object $account = this.getAccount();
+        result = result * PRIME + ($account == null ? 43 : $account.hashCode());
         final Object $attachPic = this.getAttachPic();
         result = result * PRIME + ($attachPic == null ? 43 : $attachPic.hashCode());
         final long $shareCount = this.getShareCount();
@@ -235,7 +283,7 @@ public class SimplePost implements Serializable {
     }
 
     public String toString() {
-        return "SimplePost(pid=" + this.getPid() + ", title=" + this.getTitle() + ", modifiedTime=" + this.getModifiedTime() + ", createdTime=" + this.getCreatedTime() + ", textSmp=" + this.getTextSmp() + ", authorId=" + this.getAuthorId() + ", attachPic=" + this.getAttachPic() + ", shareCount=" + this.getShareCount() + ", viewsNum=" + this.getViewsNum() + ", favorCount=" + this.getFavorCount() + ", commitCount=" + this.getCommitCount() + ", parentPid=" + this.getParentPid() + ", isFavor=" + this.isFavor() + ", allowComment=" + this.isAllowComment() + ")";
+        return "SimplePost(pid=" + this.getPid() + ", title=" + this.getTitle() + ", modifiedTime=" + this.getModifiedTime() + ", createdTime=" + this.getCreatedTime() + ", textSmp=" + this.getTextSmp() + ", authorId=" + this.getAuthorId() + ", avatar=" + this.getAvatar() + ", nickname=" + this.getNickname() + ", account=" + this.getAccount() + ", attachPic=" + this.getAttachPic() + ", shareCount=" + this.getShareCount() + ", viewsNum=" + this.getViewsNum() + ", favorCount=" + this.getFavorCount() + ", commitCount=" + this.getCommitCount() + ", parentPid=" + this.getParentPid() + ", isFavor=" + this.isFavor() + ", allowComment=" + this.isAllowComment() + ")";
     }
 
     public static class SimplePostBuilder {
@@ -245,6 +293,9 @@ public class SimplePost implements Serializable {
         private Timestamp createdTime;
         private String textSmp;
         private long authorId;
+        private String avatar;
+        private String nickname;
+        private String account;
         private List<String> attachPic;
         private long shareCount;
         private long viewsNum;
@@ -284,6 +335,21 @@ public class SimplePost implements Serializable {
 
         public SimplePostBuilder authorId(long authorId) {
             this.authorId = authorId;
+            return this;
+        }
+
+        public SimplePostBuilder avatar(String avatar) {
+            this.avatar = avatar;
+            return this;
+        }
+
+        public SimplePostBuilder nickname(String nickname) {
+            this.nickname = nickname;
+            return this;
+        }
+
+        public SimplePostBuilder account(String account) {
+            this.account = account;
             return this;
         }
 
@@ -328,11 +394,11 @@ public class SimplePost implements Serializable {
         }
 
         public SimplePost build() {
-            return new SimplePost(pid, title, modifiedTime, createdTime, textSmp, authorId, attachPic, shareCount, viewsNum, favorCount, commitCount, parentPid, isFavor, allowComment);
+            return new SimplePost(pid, title, modifiedTime, createdTime, textSmp, authorId, avatar, nickname, account, attachPic, shareCount, viewsNum, favorCount, commitCount, parentPid, isFavor, allowComment);
         }
 
         public String toString() {
-            return "SimplePost.SimplePostBuilder(pid=" + this.pid + ", title=" + this.title + ", modifiedTime=" + this.modifiedTime + ", createdTime=" + this.createdTime + ", textSmp=" + this.textSmp + ", authorId=" + this.authorId + ", attachPic=" + this.attachPic + ", shareCount=" + this.shareCount + ", viewsNum=" + this.viewsNum + ", favorCount=" + this.favorCount + ", commitCount=" + this.commitCount + ", parentPid=" + this.parentPid + ", isFavor=" + this.isFavor + ", allowComment=" + this.allowComment + ")";
+            return "SimplePost.SimplePostBuilder(pid=" + this.pid + ", title=" + this.title + ", modifiedTime=" + this.modifiedTime + ", createdTime=" + this.createdTime + ", textSmp=" + this.textSmp + ", authorId=" + this.authorId + ", avatar=" + this.avatar + ", nickname=" + this.nickname + ", account=" + this.account + ", attachPic=" + this.attachPic + ", shareCount=" + this.shareCount + ", viewsNum=" + this.viewsNum + ", favorCount=" + this.favorCount + ", commitCount=" + this.commitCount + ", parentPid=" + this.parentPid + ", isFavor=" + this.isFavor + ", allowComment=" + this.allowComment + ")";
         }
     }
 }

@@ -1,7 +1,5 @@
 package com.kirito666.niitnews.entity.dto;
 
-import com.kirito666.niitnews.entity.Commit;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDto.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 10:37:29
  */
 
 public class PostDto implements Serializable {
@@ -21,6 +19,9 @@ public class PostDto implements Serializable {
     Timestamp modifiedTime;
     String text;
     long authorId;
+    String avatar;
+    String nickname;
+    String account;
     List<String> attachPic;
     long shareCount;
     long viewsNum;
@@ -31,18 +32,22 @@ public class PostDto implements Serializable {
     boolean allowFeed;
     boolean isSourceAuthor;
     long score;
-    List<Commit> commits;
+    List<CommitDto> commits;
 
     public PostDto() {
+
     }
 
-    PostDto(long pid, String title, Timestamp createdTime, Timestamp modifiedTime, String text, long authorId, List<String> attachPic, long shareCount, long viewsNum, long favorCount, long commitCount, long parentPid, boolean allowComment, boolean allowFeed, boolean isSourceAuthor, long score, List<Commit> commits) {
+    public PostDto(long pid, String title, Timestamp createdTime, Timestamp modifiedTime, String text, long authorId, String avatar, String nickname, String account, List<String> attachPic, long shareCount, long viewsNum, long favorCount, long commitCount, long parentPid, boolean allowComment, boolean allowFeed, boolean isSourceAuthor, long score, List<CommitDto> commits) {
         this.pid = pid;
         this.title = title;
         this.createdTime = createdTime;
         this.modifiedTime = modifiedTime;
         this.text = text;
         this.authorId = authorId;
+        this.avatar = avatar;
+        this.nickname = nickname;
+        this.account = account;
         this.attachPic = attachPic;
         this.shareCount = shareCount;
         this.viewsNum = viewsNum;
@@ -82,6 +87,18 @@ public class PostDto implements Serializable {
 
     public long getAuthorId() {
         return this.authorId;
+    }
+
+    public String getAvatar() {
+        return this.avatar;
+    }
+
+    public String getNickname() {
+        return this.nickname;
+    }
+
+    public String getAccount() {
+        return this.account;
     }
 
     public List<String> getAttachPic() {
@@ -124,7 +141,7 @@ public class PostDto implements Serializable {
         return this.score;
     }
 
-    public List<Commit> getCommits() {
+    public List<CommitDto> getCommits() {
         return this.commits;
     }
 
@@ -150,6 +167,18 @@ public class PostDto implements Serializable {
 
     public void setAuthorId(long authorId) {
         this.authorId = authorId;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public void setAttachPic(List<String> attachPic) {
@@ -192,7 +221,7 @@ public class PostDto implements Serializable {
         this.score = score;
     }
 
-    public void setCommits(List<Commit> commits) {
+    public void setCommits(List<CommitDto> commits) {
         this.commits = commits;
     }
 
@@ -218,6 +247,18 @@ public class PostDto implements Serializable {
         final Object other$text = other.getText();
         if (this$text == null ? other$text != null : !this$text.equals(other$text)) return false;
         if (this.getAuthorId() != other.getAuthorId()) return false;
+        final Object this$avatar = this.getAvatar();
+        final Object other$avatar = other.getAvatar();
+        if (this$avatar == null ? other$avatar != null : !this$avatar.equals(other$avatar))
+            return false;
+        final Object this$nickname = this.getNickname();
+        final Object other$nickname = other.getNickname();
+        if (this$nickname == null ? other$nickname != null : !this$nickname.equals(other$nickname))
+            return false;
+        final Object this$account = this.getAccount();
+        final Object other$account = other.getAccount();
+        if (this$account == null ? other$account != null : !this$account.equals(other$account))
+            return false;
         final Object this$attachPic = this.getAttachPic();
         final Object other$attachPic = other.getAttachPic();
         if (this$attachPic == null ? other$attachPic != null : !this$attachPic.equals(other$attachPic))
@@ -257,6 +298,12 @@ public class PostDto implements Serializable {
         result = result * PRIME + ($text == null ? 43 : $text.hashCode());
         final long $authorId = this.getAuthorId();
         result = result * PRIME + (int) ($authorId >>> 32 ^ $authorId);
+        final Object $avatar = this.getAvatar();
+        result = result * PRIME + ($avatar == null ? 43 : $avatar.hashCode());
+        final Object $nickname = this.getNickname();
+        result = result * PRIME + ($nickname == null ? 43 : $nickname.hashCode());
+        final Object $account = this.getAccount();
+        result = result * PRIME + ($account == null ? 43 : $account.hashCode());
         final Object $attachPic = this.getAttachPic();
         result = result * PRIME + ($attachPic == null ? 43 : $attachPic.hashCode());
         final long $shareCount = this.getShareCount();
@@ -280,7 +327,7 @@ public class PostDto implements Serializable {
     }
 
     public String toString() {
-        return "PostDto(pid=" + this.getPid() + ", title=" + this.getTitle() + ", createdTime=" + this.getCreatedTime() + ", modifiedTime=" + this.getModifiedTime() + ", text=" + this.getText() + ", authorId=" + this.getAuthorId() + ", attachPic=" + this.getAttachPic() + ", shareCount=" + this.getShareCount() + ", viewsNum=" + this.getViewsNum() + ", favorCount=" + this.getFavorCount() + ", commitCount=" + this.getCommitCount() + ", parentPid=" + this.getParentPid() + ", allowComment=" + this.isAllowComment() + ", allowFeed=" + this.isAllowFeed() + ", isSourceAuthor=" + this.isSourceAuthor() + ", score=" + this.getScore() + ", commits=" + this.getCommits() + ")";
+        return "PostDto(pid=" + this.getPid() + ", title=" + this.getTitle() + ", createdTime=" + this.getCreatedTime() + ", modifiedTime=" + this.getModifiedTime() + ", text=" + this.getText() + ", authorId=" + this.getAuthorId() + ", avatar=" + this.getAvatar() + ", nickname=" + this.getNickname() + ", account=" + this.getAccount() + ", attachPic=" + this.getAttachPic() + ", shareCount=" + this.getShareCount() + ", viewsNum=" + this.getViewsNum() + ", favorCount=" + this.getFavorCount() + ", commitCount=" + this.getCommitCount() + ", parentPid=" + this.getParentPid() + ", allowComment=" + this.isAllowComment() + ", allowFeed=" + this.isAllowFeed() + ", isSourceAuthor=" + this.isSourceAuthor() + ", score=" + this.getScore() + ", commits=" + this.getCommits() + ")";
     }
 
     public static class PostDtoBuilder {
@@ -290,6 +337,9 @@ public class PostDto implements Serializable {
         private Timestamp modifiedTime;
         private String text;
         private long authorId;
+        private String avatar;
+        private String nickname;
+        private String account;
         private List<String> attachPic;
         private long shareCount;
         private long viewsNum;
@@ -300,7 +350,7 @@ public class PostDto implements Serializable {
         private boolean allowFeed;
         private boolean isSourceAuthor;
         private long score;
-        private List<Commit> commits;
+        private List<CommitDto> commits;
 
         PostDtoBuilder() {
         }
@@ -332,6 +382,21 @@ public class PostDto implements Serializable {
 
         public PostDtoBuilder authorId(long authorId) {
             this.authorId = authorId;
+            return this;
+        }
+
+        public PostDtoBuilder avatar(String avatar) {
+            this.avatar = avatar;
+            return this;
+        }
+
+        public PostDtoBuilder nickname(String nickname) {
+            this.nickname = nickname;
+            return this;
+        }
+
+        public PostDtoBuilder account(String account) {
+            this.account = account;
             return this;
         }
 
@@ -385,17 +450,17 @@ public class PostDto implements Serializable {
             return this;
         }
 
-        public PostDtoBuilder commits(List<Commit> commits) {
+        public PostDtoBuilder commits(List<CommitDto> commits) {
             this.commits = commits;
             return this;
         }
 
         public PostDto build() {
-            return new PostDto(pid, title, createdTime, modifiedTime, text, authorId, attachPic, shareCount, viewsNum, favorCount, commitCount, parentPid, allowComment, allowFeed, isSourceAuthor, score, commits);
+            return new PostDto(pid, title, createdTime, modifiedTime, text, authorId, avatar, nickname, account, attachPic, shareCount, viewsNum, favorCount, commitCount, parentPid, allowComment, allowFeed, isSourceAuthor, score, commits);
         }
 
         public String toString() {
-            return "PostDto.PostDtoBuilder(pid=" + this.pid + ", title=" + this.title + ", createdTime=" + this.createdTime + ", modifiedTime=" + this.modifiedTime + ", text=" + this.text + ", authorId=" + this.authorId + ", attachPic=" + this.attachPic + ", shareCount=" + this.shareCount + ", viewsNum=" + this.viewsNum + ", favorCount=" + this.favorCount + ", commitCount=" + this.commitCount + ", parentPid=" + this.parentPid + ", allowComment=" + this.allowComment + ", allowFeed=" + this.allowFeed + ", isSourceAuthor=" + this.isSourceAuthor + ", score=" + this.score + ", commits=" + this.commits + ")";
+            return "PostDto.PostDtoBuilder(pid=" + this.pid + ", title=" + this.title + ", createdTime=" + this.createdTime + ", modifiedTime=" + this.modifiedTime + ", text=" + this.text + ", authorId=" + this.authorId + ", avatar=" + this.avatar + ", nickname=" + this.nickname + ", account=" + this.account + ", attachPic=" + this.attachPic + ", shareCount=" + this.shareCount + ", viewsNum=" + this.viewsNum + ", favorCount=" + this.favorCount + ", commitCount=" + this.commitCount + ", parentPid=" + this.parentPid + ", allowComment=" + this.allowComment + ", allowFeed=" + this.allowFeed + ", isSourceAuthor=" + this.isSourceAuthor + ", score=" + this.score + ", commits=" + this.commits + ")";
         }
     }
 }
