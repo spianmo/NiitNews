@@ -29,7 +29,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumPageViewModel.java
- * @LastModified:2021/06/29 13:49:29
+ * @LastModified:2021/06/29 23:38:29
  */
 
 public class ForumPageViewModel extends ViewModel implements LifecycleObserver {
@@ -57,7 +57,7 @@ public class ForumPageViewModel extends ViewModel implements LifecycleObserver {
     }
 
     public void fetchPost(int pageId, int pageSize) {
-        Call<BaseResponse<PostPageData>> call = isPublic ? mRepository.fetchPost(pageId, pageSize) : mRepository.fetchPostPublic(pageId, pageSize);
+        Call<BaseResponse<PostPageData>> call = isPublic ? mRepository.fetchPostPublic(pageId, pageSize) : mRepository.fetchPost(pageId, pageSize);
         call.enqueue(new Callback<BaseResponse<PostPageData>>() {
             @Override
             public void onResponse(@NotNull Call<BaseResponse<PostPageData>> call, @NotNull Response<BaseResponse<PostPageData>> response) {

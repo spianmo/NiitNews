@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_post_detail.xml
-  ~ @LastModified:2021/06/29 13:52:29
+  ~ @LastModified:2021/06/30 03:50:30
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -234,11 +234,11 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:onClick="@{()->click.favorPost()}"
                                         android:orientation="horizontal">
 
                                         <com.sackcentury.shinebuttonlib.ShineButton
                                             android:id="@+id/btn_favor_bling"
+                                            android:onClick="@{()->click.favorPost()}"
                                             android:layout_width="@dimen/spacing_mlarge"
                                             android:layout_height="@dimen/spacing_mlarge"
                                             android:layout_marginEnd="@dimen/spacing_middle"

@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumHostFragment.java
- * @LastModified:2021/06/29 11:08:29
+ * @LastModified:2021/06/30 06:37:30
  */
 
 public class ForumHostFragment extends BaseFragment<FragmentForumHostBinding> {
@@ -38,7 +38,7 @@ public class ForumHostFragment extends BaseFragment<FragmentForumHostBinding> {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (App.currentUser == null) {
+        if (!App.isLogin()) {
             getChildFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_container, loginFragment)
@@ -52,14 +52,20 @@ public class ForumHostFragment extends BaseFragment<FragmentForumHostBinding> {
     }
 
     public void switchChildFragment(boolean switchForum) {
-        getChildFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit)
-                .replace(R.id.fragment_container, switchForum ? forumFragment : loginFragment)
-                .commit();
+        if (switchForum) {
+            getChildFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.fragment_enter, R.anim.fragment_exit)
+                    .replace(R.id.fragment_container, switchForum ? forumFragment : loginFragment)
+                    .commit();
+        } else {
+            forumFragment = new ForumFragment();
+        }
+
         if (switchForum && App.isLogin()) {
             ((MainFrame) mContext).showFab(true);
         }
+        ((MainFrame) mContext).updateNavigation();
     }
 
 
@@ -67,7 +73,10 @@ public class ForumHostFragment extends BaseFragment<FragmentForumHostBinding> {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (getUserVisibleHint()) {
-            if (App.currentUser == null && !isSnackToast) {
+            if (!App.isLogin()) {
+                switchChildFragment(false);
+            }
+            if (!App.isLogin() && !isSnackToast) {
                 isSnackToast = true;
                 showSnackBar("登录后使用校园圈子功能(*^▽^*)");
             }

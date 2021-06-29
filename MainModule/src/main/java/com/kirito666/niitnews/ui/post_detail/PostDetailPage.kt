@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDetailPage.kt
- * @LastModified:2021/06/29 13:54:29
+ * @LastModified:2021/06/30 06:37:30
  */
 
 package com.kirito666.niitnews.ui.post_detail
@@ -38,7 +38,7 @@ import com.peanut.sdk.miuidialog.MIUIDialog
  * @LastModified:2021/06/21 03:15:21
  */
 class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
-    private val simplePost: SimplePost = intent!!.getSerializableExtra("post") as SimplePost
+    private lateinit var simplePost: SimplePost
     private lateinit var mPostDetailViewModel: PostDetailViewModel
     private lateinit var mAdapter: CommitListAdapter
     override fun initViewModel() {
@@ -55,20 +55,23 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
             .addBindingParam(BR.click, ClickProxy())
     }
 
+    override fun beforeInitViewModel() {
+        simplePost = intent.getSerializableExtra("post") as SimplePost
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         lifecycle.addObserver(mPostDetailViewModel)
         v.toolbar.title = "动态详情"
         setSupportActionBar(v.toolbar)
-        v.toolbar.background.alpha = 255
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        v.toolbar.setNavigationOnClickListener { finish() }
         v.btnFavorBling.setChecked(simplePost.isFavor, false)
         v.recyclerView.layoutManager = LinearLayoutManager(baseContext)
         v.recyclerView.setHasFixedSize(true)
 
-        mAdapter = CommitListAdapter(baseContext, mPostDetailViewModel.post.getValue()!!.commits)
+        mAdapter = CommitListAdapter(baseContext, mPostDetailViewModel.post.value?.commits)
         mAdapter.setOnItemClickListener(object : CommitListAdapter.OnItemClickListener {
             override fun onEnterCommitOwnerPofile(view: View?, ownerId: Int, position: Int) {
                 val intent = Intent(this@PostDetailPage, ProfilePage::class.java)
@@ -121,14 +124,15 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
     }
 
     fun showCommitDialog(parentCid: Int) {
-        MIUIDialog(baseContext).show {
+        MIUIDialog(this@PostDetailPage).show {
             title(text = "发表评论")
             input(
                 hint = "请输入你的评论"
             ) { it, _ ->
-                mPostDetailViewModel.sendCommit(parentCid, it.toString(),
+                mPostDetailViewModel.sendCommit(
+                    parentCid, it.toString(),
                     object : RepositoryCallback<String> {
-                        override fun onSuccess(data: String) {
+                        override fun onSuccess(data: String?) {
                             mPostDetailViewModel.getPostDetail()
                         }
 
@@ -144,16 +148,6 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
             positiveButton(text = "发表") { }
             negativeButton(text = "取消") { }
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     inner class ClickProxy : Toolbar.OnMenuItemClickListener {
@@ -185,12 +179,11 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
         }
 
         fun favorPost() {
-            v.btnFavorBling.setChecked(!v.btnFavorBling.isChecked, true)
-            if (v.btnFavorBling.isChecked) {
+            if (simplePost.isFavor) {
                 mPostDetailViewModel.favorPost(
                     simplePost.pid.toInt(),
                     object : RepositoryCallback<String> {
-                        override fun onSuccess(data: String) {
+                        override fun onSuccess(data: String?) {
                             mPostDetailViewModel.getPostDetail()
                         }
 
@@ -207,7 +200,7 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
                 mPostDetailViewModel.deleteFavor(
                     simplePost.pid.toInt(),
                     object : RepositoryCallback<String> {
-                        override fun onSuccess(data: String) {
+                        override fun onSuccess(data: String?) {
                             mPostDetailViewModel.getPostDetail()
                         }
 
@@ -231,4 +224,5 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
             return true
         }
     }
+
 }

@@ -1,5 +1,7 @@
 package com.kirito666.niitnews.ui.post_detail;
 
+import android.util.Log;
+
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.MutableLiveData;
@@ -15,6 +17,8 @@ import com.kirito666.niitnews.entity.dto.PostDto;
 import com.kirito666.niitnews.net.APIService;
 import com.kirito666.niitnews.net.retrofit.RetrofitClient;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +28,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDetailViewModel.java
- * @LastModified:2021/06/29 13:49:29
+ * @LastModified:2021/06/30 06:37:30
  */
 
 public class PostDetailViewModel extends ViewModel implements LifecycleObserver {
@@ -36,7 +40,9 @@ public class PostDetailViewModel extends ViewModel implements LifecycleObserver 
         this.pid = pid;
         if (post == null) {
             post = new MutableLiveData<>();
-            post.setValue(new PostDto());
+            PostDto postDto = new PostDto();
+            postDto.setCommits(new ArrayList<>());
+            post.setValue(postDto);
         }
     }
 
@@ -84,6 +90,7 @@ public class PostDetailViewModel extends ViewModel implements LifecycleObserver 
                 .build()).enqueue(new Callback<BaseResponse<String>>() {
             @Override
             public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
+                Log.e("==========>", response.body().toString());
                 if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
                     callback.onSuccess(response.body().getData());
                 } else {

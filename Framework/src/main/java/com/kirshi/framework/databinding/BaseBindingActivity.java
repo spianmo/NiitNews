@@ -22,7 +22,7 @@ import com.google.android.material.snackbar.Snackbar;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseBindingActivity.java
- * @LastModified:2021/06/29 13:49:29
+ * @LastModified:2021/06/30 02:22:30
  */
 
 public abstract class BaseBindingActivity<Binding extends ViewDataBinding> extends AppCompatActivity {
@@ -36,6 +36,7 @@ public abstract class BaseBindingActivity<Binding extends ViewDataBinding> exten
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        beforeInitViewModel();
         initViewModel();
         DataBindingConfig dataBindingConfig = getDataBindingConfig();
         v = DataBindingUtil.setContentView(this, dataBindingConfig.getLayout());
@@ -47,6 +48,8 @@ public abstract class BaseBindingActivity<Binding extends ViewDataBinding> exten
             v.setVariable(bindingParams.keyAt(i), bindingParams.valueAt(i));
         }
     }
+
+    protected abstract void beforeInitViewModel();
 
     protected void toggleSoftInput() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);

@@ -21,7 +21,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostsListAdapter.java
- * @LastModified:2021/06/29 13:49:29
+ * @LastModified:2021/06/30 04:02:30
  */
 
 public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -39,7 +39,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     //没有加载更多 隐藏
     public static final int NO_LOAD_MORE = 2;
 
-    private int mLoadMoreStatus = 1;
+    private int mLoadMoreStatus = NO_LOAD_MORE;
 
     private OnItemClickListener mOnItemClickListener;
 
@@ -111,7 +111,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             } else {
                 Tools.displayImageOriginal(ctx.getContext(), originalViewHolder.v.postCover, post.getAttachPic().get(0));
             }
-            originalViewHolder.v.btnFavorBling.setChecked(post.isFavor(), false);
+            originalViewHolder.v.btnFavorBling.setChecked(post.isFavor(), true);
             originalViewHolder.v.tvViewsCount.setText(String.valueOf(post.getViewsNum()));
             originalViewHolder.v.tvShareCount.setText(String.valueOf(post.getShareCount()));
             originalViewHolder.v.tvFavorCount.setText(String.valueOf(post.getFavorCount()));
@@ -134,41 +134,36 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     mOnItemClickListener.onForward(post);
                 }
             });
-            originalViewHolder.v.btnPostFavor.setOnClickListener(new View.OnClickListener() {
+            originalViewHolder.v.btnFavorBling.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     if (!post.isFavor()) {
-                        if (mOnItemClickListener == null) {
-                            return;
-                        }
                         mOnItemClickListener.onFavor((int) post.getPid(), new OnFavorResult() {
                             @Override
                             public void onSuccess() {
-                                originalViewHolder.v.btnFavorBling.setChecked(true, true);
                                 post.setFavorCount(post.getFavorCount() + 1);
+                                post.setFavor(true);
                                 notifyDataSetChanged();
                             }
 
                             @Override
                             public void onFailure() {
-
+                                originalViewHolder.v.btnFavorBling.setChecked(false, true);
                             }
                         });
                     } else {
-                        if (mOnItemClickListener == null) {
-                            return;
-                        }
-                        mOnItemClickListener.onFavor((int) post.getPid(), new OnFavorResult() {
+                        mOnItemClickListener.onFavorCancel((int) post.getPid(), new OnFavorResult() {
                             @Override
                             public void onSuccess() {
-                                originalViewHolder.v.btnFavorBling.setChecked(false, true);
                                 post.setFavorCount(post.getFavorCount() - 1);
+                                post.setFavor(false);
                                 notifyDataSetChanged();
                             }
 
                             @Override
                             public void onFailure() {
-
+                                originalViewHolder.v.btnFavorBling.setChecked(true, true);
                             }
                         });
                     }

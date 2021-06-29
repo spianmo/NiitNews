@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:SearchPage.kt
- * @LastModified:2021/06/29 02:05:29
+ * @LastModified:2021/06/30 02:22:30
  */
 
 package com.kirito666.niitnews.ui.search
@@ -33,6 +33,10 @@ class SearchPage : BaseBindingActivity<PageSearchBinding>() {
 
     override fun initViewModel() {
         mSearchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+    }
+
+    override fun beforeInitViewModel() {
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

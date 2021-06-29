@@ -38,7 +38,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/29 22:04:29
+ * @LastModified:2021/06/30 03:03:30
  */
 
 public interface APIService {
@@ -137,7 +137,6 @@ public interface APIService {
     @POST("/posts/{pid}/favor")
     Call<BaseResponse<String>> favorPost(@Path("pid") int pid);
 
-    @FormUrlEncoded
     @DELETE("/posts/{pid}/favor")
     Call<BaseResponse<String>> deleteFavor(@Path("pid") int pid);
 

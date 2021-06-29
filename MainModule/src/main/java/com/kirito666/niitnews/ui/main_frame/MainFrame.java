@@ -1,7 +1,6 @@
 package com.kirito666.niitnews.ui.main_frame;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.Menu;
@@ -17,6 +16,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.PageMainFrameBinding;
+import com.kirito666.niitnews.net.jar.UserJar;
 import com.kirito666.niitnews.service.HeartBeatService;
 import com.kirito666.niitnews.ui.news.NewsFragment;
 import com.kirito666.niitnews.ui.post_edit.PostEditPage;
@@ -34,7 +34,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/29 14:06:29
+ * @LastModified:2021/06/30 06:37:30
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {
@@ -46,27 +46,6 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
     Fragment newsFragment = new NewsFragment();
     Fragment rankFragment = new RankFragment(false);
     Fragment forumFragment = new ForumHostFragment();
-
-    int[] colors = new int[]{
-            Color.parseColor("#F44336"),
-            Color.parseColor("#3F51B5"),
-            Color.parseColor("#009688"),
-
-            Color.parseColor("#E91E63"),
-            Color.parseColor("#2196F3"),
-            Color.parseColor("#5AB963"),
-            Color.parseColor("#FFC107"),
-
-            Color.parseColor("#9C28B0"),
-            Color.parseColor("#03A9F4"),
-            Color.parseColor("#8BC34A"),
-            Color.parseColor("#FF9800"),
-
-            Color.parseColor("#673AB7"),
-            Color.parseColor("#00BCD4"),
-            Color.parseColor("#CDDC39"),
-            Color.parseColor("#FF5722"),
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +62,7 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
             public void onPageSelected(int position) {
                 LOGE("===>" + position);
                 v.floatingActionButton.setVisibility((position == 2) && App.isLogin() ? View.VISIBLE : View.GONE);
+                v.navView.getMenu().getItem(position).setChecked(true);
                 v.navigation.getMenu().getItem(position).setChecked(true);
             }
 
@@ -115,14 +95,17 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
                 case R.id.navigation_news:
                     v.toolbar.setTitle("");
                     v.viewPager.setCurrentItem(0);
+                    v.navView.getMenu().findItem(R.id.nav_news).setChecked(true);
                     return true;
                 case R.id.navigation_rank:
                     v.toolbar.setTitle("南工热榜");
                     v.viewPager.setCurrentItem(1);
+                    v.navView.getMenu().findItem(R.id.nav_rank).setChecked(true);
                     return true;
                 case R.id.navigation_posts:
                     v.toolbar.setTitle("校友圈");
                     v.viewPager.setCurrentItem(2);
+                    v.navView.getMenu().findItem(R.id.nav_posts).setChecked(true);
                     return true;
             }
             return false;
@@ -148,6 +131,11 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Tools.setSystemBarColor(this, R.color.grey_5);
         Tools.setSystemBarLight(this);
+    }
+
+    public void updateNavigation() {
+        v.navView.getMenu().findItem(R.id.nav_exit_login).setVisible(App.isLogin());
+        v.navView.getMenu().findItem(R.id.nav_posts).setChecked(true);
     }
 
     public void showFab(boolean show) {
@@ -197,7 +185,7 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
                         .show();
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + item.getItemId());
+                break;
         }
         return true;
     }
@@ -225,29 +213,34 @@ public class MainFrame extends BaseActivity<PageMainFrameBinding> {
         v.navView.setNavigationItemSelectedListener(item -> {
             final int id = item.getItemId();
             switch (id) {
-                case R.id.nav_home:
+                case R.id.nav_news:
                     v.viewPager.setCurrentItem(0);
-                    showSnackBar("nav_home");
                     break;
-                case R.id.nav_dashboard:
+                case R.id.nav_rank:
                     v.viewPager.setCurrentItem(1);
-                    showSnackBar("nav_dashboard");
                     break;
-                case R.id.nav_notification:
-                    v.viewPager.setCurrentItem(3);
-                    showSnackBar("nav_notification");
+                case R.id.nav_posts:
+                    v.viewPager.setCurrentItem(2);
+                    break;
+                case R.id.nav_exit_login:
+                    UserJar.logout();
+                    item.setVisible(false);
+                    v.navView.getMenu().findItem(R.id.nav_news).setChecked(true);
+                    v.viewPager.setCurrentItem(0);
+                    break;
+                case R.id.nav_search:
+                    jumpPage(SearchPage.class);
                     break;
                 case R.id.nav_share:
-                    showSnackBar("nav_share");
+                    Tools.share(mContext, "Niit-News", "每日南工，南工资讯App上线啦！");
                     break;
                 case R.id.nav_setting:
-                    showSnackBar("nav_setting");
+                    showSnackBar("building");
                     break;
             }
             v.drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
-
     }
 
 }
