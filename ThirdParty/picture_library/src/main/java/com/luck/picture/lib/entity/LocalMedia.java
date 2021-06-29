@@ -12,7 +12,7 @@ import com.luck.picture.lib.config.PictureConfig;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:LocalMedia.java
- * @LastModified:2021/06/29 17:27:29
+ * @LastModified:2021/06/29 21:51:29
  */
 
 /**
@@ -30,6 +30,8 @@ public class LocalMedia implements Parcelable {
      * original path
      */
     private String path;
+
+    public String ossUrl;
 
     private String coverPath;
 

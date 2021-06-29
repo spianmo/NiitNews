@@ -25,6 +25,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -37,7 +38,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/29 12:30:29
+ * @LastModified:2021/06/29 22:04:29
  */
 
 public interface APIService {
@@ -165,11 +166,13 @@ public interface APIService {
     Call<BaseResponse<List<String>>> remarkFriend(@Path("friendId") int friendId, @Field("remark") String remark);
 
 
+    @Multipart
     @PUT("/oss/avatar")
-    Call<BaseResponse<String>> uploadOssImg(@Part("uploadFile") MultipartBody.Part uploadFile);
+    Call<BaseResponse<String>> uploadOssImg(@Part MultipartBody.Part uploadFile);
 
+    @Multipart
     @PUT("/oss/file")
-    Call<BaseResponse<String>> uploadOssFile(@Part("uploadFile") MultipartBody.Part uploadFile);
+    Call<BaseResponse<String>> uploadOssFile(@Part MultipartBody.Part uploadFile);
 
     @GET("/app")
     Call<BaseResponse<Application>> getCurrentApplicationInfo();

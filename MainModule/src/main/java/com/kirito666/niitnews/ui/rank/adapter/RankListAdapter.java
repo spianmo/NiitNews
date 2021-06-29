@@ -21,7 +21,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:RankListAdapter.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 22:39:29
  */
 
 public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -69,7 +69,7 @@ public class RankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             Rank currentRank = items.get(position);
             view.v.title.setText(currentRank.getTitle());
-            view.v.subtitle.setText(currentRank.getDesc());
+            view.v.subtitle.setText(currentRank.getDesp());
             SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             //view.v.tvRankScore.setText(sdt.format(currentRank.getWashTime()));
             view.v.tvRankScore.setText("\uD83D\uDD25热度：" + currentRank.getScore() + "℃");

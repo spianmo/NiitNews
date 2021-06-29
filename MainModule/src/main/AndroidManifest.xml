@@ -4,7 +4,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:AndroidManifest.xml
-  ~ @LastModified:2021/06/29 20:53:29
+  ~ @LastModified:2021/06/29 23:20:29
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -72,6 +72,7 @@
         <activity android:name=".ui.single.WebPage" />
         <activity
             android:name=".ui.post_edit.PostEditPage"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
 
         <service

@@ -8,22 +8,22 @@ import java.sql.Timestamp;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Rank.java
- * @LastModified:2021/06/29 01:56:29
+ * @LastModified:2021/06/29 22:39:29
  */
 public class Rank implements Serializable {
     long rid;
     String title;
-    String desc;
+    String desp;
     long score;
     long pid;
     boolean visible;
     Timestamp washTime;
     String coverImg;
 
-    public Rank(long rid, String title, String desc, long score, long pid, boolean visible, Timestamp washTime, String coverImg) {
+    public Rank(long rid, String title, String desp, long score, long pid, boolean visible, Timestamp washTime, String coverImg) {
         this.rid = rid;
         this.title = title;
-        this.desc = desc;
+        this.desp = desp;
         this.score = score;
         this.pid = pid;
         this.visible = visible;
@@ -46,8 +46,8 @@ public class Rank implements Serializable {
         return this.title;
     }
 
-    public String getDesc() {
-        return this.desc;
+    public String getDesp() {
+        return this.desp;
     }
 
     public long getScore() {
@@ -78,8 +78,8 @@ public class Rank implements Serializable {
         this.title = title;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDesp(String desp) {
+        this.desp = desp;
     }
 
     public void setScore(long score) {
@@ -112,9 +112,9 @@ public class Rank implements Serializable {
         final Object other$title = other.getTitle();
         if (this$title == null ? other$title != null : !this$title.equals(other$title))
             return false;
-        final Object this$desc = this.getDesc();
-        final Object other$desc = other.getDesc();
-        if (this$desc == null ? other$desc != null : !this$desc.equals(other$desc)) return false;
+        final Object this$desp = this.getDesp();
+        final Object other$desp = other.getDesp();
+        if (this$desp == null ? other$desp != null : !this$desp.equals(other$desp)) return false;
         if (this.getScore() != other.getScore()) return false;
         if (this.getPid() != other.getPid()) return false;
         if (this.isVisible() != other.isVisible()) return false;
@@ -140,8 +140,8 @@ public class Rank implements Serializable {
         result = result * PRIME + (int) ($rid >>> 32 ^ $rid);
         final Object $title = this.getTitle();
         result = result * PRIME + ($title == null ? 43 : $title.hashCode());
-        final Object $desc = this.getDesc();
-        result = result * PRIME + ($desc == null ? 43 : $desc.hashCode());
+        final Object $desp = this.getDesp();
+        result = result * PRIME + ($desp == null ? 43 : $desp.hashCode());
         final long $score = this.getScore();
         result = result * PRIME + (int) ($score >>> 32 ^ $score);
         final long $pid = this.getPid();
@@ -155,13 +155,13 @@ public class Rank implements Serializable {
     }
 
     public String toString() {
-        return "Rank(rid=" + this.getRid() + ", title=" + this.getTitle() + ", desc=" + this.getDesc() + ", score=" + this.getScore() + ", pid=" + this.getPid() + ", visible=" + this.isVisible() + ", washTime=" + this.getWashTime() + ", coverImg=" + this.getCoverImg() + ")";
+        return "Rank(rid=" + this.getRid() + ", title=" + this.getTitle() + ", desp=" + this.getDesp() + ", score=" + this.getScore() + ", pid=" + this.getPid() + ", visible=" + this.isVisible() + ", washTime=" + this.getWashTime() + ", coverImg=" + this.getCoverImg() + ")";
     }
 
     public static class RankBuilder {
         private long rid;
         private String title;
-        private String desc;
+        private String desp;
         private long score;
         private long pid;
         private boolean visible;
@@ -181,8 +181,8 @@ public class Rank implements Serializable {
             return this;
         }
 
-        public RankBuilder desc(String desc) {
-            this.desc = desc;
+        public RankBuilder desp(String desp) {
+            this.desp = desp;
             return this;
         }
 
@@ -212,11 +212,11 @@ public class Rank implements Serializable {
         }
 
         public Rank build() {
-            return new Rank(rid, title, desc, score, pid, visible, washTime, coverImg);
+            return new Rank(rid, title, desp, score, pid, visible, washTime, coverImg);
         }
 
         public String toString() {
-            return "Rank.RankBuilder(rid=" + this.rid + ", title=" + this.title + ", desc=" + this.desc + ", score=" + this.score + ", pid=" + this.pid + ", visible=" + this.visible + ", washTime=" + this.washTime + ", coverImg=" + this.coverImg + ")";
+            return "Rank.RankBuilder(rid=" + this.rid + ", title=" + this.title + ", desp=" + this.desp + ", score=" + this.score + ", pid=" + this.pid + ", visible=" + this.visible + ", washTime=" + this.washTime + ", coverImg=" + this.coverImg + ")";
         }
     }
 }
