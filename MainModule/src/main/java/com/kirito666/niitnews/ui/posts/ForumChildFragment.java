@@ -1,4 +1,4 @@
-package com.kirito666.niitnews.ui.forum;
+package com.kirito666.niitnews.ui.posts;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentForumChildBinding;
+import com.kirito666.niitnews.entity.RepositoryCallback;
+import com.kirito666.niitnews.entity.base.HttpStatusCode;
 import com.kirito666.niitnews.entity.dto.SimplePost;
 import com.kirito666.niitnews.ui.empty.EmptyEntity;
-import com.kirito666.niitnews.ui.forum.adapter.PostsListAdapter;
 import com.kirito666.niitnews.ui.news.adapter.NewsListAdapter;
 import com.kirito666.niitnews.ui.post_detail.PostDetailPage;
+import com.kirito666.niitnews.ui.posts.adapter.PostsListAdapter;
+import com.kirito666.niitnews.util.Tools;
 import com.kirshi.framework.databinding.BaseBindingFragment;
 import com.kirshi.framework.databinding.DataBindingConfig;
 
@@ -30,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumChildFragment.java
- * @LastModified:2021/06/29 02:05:29
+ * @LastModified:2021/06/29 13:49:29
  */
 
 public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBinding> {
@@ -64,7 +67,87 @@ public class ForumChildFragment extends BaseBindingFragment<FragmentForumChildBi
         mAdapter = new PostsListAdapter(this, mForumPageViewModel.posts.getValue());
         mAdapter.setOnItemClickListener(new PostsListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, SimplePost post, int position) {
+            public void onShare(String title, String detail) {
+                Tools.share(mActivity, title, detail);
+            }
+
+            @Override
+            public void onForward(SimplePost post) {
+                mForumPageViewModel.forwardPost((int) post.getPid(), new RepositoryCallback<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        post.setShareCount(post.getShareCount() + 1);
+                        mAdapter.notifyDataSetChanged();
+                        showSnackBar("转发成功");
+                    }
+
+                    @Override
+                    public void onFailure(HttpStatusCode code) {
+                        showSnackBar("转发失败");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        showSnackBar(throwable.toString());
+                    }
+                });
+            }
+
+            @Override
+            public void onFavor(int pid, PostsListAdapter.OnFavorResult callback) {
+                mForumPageViewModel.favorPost(pid, new RepositoryCallback<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        callback.onSuccess();
+                    }
+
+                    @Override
+                    public void onFailure(HttpStatusCode code) {
+                        showSnackBar("点赞失败");
+                        callback.onFailure();
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        showSnackBar(throwable.toString());
+                        callback.onFailure();
+                    }
+                });
+            }
+
+            @Override
+            public void onFavorCancel(int pid, PostsListAdapter.OnFavorResult callback) {
+                mForumPageViewModel.deleteFavor(pid, new RepositoryCallback<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+                        callback.onSuccess();
+                    }
+
+                    @Override
+                    public void onFailure(HttpStatusCode code) {
+                        callback.onFailure();
+                        showSnackBar("取消点赞失败");
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        callback.onFailure();
+                        showSnackBar(throwable.toString());
+                    }
+                });
+            }
+
+            @Override
+            public void onCommit(SimplePost post, boolean allow) {
+                if (!allow) {
+                    showSnackBar("该动态不允许评论");
+                } else {
+                    onItemClick(post);
+                }
+            }
+
+            @Override
+            public void onItemClick(SimplePost post) {
                 Intent intent = new Intent(mActivity, PostDetailPage.class);
                 intent.putExtra("post", post);
                 startActivity(intent);

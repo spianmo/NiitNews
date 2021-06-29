@@ -18,8 +18,8 @@ import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.PageMainFrameBinding;
 import com.kirito666.niitnews.service.HeartBeatService;
-import com.kirito666.niitnews.ui.forum.ForumHostFragment;
 import com.kirito666.niitnews.ui.news.NewsFragment;
+import com.kirito666.niitnews.ui.posts.ForumHostFragment;
 import com.kirito666.niitnews.ui.rank.RankFragment;
 import com.kirito666.niitnews.ui.search.SearchPage;
 import com.kirito666.niitnews.util.Tools;
@@ -33,7 +33,7 @@ import java.lang.reflect.Method;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:MainFrame.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 13:49:29
  */
 
 public class MainFrame extends BaseActivity<PageMainFrameBinding> {

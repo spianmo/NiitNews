@@ -19,7 +19,7 @@ import com.kirito666.niitnews.databinding.PageLoginBinding;
 import com.kirito666.niitnews.entity.User;
 import com.kirito666.niitnews.entity.base.BaseResponse;
 import com.kirito666.niitnews.entity.base.HttpStatusCode;
-import com.kirito666.niitnews.ui.forum.ForumHostFragment;
+import com.kirito666.niitnews.ui.posts.ForumHostFragment;
 import com.kirito666.niitnews.ui.register.RegisterDialog;
 import com.kirshi.framework.databinding.BaseBindingFragment;
 import com.kirshi.framework.databinding.DataBindingConfig;
@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:LoginFragment.java
- * @LastModified:2021/06/28 09:34:28
+ * @LastModified:2021/06/29 11:08:29
  */
 
 public class LoginFragment extends BaseBindingFragment<PageLoginBinding> {

@@ -5,7 +5,7 @@ package com.kirito666.niitnews.entity.base;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:HttpStatusCode.java
- * @LastModified:2021/06/24 14:06:24
+ * @LastModified:2021/06/29 11:24:29
  */
 
 /**
@@ -66,5 +66,14 @@ public enum HttpStatusCode {
             }
         }
         return "";
+    }
+
+    public static HttpStatusCode getStatusByCode(int statusCode) {
+        for (HttpStatusCode s : HttpStatusCode.values()) {
+            if (s.getStatus() == statusCode) {
+                return s;
+            }
+        }
+        return HttpStatusCode.UNKNOW_EXCEPTION;
     }
 }

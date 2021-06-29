@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:Commit.java
- * @LastModified:2021/06/29 01:56:29
+ * @LastModified:2021/06/29 12:30:29
  */
 public class Commit implements Serializable {
     long cid;
@@ -28,6 +28,10 @@ public class Commit implements Serializable {
     }
 
     public Commit() {
+    }
+
+    public static CommitBuilder builder() {
+        return new CommitBuilder();
     }
 
     public long getCid() {
@@ -121,5 +125,55 @@ public class Commit implements Serializable {
 
     public String toString() {
         return "Commit(cid=" + this.getCid() + ", ownerId=" + this.getOwnerId() + ", pid=" + this.getPid() + ", text=" + this.getText() + ", parentCid=" + this.getParentCid() + ", createTime=" + this.getCreateTime() + ")";
+    }
+
+    public static class CommitBuilder {
+        private long cid;
+        private long ownerId;
+        private long pid;
+        private String text;
+        private long parentCid;
+        private Timestamp createTime;
+
+        CommitBuilder() {
+        }
+
+        public CommitBuilder cid(long cid) {
+            this.cid = cid;
+            return this;
+        }
+
+        public CommitBuilder ownerId(long ownerId) {
+            this.ownerId = ownerId;
+            return this;
+        }
+
+        public CommitBuilder pid(long pid) {
+            this.pid = pid;
+            return this;
+        }
+
+        public CommitBuilder text(String text) {
+            this.text = text;
+            return this;
+        }
+
+        public CommitBuilder parentCid(long parentCid) {
+            this.parentCid = parentCid;
+            return this;
+        }
+
+        public CommitBuilder createTime(Timestamp createTime) {
+            this.createTime = createTime;
+            return this;
+        }
+
+        public Commit build() {
+            return new Commit(cid, ownerId, pid, text, parentCid, createTime);
+        }
+
+        public String toString() {
+            return "Commit.CommitBuilder(cid=" + this.cid + ", ownerId=" + this.ownerId + ", pid=" + this.pid + ", text=" + this.text + ", parentCid=" + this.parentCid + ", createTime=" + this.createTime + ")";
+        }
     }
 }

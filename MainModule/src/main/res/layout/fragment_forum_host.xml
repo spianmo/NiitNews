@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:fragment_forum_host.xml
-  ~ @LastModified:2021/06/29 02:05:29
+  ~ @LastModified:2021/06/29 11:08:29
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,6 +11,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_container"
-    tools:context=".ui.forum.ForumHostFragment">
+    tools:context=".ui.posts.ForumHostFragment">
 
 </FrameLayout>

@@ -37,7 +37,7 @@ import retrofit2.http.Query;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:APIService.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 12:30:29
  */
 
 public interface APIService {
@@ -141,7 +141,7 @@ public interface APIService {
     Call<BaseResponse<String>> deleteFavor(@Path("pid") int pid);
 
     @POST("/posts/{pid}/commit")
-    Call<BaseResponse<String>> commitPost(@Path("pid") int pid, @Body Commit commit);
+    Call<BaseResponse<String>> sendCommit(@Path("pid") int pid, @Body Commit commit);
 
     @FormUrlEncoded
     @DELETE("/posts/{pid}/commit")

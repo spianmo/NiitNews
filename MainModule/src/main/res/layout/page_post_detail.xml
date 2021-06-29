@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:page_post_detail.xml
-  ~ @LastModified:2021/06/29 10:37:29
+  ~ @LastModified:2021/06/29 13:26:29
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -207,6 +207,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
+                                        android:onClick="@{()->click.forwardPost()}"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -232,6 +233,7 @@
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
+                                        android:onClick="@{()->click.favorPost()}"
                                         android:orientation="horizontal">
 
                                         <com.sackcentury.shinebuttonlib.ShineButton
@@ -267,6 +269,7 @@
 
                                     <LinearLayout
                                         android:id="@+id/btn_post_commit"
+                                        android:onClick="@{()->click.sendCommit()}"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"

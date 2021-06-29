@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:fragment_forum_child.xml
-  ~ @LastModified:2021/06/29 02:05:29
+  ~ @LastModified:2021/06/29 11:08:29
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,17 +17,17 @@
 
         <variable
             name="vm"
-            type="com.kirito666.niitnews.ui.forum.ForumPageViewModel" />
+            type="com.kirito666.niitnews.ui.posts.ForumPageViewModel" />
 
         <variable
             name="click"
-            type="com.kirito666.niitnews.ui.forum.ForumChildFragment.ClickProxy" />
+            type="com.kirito666.niitnews.ui.posts.ForumChildFragment.ClickProxy" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.forum.ForumChildFragment">
+        tools:context=".ui.posts.ForumChildFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/view_empty"

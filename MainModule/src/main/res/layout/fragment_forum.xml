@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:fragment_forum.xml
-  ~ @LastModified:2021/06/29 02:05:29
+  ~ @LastModified:2021/06/29 11:08:29
   -->
 
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.forum.ForumFragment">
+    tools:context=".ui.posts.ForumFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"

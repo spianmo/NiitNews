@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.SparseArray;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -13,16 +15,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
+import com.google.android.material.snackbar.Snackbar;
+
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:BaseBindingActivity.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/29 13:49:29
  */
 
 public abstract class BaseBindingActivity<Binding extends ViewDataBinding> extends AppCompatActivity {
     protected Binding v;
+    Handler mainHandler;
 
     protected abstract void initViewModel();
 
@@ -75,6 +80,17 @@ public abstract class BaseBindingActivity<Binding extends ViewDataBinding> exten
         super.onDestroy();
         v.unbind();
         v = null;
+    }
+
+    public void runOnUI(Runnable runnable) {
+        mainHandler = new Handler(Looper.getMainLooper());
+        mainHandler.post(runnable);
+    }
+
+    public Snackbar showSnackBar(String message) {
+        Snackbar snackbar = Snackbar.make(v.getRoot(), message, Snackbar.LENGTH_SHORT);
+        runOnUI(snackbar::show);
+        return snackbar;
     }
 
 }

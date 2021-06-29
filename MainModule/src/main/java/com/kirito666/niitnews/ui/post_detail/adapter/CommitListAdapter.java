@@ -20,7 +20,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:CommitListAdapter.java
- * @LastModified:2021/06/29 10:37:29
+ * @LastModified:2021/06/29 13:26:29
  */
 
 public class CommitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -74,9 +74,6 @@ public class CommitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         originalViewHolder.v.commitAuthorNickname.setText(commit.getNickname());
         originalViewHolder.v.commitContent.setText(commit.getText());
         originalViewHolder.v.commitTime.setText(commit.getCreateTime().toGMTString());
-        originalViewHolder.v.commitAuthorInfo.setOnClickListener(v -> {
-
-        });
         originalViewHolder.v.commitAuthorInfo.setOnClickListener(v -> {
             if (mOnItemClickListener == null) {
                 return;

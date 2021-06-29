@@ -1,4 +1,4 @@
-package com.kirito666.niitnews.ui.forum;
+package com.kirito666.niitnews.ui.posts;
 
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import com.kirito666.niitnews.R;
 import com.kirito666.niitnews.databinding.FragmentForumBinding;
 import com.kirito666.niitnews.ui.empty.EmptyEntity;
-import com.kirito666.niitnews.ui.forum.adapter.ForumPageAdapter;
+import com.kirito666.niitnews.ui.posts.adapter.ForumPageAdapter;
 import com.kirshi.framework.viewbinding.BaseFragment;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +22,7 @@ import java.util.Arrays;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumFragment.java
- * @LastModified:2021/06/28 20:03:28
+ * @LastModified:2021/06/29 11:08:29
  */
 
 public class ForumFragment extends BaseFragment<FragmentForumBinding> {

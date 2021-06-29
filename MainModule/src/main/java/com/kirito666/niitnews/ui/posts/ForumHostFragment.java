@@ -1,4 +1,4 @@
-package com.kirito666.niitnews.ui.forum;
+package com.kirito666.niitnews.ui.posts;
 
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumHostFragment.java
- * @LastModified:2021/06/28 10:54:28
+ * @LastModified:2021/06/29 11:08:29
  */
 
 public class ForumHostFragment extends BaseFragment<FragmentForumHostBinding> {

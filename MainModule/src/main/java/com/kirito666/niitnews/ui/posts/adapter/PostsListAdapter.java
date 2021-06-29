@@ -1,36 +1,27 @@
-package com.kirito666.niitnews.ui.forum.adapter;
+package com.kirito666.niitnews.ui.posts.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kirito666.niitnews.App;
 import com.kirito666.niitnews.databinding.ItemPostsLightBinding;
 import com.kirito666.niitnews.databinding.LoadMoreFootviewLayoutBinding;
-import com.kirito666.niitnews.entity.base.BaseResponse;
-import com.kirito666.niitnews.entity.base.HttpStatusCode;
 import com.kirito666.niitnews.entity.dto.SimplePost;
-import com.kirito666.niitnews.net.retrofit.RetrofitClient;
-import com.kirito666.niitnews.ui.forum.ForumChildFragment;
+import com.kirito666.niitnews.ui.posts.ForumChildFragment;
 import com.kirito666.niitnews.util.Tools;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 /**
  * Copyright (c) 2021
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostsListAdapter.java
- * @LastModified:2021/06/29 09:37:29
+ * @LastModified:2021/06/29 13:49:29
  */
 
 public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -53,7 +44,23 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private OnItemClickListener mOnItemClickListener;
 
     public interface OnItemClickListener {
-        void onItemClick(View view, SimplePost obj, int position);
+        void onShare(String title, String detail);
+
+        void onForward(SimplePost post);
+
+        void onFavor(int pid, OnFavorResult callback);
+
+        void onFavorCancel(int pid, OnFavorResult callback);
+
+        void onCommit(SimplePost post, boolean allow);
+
+        void onItemClick(SimplePost post);
+    }
+
+    public interface OnFavorResult {
+        void onSuccess();
+
+        void onFailure();
     }
 
     public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
@@ -112,68 +119,56 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             originalViewHolder.v.btnPostShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Tools.share(App.getAppContext(), post.getTitle(), post.getTextSmp());
+                    if (mOnItemClickListener == null) {
+                        return;
+                    }
+                    mOnItemClickListener.onShare(post.getTitle(), post.getTextSmp());
                 }
             });
             originalViewHolder.v.btnPostForward.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RetrofitClient.getInstance().getApi().forwardPost((int) post.getPid()).enqueue(new Callback<BaseResponse<String>>() {
-                        @Override
-                        public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
-                            if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
-                                post.setShareCount(post.getShareCount() + 1);
-                                notifyDataSetChanged();
-                                ctx.showSnackBar("转发成功");
-                            } else {
-                                ctx.showSnackBar("转发失败");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<BaseResponse<String>> call, Throwable t) {
-                            Toast.makeText(ctx.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    if (mOnItemClickListener == null) {
+                        return;
+                    }
+                    mOnItemClickListener.onForward(post);
                 }
             });
             originalViewHolder.v.btnPostFavor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!post.isFavor()) {
-                        RetrofitClient.getInstance().getApi().favorPost((int) post.getPid()).enqueue(new Callback<BaseResponse<String>>() {
+                        if (mOnItemClickListener == null) {
+                            return;
+                        }
+                        mOnItemClickListener.onFavor((int) post.getPid(), new OnFavorResult() {
                             @Override
-                            public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
-                                if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
-                                    originalViewHolder.v.btnFavorBling.setChecked(true, true);
-                                    post.setFavorCount(post.getFavorCount() + 1);
-                                    notifyDataSetChanged();
-                                } else {
-                                    ctx.showSnackBar("点赞失败");
-                                }
+                            public void onSuccess() {
+                                originalViewHolder.v.btnFavorBling.setChecked(true, true);
+                                post.setFavorCount(post.getFavorCount() + 1);
+                                notifyDataSetChanged();
                             }
 
                             @Override
-                            public void onFailure(Call<BaseResponse<String>> call, Throwable t) {
-                                Toast.makeText(ctx.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                            public void onFailure() {
+
                             }
                         });
                     } else {
-                        RetrofitClient.getInstance().getApi().deleteFavor((int) post.getPid()).enqueue(new Callback<BaseResponse<String>>() {
+                        if (mOnItemClickListener == null) {
+                            return;
+                        }
+                        mOnItemClickListener.onFavor((int) post.getPid(), new OnFavorResult() {
                             @Override
-                            public void onResponse(Call<BaseResponse<String>> call, Response<BaseResponse<String>> response) {
-                                if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
-                                    originalViewHolder.v.btnFavorBling.setChecked(false, true);
-                                    post.setFavorCount(post.getFavorCount() - 1);
-                                    notifyDataSetChanged();
-                                } else {
-                                    ctx.showSnackBar("取消点赞失败");
-                                }
+                            public void onSuccess() {
+                                originalViewHolder.v.btnFavorBling.setChecked(false, true);
+                                post.setFavorCount(post.getFavorCount() - 1);
+                                notifyDataSetChanged();
                             }
 
                             @Override
-                            public void onFailure(Call<BaseResponse<String>> call, Throwable t) {
-                                Toast.makeText(ctx.getContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                            public void onFailure() {
+
                             }
                         });
                     }
@@ -185,13 +180,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     if (mOnItemClickListener == null) {
                         return;
                     }
-                    if (post.isAllowComment()) {
-                        mOnItemClickListener.onItemClick(v, items.get(position), position);
-                        post.setViewsNum(post.getViewsNum() + 1);
-                        notifyDataSetChanged();
-                    } else {
-                        ctx.showSnackBar("该动态不允许评论");
-                    }
+                    mOnItemClickListener.onCommit(post, post.isAllowComment());
                 }
             });
 
@@ -199,7 +188,7 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 if (mOnItemClickListener == null) {
                     return;
                 }
-                mOnItemClickListener.onItemClick(v, items.get(position), position);
+                mOnItemClickListener.onItemClick(post);
                 post.setViewsNum(post.getViewsNum() + 1);
                 notifyDataSetChanged();
             });

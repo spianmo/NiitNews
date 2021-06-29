@@ -1,4 +1,4 @@
-package com.kirito666.niitnews.ui.forum.adapter;
+package com.kirito666.niitnews.ui.posts.adapter;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.kirito666.niitnews.ui.forum.ForumChildFragment;
+import com.kirito666.niitnews.ui.posts.ForumChildFragment;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumPageAdapter.java
- * @LastModified:2021/06/28 13:38:28
+ * @LastModified:2021/06/29 11:08:29
  */
 
 public class ForumPageAdapter extends FragmentStatePagerAdapter {
