@@ -3,7 +3,7 @@
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDetailPage.kt
- * @LastModified:2021/06/30 06:37:30
+ * @LastModified:2021/06/30 11:00:30
  */
 
 package com.kirito666.niitnews.ui.post_detail
@@ -71,7 +71,7 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
         v.recyclerView.layoutManager = LinearLayoutManager(baseContext)
         v.recyclerView.setHasFixedSize(true)
 
-        mAdapter = CommitListAdapter(baseContext, mPostDetailViewModel.post.value?.commits)
+        mAdapter = CommitListAdapter(baseContext, mPostDetailViewModel.commits.value)
         mAdapter.setOnItemClickListener(object : CommitListAdapter.OnItemClickListener {
             override fun onEnterCommitOwnerPofile(view: View?, ownerId: Int, position: Int) {
                 val intent = Intent(this@PostDetailPage, ProfilePage::class.java)
@@ -103,8 +103,10 @@ class PostDetailPage : BaseBindingActivity<PagePostDetailBinding>() {
         })
 
         v.recyclerView.adapter = mAdapter
-        mPostDetailViewModel.post.observe(this, Observer {
+        mPostDetailViewModel.commits.observe(this, {
             mAdapter.notifyDataSetChanged()
+        })
+        mPostDetailViewModel.post.observe(this, Observer {
             v.refreshLayout.isRefreshing = false
         })
 

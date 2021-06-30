@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:NewsChildFragment.java
- * @LastModified:2021/06/29 02:16:29
+ * @LastModified:2021/06/30 10:07:30
  */
 
 public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBinding> {
@@ -118,7 +118,7 @@ public class NewsChildFragment extends BaseBindingFragment<FragmentNewsChildBind
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                //判断RecyclerView的状态 是空闲时，同时，是最后一个可见的ITEM时才加载
+                //判断RecyclerView的状态 是空闲并且是最后一个可见的ITEM时才加载更多数据
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == mAdapter.getItemCount()) {
                     mAdapter.changeMoreStatus(NewsListAdapter.LOADING_MORE);
                     mNewsPageViewModel.fetchNews(++pageId, 10);

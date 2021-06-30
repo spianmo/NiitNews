@@ -3,7 +3,7 @@
   ~ @Project:NiitNews
   ~ @Author:Finger
   ~ @FileName:item_posts_light.xml
-  ~ @LastModified:2021/06/29 01:31:29
+  ~ @LastModified:2021/06/30 08:51:30
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -99,6 +99,7 @@
                         android:layout_marginTop="@dimen/spacing_medium"
                         android:fontFamily="sans-serif-light"
                         android:lineSpacingExtra="2dp"
+                        android:maxLength="48"
                         android:text="Mauris sagittis non elit quis"
                         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                         android:textColor="@android:color/black" />

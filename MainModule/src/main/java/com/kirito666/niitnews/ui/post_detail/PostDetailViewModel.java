@@ -13,11 +13,13 @@ import com.kirito666.niitnews.entity.Commit;
 import com.kirito666.niitnews.entity.RepositoryCallback;
 import com.kirito666.niitnews.entity.base.BaseResponse;
 import com.kirito666.niitnews.entity.base.HttpStatusCode;
+import com.kirito666.niitnews.entity.dto.CommitDto;
 import com.kirito666.niitnews.entity.dto.PostDto;
 import com.kirito666.niitnews.net.APIService;
 import com.kirito666.niitnews.net.retrofit.RetrofitClient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,12 +30,13 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:PostDetailViewModel.java
- * @LastModified:2021/06/30 06:37:30
+ * @LastModified:2021/06/30 11:00:30
  */
 
 public class PostDetailViewModel extends ViewModel implements LifecycleObserver {
     private final APIService mRepository = RetrofitClient.getInstance().getApi();
     public MutableLiveData<PostDto> post;
+    public MutableLiveData<List<CommitDto>> commits;
     private final int pid;
 
     public PostDetailViewModel(int pid) {
@@ -44,6 +47,10 @@ public class PostDetailViewModel extends ViewModel implements LifecycleObserver 
             postDto.setCommits(new ArrayList<>());
             post.setValue(postDto);
         }
+        if (commits == null) {
+            commits = new MutableLiveData<>();
+            commits.setValue(new ArrayList<>());
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -53,6 +60,11 @@ public class PostDetailViewModel extends ViewModel implements LifecycleObserver 
             public void onResponse(Call<BaseResponse<PostDto>> call, Response<BaseResponse<PostDto>> response) {
                 if (response.body().getStatusCode() == HttpStatusCode.SUCCESS.getStatus()) {
                     post.setValue(response.body().getData());
+
+                    List<CommitDto> diffCommits = commits.getValue();
+                    diffCommits.clear();
+                    diffCommits.addAll(response.body().getData().getCommits());
+                    commits.setValue(diffCommits);
                 }
             }
 

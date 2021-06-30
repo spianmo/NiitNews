@@ -29,7 +29,7 @@ import retrofit2.Response;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:ForumPageViewModel.java
- * @LastModified:2021/06/29 23:38:29
+ * @LastModified:2021/06/30 08:37:30
  */
 
 public class ForumPageViewModel extends ViewModel implements LifecycleObserver {
@@ -51,7 +51,7 @@ public class ForumPageViewModel extends ViewModel implements LifecycleObserver {
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void fetchPost() {
         fetchPost(1, 10);
     }

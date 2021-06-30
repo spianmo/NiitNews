@@ -20,7 +20,7 @@ import java.util.List;
  * @Project:NiitNews
  * @Author:Finger
  * @FileName:CommitListAdapter.java
- * @LastModified:2021/06/30 02:24:30
+ * @LastModified:2021/06/30 11:00:30
  */
 
 public class CommitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -100,10 +100,19 @@ public class CommitListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         items.clear();
     }
 
+    public void setListData(List<CommitDto> list) {
+        this.items.clear();
+        this.items.addAll(list);
+    }
+
 
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public List<CommitDto> getListData() {
+        return this.items;
     }
 
 }
